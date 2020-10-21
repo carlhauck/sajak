@@ -2,11 +2,16 @@
   <div class="home">
     <h1>{{ wordOfDay }}</h1>
     <p>{{ definition }}</p>
-    <p>{{ puzzle }}</p>
+    <h1 class="puzzle">{{ puzzle.join("") }}</h1>
+    <p>Wrong guesses: {{ wrong.join(", ") }}</p>
+    <p>Wrong guesses remaining: {{ 6 - wrong.length }}</p>
   </div>
 </template>
 
 <style>
+.puzzle {
+  letter-spacing: 0.75em;
+}
 </style>
 
 <script>
@@ -15,9 +20,11 @@ export default {
   data: function () {
     return {
       message: "Welcome to Vue.js!",
-      wordOfDay: null,
-      definition: null,
-      puzzle: null,
+      wordOfDay: "",
+      definition: "",
+      puzzle: [],
+      wrong: [],
+      indices: [],
     };
   },
   created: function () {
@@ -35,9 +42,38 @@ export default {
         console.log(date.getDate());
         this.wordOfDay = response.data.word;
         this.definition = response.data.definitions[0].text;
-        this.puzzle = "_ ".repeat(response.data.word.length);
+        this.puzzle = Array(response.data.word.length).fill("_");
       });
   },
-  methods: {},
+  mounted: function () {
+    window.addEventListener("keydown", this.guessLetter);
+  },
+  methods: {
+    guessLetter: function (e) {
+      if (e.which >= 65 && e.which <= 90) {
+        if (this.wordOfDay.includes(e.key)) {
+          Promise.resolve(this.getIndices(e.key)).then(this.addLetter(e.key));
+        } else if (!this.wrong.includes(e.key)) {
+          this.tallyWrong(e.key);
+        }
+      }
+    },
+    getIndices: function (key) {
+      this.indices = [];
+      for (let i = 0; i < this.wordOfDay.length; i++) {
+        if (this.wordOfDay[i] === key) {
+          this.indices.push(i);
+        }
+      }
+    },
+    addLetter: function (key) {
+      this.indices.forEach((i) => {
+        this.puzzle.splice(i, 1, key);
+      });
+    },
+    tallyWrong: function (key) {
+      this.wrong.push(key);
+    },
+  },
 };
 </script>
