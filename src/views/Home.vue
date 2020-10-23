@@ -1,16 +1,22 @@
 <template>
   <div class="home">
-    <h1>{{ wordOfDay }}</h1>
+    <h1 class="page-title">sajak horseman</h1>
+    <h2>{{ wordOfDay }}</h2>
     <p>{{ definition }}</p>
     <h1 class="puzzle">{{ puzzle.join("") }}</h1>
-    <p>Wrong guesses: {{ wrong.join(", ") }}</p>
-    <p>Wrong guesses remaining: {{ 6 - wrong.length }}</p>
+    <p>wrong guesses: {{ wrong.join(", ") }}</p>
+    <p>wrong guesses remaining: {{ 6 - wrong.length }}</p>
   </div>
 </template>
 
 <style>
 .puzzle {
+  font-family: "basier_square_monomedium";
   letter-spacing: 0.75em;
+}
+.page-title {
+  font-family: "archiabold";
+  font-size: 3em;
 }
 </style>
 
