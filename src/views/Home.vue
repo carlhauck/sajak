@@ -2,7 +2,7 @@
   <div class="home">
     <h1 class="page-title">sajak horseman</h1>
     <h2>{{ wordOfDay }}</h2>
-    <p>{{ definition }}</p>
+    <p>{{ definition.toLowerCase() }}</p>
     <h1 class="puzzle">{{ puzzle.join("") }}</h1>
     <p>wrong guesses: {{ wrong.join(", ") }}</p>
     <p>wrong guesses remaining: {{ 6 - wrong.length }}</p>
