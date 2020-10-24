@@ -1,21 +1,24 @@
 <template>
   <div class="home">
-    <h1 class="page-title">sajak horseman</h1>
-    <img v-show="countPuzzle() > 0 && wrong.length == 0" src="./../assets/horse-portrait-painting-0.png" alt="sajak horseman">
-    <img v-show="countPuzzle() > 0 && wrong.length == 1" src="./../assets/horse-portrait-painting-1.png" alt="sajak horseman">
-    <img v-show="countPuzzle() > 0 && wrong.length == 2" src="./../assets/horse-portrait-painting-2.png" alt="sajak horseman">
-    <img v-show="countPuzzle() > 0 && wrong.length == 3" src="./../assets/horse-portrait-painting-3.png" alt="sajak horseman">
-    <img v-show="countPuzzle() > 0 && wrong.length == 4" src="./../assets/horse-portrait-painting-4.png" alt="sajak horseman">
-    <img v-show="countPuzzle() > 0 && wrong.length == 5" src="./../assets/horse-portrait-painting-5.png" alt="sajak horseman">
-    <!-- Lose -->
-    <img v-show="countPuzzle() > 0 && wrong.length == 6" src="./../assets/horse-portrait-painting-fail.png" alt="sajak horseman">
-    <!-- Win -->
-    <img v-show="countPuzzle() == 0 && wrong.length < 6" src="./../assets/horse-portrait-painting-6.png" alt="sajak horseman">
-    <h1 class="puzzle">{{ puzzle.join("") }}</h1>
-    <p>wrong guesses: {{ wrong.join(", ") }}</p>
-    <p>wrong guesses remaining: {{ 6 - wrong.length }}</p>
-    <h2>{{ wordOfDay }}</h2>
-    <p>{{ definition.toLowerCase() }}</p>
+    <div class="container text-center">
+      <h1 class="page-title">sajak horseman</h1>
+      <img v-show="countPuzzle() > 0 && wrongCount == 0" src="./../assets/horse-portrait-painting-0.png" alt="sajak horseman">
+      <img v-show="countPuzzle() > 0 && wrongCount == 1" src="./../assets/horse-portrait-painting-1.png" alt="sajak horseman">
+      <img v-show="countPuzzle() > 0 && wrongCount == 2" src="./../assets/horse-portrait-painting-2.png" alt="sajak horseman">
+      <img v-show="countPuzzle() > 0 && wrongCount == 3" src="./../assets/horse-portrait-painting-3.png" alt="sajak horseman">
+      <img v-show="countPuzzle() > 0 && wrongCount == 4" src="./../assets/horse-portrait-painting-4.png" alt="sajak horseman">
+      <img v-show="countPuzzle() > 0 && wrongCount == 5" src="./../assets/horse-portrait-painting-5.png" alt="sajak horseman">
+      <!-- Lose -->
+      <img v-show="countPuzzle() > 0 && wrongCount == 6" src="./../assets/horse-portrait-painting-fail.png" alt="sajak horseman">
+      <!-- Win -->
+      <img v-show="countPuzzle() == 0 && wrongCount < 6" src="./../assets/horse-portrait-painting-6.png" alt="sajak horseman">
+      <h1 class="puzzle" v-if="countPuzzle() > 0 && wrongCount < 6">{{ puzzle.join("") }}</h1>
+      <h1 class="puzzle win" v-if="countPuzzle() == 0 && wrongCount < 6">{{ puzzle.join("") }}</h1>
+      <h1 class="puzzle loss" v-if="countPuzzle() > 0 && wrongCount == 6">{{ puzzle.join("") }}</h1>
+      <!-- <p>neigh: {{ wrong.join(" ") }}</p> -->
+      <h2 v-if="(countPuzzle() == 0 && wrongCount < 6) || (countPuzzle() > 0 && wrongCount == 6)">{{ wordOfDay }}</h2>
+      <p v-if="(countPuzzle() == 0 && wrongCount < 6) || (countPuzzle() > 0 && wrongCount == 6)">{{ definition.toLowerCase() }}</p>
+    </div>
   </div>
 </template>
 
@@ -29,7 +32,13 @@
   font-size: 3.2em;
 }
 img {
-  width: 500px;
+  width: 475px;
+}
+.win {
+  color: green;
+}
+.loss {
+  color: red;
 }
 </style>
 
@@ -42,7 +51,8 @@ export default {
       wordOfDay: "",
       definition: "",
       puzzle: [],
-      wrong: [],
+      wrongCount: 0,
+      wrong: ["🐴", "🐴", "🐴", "🐴", "🐴", "🐴"],
       indices: [],
     };
   },
@@ -94,7 +104,9 @@ export default {
       });
     },
     tallyWrong: function (key) {
-      this.wrong.push(key);
+      this.wrongCount++;
+      // this.wrong.push(key);
+      this.wrong.splice(this.wrongCount - 1, 1, key);
     },
   },
 };
