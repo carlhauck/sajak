@@ -30,6 +30,7 @@
 
 <script>
 import axios from "axios";
+import VueCookies from "vue-cookies";
 export default {
   data: function () {
     return {
@@ -112,6 +113,15 @@ export default {
       this.wrong.splice(this.wrongCount - 1, 1, key);
     },
     winGame: function () {
+      this.$cookies.set(
+        "sajak-score",
+        `${this.wordOfDay.length}`,
+        "7d",
+        null,
+        null,
+        true,
+        "None"
+      );
       // this.score += this.wordOfDay.length;
     },
   },
