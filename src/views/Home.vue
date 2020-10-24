@@ -18,6 +18,8 @@
       <!-- <p>neigh: {{ wrong.join(" ") }}</p> -->
       <h2 v-if="countPuzzle() > 0 && wrongCount == 6">{{ wordOfDay }}</h2>
       <p v-if="(countPuzzle() == 0 && wrongCount < 6) || (countPuzzle() > 0 && wrongCount == 6)">{{ definition.toLowerCase() }}</p>
+      <audio class="whinny-cooper" src="./../assets/horse-whinny-3.mp3"></audio>
+      <audio class="last-straw" src="./../assets/horse-neigh-3.mp3"></audio>
     </div>
   </div>
 </template>
@@ -61,6 +63,19 @@ export default {
     window.addEventListener("keydown", this.guessLetter);
   },
   methods: {
+    playNeigh: function () {
+      if (this.wrongCount === 6) {
+        let audio = document.querySelector("audio.last-straw");
+        if (!audio) return; // stop function from running altogether
+        audio.currentTime = 0; // rewind to the start if clip is already playing
+        audio.play();
+      } else {
+        let audio = document.querySelector("audio.whinny-cooper");
+        if (!audio) return; // stop function from running altogether
+        audio.currentTime = 0; // rewind to the start if clip is already playing
+        audio.play();
+      }
+    },
     countPuzzle: function () {
       return this.puzzle.reduce((n, x) => n + (x === "_"), 0);
     },
@@ -88,7 +103,7 @@ export default {
     },
     tallyWrong: function (key) {
       this.wrongCount++;
-      // this.wrong.push(key);
+      this.playNeigh();
       this.wrong.splice(this.wrongCount - 1, 1, key);
     },
   },
