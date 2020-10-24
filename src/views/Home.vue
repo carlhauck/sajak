@@ -13,11 +13,12 @@
       <!-- Win -->
       <img v-show="countPuzzle() == 0 && wrongCount < 6" src="./../assets/horse-portrait-painting-6.png" alt="sajak horseman">
       <h1 class="puzzle" v-if="countPuzzle() > 0 && wrongCount < 6">{{ puzzle.join("") }}</h1>
-      <h1 class="puzzle win" v-if="countPuzzle() == 0 && wrongCount < 6">{{ puzzle.join("") }}</h1>
+      <h1 class="puzzle win" v-if="countPuzzle() === 0 && wrongCount < 6">{{ puzzle.join("") }}</h1>
       <h1 class="puzzle loss" v-if="countPuzzle() > 0 && wrongCount == 6">{{ puzzle.join("") }}</h1>
-      <!-- <p>neigh: {{ wrong.join(" ") }}</p> -->
-      <h2 v-if="countPuzzle() > 0 && wrongCount == 6">{{ wordOfDay }}</h2>
-      <p v-if="(countPuzzle() == 0 && wrongCount < 6) || (countPuzzle() > 0 && wrongCount == 6)">{{ definition.toLowerCase() }}</p>
+      <h4>score: {{ score }}</h4>
+      <p v-if="countPuzzle() > 0 && wrongCount < 6">neigh: {{ wrong.join(" ") }}</p>
+      <h2 v-if="countPuzzle() > 0 && wrongCount === 6">{{ wordOfDay }}</h2>
+      <p v-if="(countPuzzle() === 0 && wrongCount < 6) || (countPuzzle() > 0 && wrongCount == 6)">{{ definition.toLowerCase() }}</p>
       <audio class="whinny-cooper" src="./../assets/horse-whinny-3.mp3"></audio>
       <audio class="last-straw" src="./../assets/horse-neigh-3.mp3"></audio>
     </div>
@@ -32,13 +33,13 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      message: "Welcome to Vue.js!",
       wordOfDay: "",
       definition: "",
       puzzle: [],
       wrongCount: 0,
       wrong: ["🐴", "🐴", "🐴", "🐴", "🐴", "🐴"],
       indices: [],
+      score: 0,
     };
   },
   created: function () {
@@ -83,6 +84,10 @@ export default {
       if (e.which >= 65 && e.which <= 90) {
         if (this.wordOfDay.includes(e.key)) {
           Promise.resolve(this.getIndices(e.key)).then(this.addLetter(e.key));
+          this.score += this.indices.length;
+          if (this.countPuzzle() === 0 && this.wrongCount < 6) {
+            this.winGame();
+          }
         } else if (!this.wrong.includes(e.key)) {
           this.tallyWrong(e.key);
         }
@@ -105,6 +110,9 @@ export default {
       this.wrongCount++;
       this.playNeigh();
       this.wrong.splice(this.wrongCount - 1, 1, key);
+    },
+    winGame: function () {
+      // this.score += this.wordOfDay.length;
     },
   },
 };
