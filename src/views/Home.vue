@@ -1,11 +1,21 @@
 <template>
   <div class="home">
     <h1 class="page-title">sajak horseman</h1>
-    <h2>{{ wordOfDay }}</h2>
-    <p>{{ definition.toLowerCase() }}</p>
+    <img v-show="countPuzzle() > 0 && wrong.length == 0" src="./../assets/horse-portrait-painting-0.png" alt="sajak horseman">
+    <img v-show="countPuzzle() > 0 && wrong.length == 1" src="./../assets/horse-portrait-painting-1.png" alt="sajak horseman">
+    <img v-show="countPuzzle() > 0 && wrong.length == 2" src="./../assets/horse-portrait-painting-2.png" alt="sajak horseman">
+    <img v-show="countPuzzle() > 0 && wrong.length == 3" src="./../assets/horse-portrait-painting-3.png" alt="sajak horseman">
+    <img v-show="countPuzzle() > 0 && wrong.length == 4" src="./../assets/horse-portrait-painting-4.png" alt="sajak horseman">
+    <img v-show="countPuzzle() > 0 && wrong.length == 5" src="./../assets/horse-portrait-painting-5.png" alt="sajak horseman">
+    <!-- Lose -->
+    <img v-show="countPuzzle() > 0 && wrong.length == 6" src="./../assets/horse-portrait-painting-fail.png" alt="sajak horseman">
+    <!-- Win -->
+    <img v-show="countPuzzle() == 0 && wrong.length < 6" src="./../assets/horse-portrait-painting-6.png" alt="sajak horseman">
     <h1 class="puzzle">{{ puzzle.join("") }}</h1>
     <p>wrong guesses: {{ wrong.join(", ") }}</p>
     <p>wrong guesses remaining: {{ 6 - wrong.length }}</p>
+    <h2>{{ wordOfDay }}</h2>
+    <p>{{ definition.toLowerCase() }}</p>
   </div>
 </template>
 
@@ -16,7 +26,10 @@
 }
 .page-title {
   font-family: "archiabold";
-  font-size: 3em;
+  font-size: 3.2em;
+}
+img {
+  width: 500px;
 }
 </style>
 
@@ -55,6 +68,9 @@ export default {
     window.addEventListener("keydown", this.guessLetter);
   },
   methods: {
+    countPuzzle: function () {
+      return this.puzzle.reduce((n, x) => n + (x === "_"), 0);
+    },
     guessLetter: function (e) {
       if (e.which >= 65 && e.which <= 90) {
         if (this.wordOfDay.includes(e.key)) {
