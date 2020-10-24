@@ -9,6 +9,12 @@
 </template>
 
 <style>
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
 @font-face {
   font-family: "basier_square_monobold";
   src: url("./fonts/basiersquaremono-bold-webfont.eot");
@@ -143,6 +149,8 @@
 
 body {
   font-family: "archialight";
+  background-color: #f3f6f7;
+  color: #464646;
 }
 
 .text-center {
@@ -157,6 +165,35 @@ body {
   margin-left: auto;
 }
 
+img {
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.puzzle {
+  font-family: "basier_square_monomedium";
+  letter-spacing: 0.6em;
+}
+
+h1.puzzle {
+  font-size: 1.4em;
+}
+
+.page-title {
+  font-family: "archiabold";
+}
+
+.win {
+  color: rgb(78, 117, 78);
+}
+.loss {
+  color: #9c4444;
+}
+
+.page-title {
+  font-size: 2.9em;
+}
+
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
@@ -166,6 +203,15 @@ body {
 @media (min-width: 768px) {
   .container {
     max-width: 720px;
+  }
+  img {
+    width: 450px;
+  }
+  .puzzle {
+    letter-spacing: 0.75em;
+  }
+  h1.puzzle {
+    font-size: 2em;
   }
 }
 
@@ -178,6 +224,12 @@ body {
 @media (min-width: 1200px) {
   .container {
     max-width: 1140px;
+  }
+  img {
+    width: 500px;
+  }
+  .page-title {
+    font-size: 3.2em;
   }
 }
 </style>

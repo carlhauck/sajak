@@ -16,30 +16,13 @@
       <h1 class="puzzle win" v-if="countPuzzle() == 0 && wrongCount < 6">{{ puzzle.join("") }}</h1>
       <h1 class="puzzle loss" v-if="countPuzzle() > 0 && wrongCount == 6">{{ puzzle.join("") }}</h1>
       <!-- <p>neigh: {{ wrong.join(" ") }}</p> -->
-      <h2 v-if="(countPuzzle() == 0 && wrongCount < 6) || (countPuzzle() > 0 && wrongCount == 6)">{{ wordOfDay }}</h2>
+      <h2 v-if="countPuzzle() > 0 && wrongCount == 6">{{ wordOfDay }}</h2>
       <p v-if="(countPuzzle() == 0 && wrongCount < 6) || (countPuzzle() > 0 && wrongCount == 6)">{{ definition.toLowerCase() }}</p>
     </div>
   </div>
 </template>
 
 <style>
-.puzzle {
-  font-family: "basier_square_monomedium";
-  letter-spacing: 0.75em;
-}
-.page-title {
-  font-family: "archiabold";
-  font-size: 3.2em;
-}
-img {
-  width: 475px;
-}
-.win {
-  color: green;
-}
-.loss {
-  color: red;
-}
 </style>
 
 <script>
