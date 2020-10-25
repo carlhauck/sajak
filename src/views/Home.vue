@@ -19,6 +19,8 @@
       <p v-if="countPuzzle() > 0 && wrongCount < 6">neigh: {{ wrong.join(" ") }}</p>
       <h2 v-if="countPuzzle() > 0 && wrongCount === 6">{{ currentWord }}</h2>
       <p>{{ definition.toLowerCase() }}</p>
+      <button v-if="countPuzzle() === 0 && wrongCount < 6" v-on:click="getNewWord">Next Word</button>
+      <button v-if="countPuzzle() > 0 && wrongCount == 6" v-on:click="getNewWord">New Game</button>
       <audio class="whinny-cooper" src="./../assets/horse-whinny-3.mp3"></audio>
       <audio class="last-straw" src="./../assets/horse-neigh-3.mp3"></audio>
     </div>
@@ -37,47 +39,53 @@ export default {
       definition: "",
       puzzle: [],
       wrongCount: 0,
-      wrong: ["🐴", "🐴", "🐴", "🐴", "🐴", "🐴"],
+      wrong: [],
       indices: [],
       score: 0,
     };
   },
   created: function () {
-    axios
-      .get(
-        `https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&includePartOfSpeech=noun%2C%20adjective%2C%20verb&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=10&api_key=${process.env.VUE_APP_WORDNIK_API_KEY}`
-      )
-      .then((response) => {
-        this.currentWord = response.data.word;
-        this.puzzle = Array(response.data.word.length).fill("_");
-        axios
-          .get(
-            `https://api.wordnik.com/v4/word.json/${response.data.word}/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=${process.env.VUE_APP_WORDNIK_API_KEY}`
-          )
-          .then((response) => {
-            let periodIndex = response.data[0].text.indexOf(".");
-            console.log(response.data[0].text);
-            let def = response.data[0].text
-              .slice(0, periodIndex)
-              .replace(
-                /<|>|\/|xref|internalXref|urlencoded|<sub>|<\/sub>|=|\\/gi,
-                ""
-              );
-            this.definition = def;
-            if ("sajak-horseman" in localStorage) {
-              this.score = parseInt(
-                localStorage.getItem("sajak-horseman").slice(3)
-              );
-            } else {
-              this.score = 0;
-            }
-          });
-      });
+    this.getNewWord();
   },
   mounted: function () {
     window.addEventListener("keydown", this.guessLetter);
   },
   methods: {
+    getNewWord: function () {
+      this.wrongCount = 0;
+      this.wrong = ["🐴", "🐴", "🐴", "🐴", "🐴", "🐴"];
+      axios
+        .get(
+          `https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&includePartOfSpeech=noun%2C%20adjective%2C%20verb&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=10&api_key=${process.env.VUE_APP_WORDNIK_API_KEY}`
+        )
+        .then((response) => {
+          this.currentWord = response.data.word.toLowerCase();
+          this.puzzle = Array(response.data.word.length).fill("_");
+          axios
+            .get(
+              `https://api.wordnik.com/v4/word.json/${response.data.word}/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=${process.env.VUE_APP_WORDNIK_API_KEY}`
+            )
+            .then((response) => {
+              let periodIndex = response.data[0].text.indexOf(".") || -1;
+              console.log(response.data[0].text);
+              let def = response.data[0].text
+                .slice(0, periodIndex)
+                // .replace(
+                //   /<|>|\/|xref|internalXref|urlencoded|<sub>|<\/sub>|<em>|<\/em>|=|\\/gi,
+                //   ""
+                // );
+                .replace(/(<([^>]+)>)/gi, "");
+              this.definition = def;
+              if (localStorage.getItem("sajak-horseman") !== null) {
+                this.score = parseInt(
+                  localStorage.getItem("sajak-horseman").slice(3)
+                );
+              } else {
+                this.score = 0;
+              }
+            });
+        });
+    },
     playNeigh: function () {
       if (this.wrongCount === 6) {
         let audio = document.querySelector("audio.last-straw");
@@ -95,7 +103,8 @@ export default {
       return this.puzzle.reduce((n, x) => n + (x === "_"), 0);
     },
     guessLetter: function (e) {
-      if (e.which >= 65 && e.which <= 90) {
+      if ((e.which >= 65 && e.which <= 90) || e.which === 189) {
+        // a-z + '-'
         if (this.currentWord.includes(e.key)) {
           if (!this.puzzle.includes(e.key)) {
             Promise.resolve(this.getIndices(e.key)).then(this.addLetter(e.key));
@@ -106,7 +115,7 @@ export default {
           }
         } else if (!this.wrong.includes(e.key)) {
           this.tallyWrong(e.key);
-          if (this.countPuzzle() > 0 && this.wrongCount == 6) {
+          if (this.countPuzzle() > 0 && this.wrongCount === 6) {
             this.loseGame();
           }
         }
