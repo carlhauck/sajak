@@ -17,8 +17,8 @@
       <h1 class="puzzle loss" v-if="countPuzzle() > 0 && wrongCount == 6">{{ puzzle.join("") }}</h1>
       <h4>score: {{ score }}</h4>
       <p v-if="countPuzzle() > 0 && wrongCount < 6">neigh: {{ wrong.join(" ") }}</p>
-      <h2 v-if="countPuzzle() > 0 && wrongCount === 6">{{ wordOfDay }}</h2>
-      <p v-if="(countPuzzle() === 0 && wrongCount < 6) || (countPuzzle() > 0 && wrongCount == 6)">{{ definition.toLowerCase() }}</p>
+      <h2 v-if="countPuzzle() > 0 && wrongCount === 6">{{ currentWord }}</h2>
+      <p>{{ definition.toLowerCase() }}</p>
       <audio class="whinny-cooper" src="./../assets/horse-whinny-3.mp3"></audio>
       <audio class="last-straw" src="./../assets/horse-neigh-3.mp3"></audio>
     </div>
@@ -30,11 +30,10 @@
 
 <script>
 import axios from "axios";
-import VueCookies from "vue-cookies";
 export default {
   data: function () {
     return {
-      wordOfDay: "",
+      currentWord: "",
       definition: "",
       puzzle: [],
       wrongCount: 0,
@@ -44,21 +43,35 @@ export default {
     };
   },
   created: function () {
-    const date = new Date(Date.now());
     axios
       .get(
-        `https://api.wordnik.com/v4/words.json/wordOfTheDay?date=${date.getFullYear()}-${
-          date.getMonth() + 1
-        }-${date.getDate()}&api_key=${process.env.VUE_APP_WORDNIK_API_KEY}`
+        `https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&includePartOfSpeech=noun%2C%20adjective%2C%20verb&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=10&api_key=${process.env.VUE_APP_WORDNIK_API_KEY}`
       )
       .then((response) => {
-        console.log(date);
-        console.log(date.getFullYear());
-        console.log(date.getMonth());
-        console.log(date.getDate());
-        this.wordOfDay = response.data.word;
-        this.definition = response.data.definitions[0].text;
+        this.currentWord = response.data.word;
         this.puzzle = Array(response.data.word.length).fill("_");
+        axios
+          .get(
+            `https://api.wordnik.com/v4/word.json/${response.data.word}/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=${process.env.VUE_APP_WORDNIK_API_KEY}`
+          )
+          .then((response) => {
+            let periodIndex = response.data[0].text.indexOf(".");
+            console.log(response.data[0].text);
+            let def = response.data[0].text
+              .slice(0, periodIndex)
+              .replace(
+                /<|>|\/|xref|internalXref|urlencoded|<sub>|<\/sub>|=|\\/gi,
+                ""
+              );
+            this.definition = def;
+            if ("sajak-horseman" in localStorage) {
+              this.score = parseInt(
+                localStorage.getItem("sajak-horseman").slice(3)
+              );
+            } else {
+              this.score = 0;
+            }
+          });
       });
   },
   mounted: function () {
@@ -83,21 +96,26 @@ export default {
     },
     guessLetter: function (e) {
       if (e.which >= 65 && e.which <= 90) {
-        if (this.wordOfDay.includes(e.key)) {
-          Promise.resolve(this.getIndices(e.key)).then(this.addLetter(e.key));
-          this.score += this.indices.length;
-          if (this.countPuzzle() === 0 && this.wrongCount < 6) {
-            this.winGame();
+        if (this.currentWord.includes(e.key)) {
+          if (!this.puzzle.includes(e.key)) {
+            Promise.resolve(this.getIndices(e.key)).then(this.addLetter(e.key));
+            this.score += this.indices.length;
+            if (this.countPuzzle() === 0 && this.wrongCount < 6) {
+              this.winGame();
+            }
           }
         } else if (!this.wrong.includes(e.key)) {
           this.tallyWrong(e.key);
+          if (this.countPuzzle() > 0 && this.wrongCount == 6) {
+            this.loseGame();
+          }
         }
       }
     },
     getIndices: function (key) {
       this.indices = [];
-      for (let i = 0; i < this.wordOfDay.length; i++) {
-        if (this.wordOfDay[i] === key) {
+      for (let i = 0; i < this.currentWord.length; i++) {
+        if (this.currentWord[i] === key) {
           this.indices.push(i);
         }
       }
@@ -113,16 +131,12 @@ export default {
       this.wrong.splice(this.wrongCount - 1, 1, key);
     },
     winGame: function () {
-      this.$cookies.set(
-        "sajak-score",
-        `${this.wordOfDay.length}`,
-        "7d",
-        null,
-        null,
-        true,
-        "None"
-      );
-      // this.score += this.wordOfDay.length;
+      console.log("win");
+      const gameScore = "312" + this.score;
+      localStorage.setItem("sajak-horseman", `${gameScore}`);
+    },
+    loseGame: function () {
+      localStorage.removeItem("sajak-horseman");
     },
   },
 };
