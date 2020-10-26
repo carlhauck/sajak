@@ -2,22 +2,31 @@
   <div class="home">
     <div class="container text-center">
       <h1 class="page-title">sajak horseman</h1>
-      <img v-show="countPuzzle() > 0 && wrongCount == 0" src="./../assets/horse-portrait-painting-0.png" alt="sajak horseman">
-      <img v-show="countPuzzle() > 0 && wrongCount == 1" src="./../assets/horse-portrait-painting-1.png" alt="sajak horseman">
-      <img v-show="countPuzzle() > 0 && wrongCount == 2" src="./../assets/horse-portrait-painting-2.png" alt="sajak horseman">
-      <img v-show="countPuzzle() > 0 && wrongCount == 3" src="./../assets/horse-portrait-painting-3.png" alt="sajak horseman">
-      <img v-show="countPuzzle() > 0 && wrongCount == 4" src="./../assets/horse-portrait-painting-4.png" alt="sajak horseman">
-      <img v-show="countPuzzle() > 0 && wrongCount == 5" src="./../assets/horse-portrait-painting-5.png" alt="sajak horseman">
-      <!-- Lose -->
-      <img v-show="countPuzzle() > 0 && wrongCount == 6" src="./../assets/horse-portrait-painting-fail.png" alt="sajak horseman">
-      <!-- Win -->
-      <img v-show="countPuzzle() == 0 && wrongCount < 6" src="./../assets/horse-portrait-painting-6.png" alt="sajak horseman">
+      <div class="img-container">
+        <!-- new game -->
+        <img v-show="countPuzzle() > 0 && wrongCount == 0" src="./../assets/horse-portrait-painting-0.png" alt="sajak horseman">
+        <img v-show="countPuzzle() > 0 && wrongCount == 1" src="./../assets/horse-portrait-painting-1.png" alt="sajak horseman">
+        <img v-show="countPuzzle() > 0 && wrongCount == 2" src="./../assets/horse-portrait-painting-2.png" alt="sajak horseman">
+        <img v-show="countPuzzle() > 0 && wrongCount == 3" src="./../assets/horse-portrait-painting-3.png" alt="sajak horseman">
+        <img v-show="countPuzzle() > 0 && wrongCount == 4" src="./../assets/horse-portrait-painting-4.png" alt="sajak horseman">
+        <img v-show="countPuzzle() > 0 && wrongCount == 5" src="./../assets/horse-portrait-painting-5.png" alt="sajak horseman">
+        <!-- loss -->
+        <img v-show="countPuzzle() > 0 && wrongCount == 6" src="./../assets/horse-portrait-painting-fail.png" alt="sajak horseman">
+        <!-- win -->
+        <img v-show="countPuzzle() == 0 && wrongCount < 6" src="./../assets/horse-portrait-painting-6.png" alt="sajak horseman">
+        <div class="top-left">
+          <h4 class="neigh-score neigh" v-if="countPuzzle() > 0 && wrongCount < 6"> {{ wrong.join(" ") }} </h4>
+        </div>
+        <div class="top-right">
+          <h4 class="neigh-score score">score: {{ score }}</h4>
+        </div>
+        <div class="bottom">
+          <h2 class="neigh-score answer" v-if="countPuzzle() > 0 && wrongCount === 6">{{ currentWord }}</h2>
+        </div>
+      </div>
       <h1 class="puzzle" v-if="countPuzzle() > 0 && wrongCount < 6">{{ puzzle.join("") }}</h1>
       <h1 class="puzzle win" v-if="countPuzzle() === 0 && wrongCount < 6">{{ puzzle.join("") }}</h1>
       <h1 class="puzzle loss" v-if="countPuzzle() > 0 && wrongCount == 6">{{ puzzle.join("") }}</h1>
-      <h4>score: {{ score }}</h4>
-      <p v-if="countPuzzle() > 0 && wrongCount < 6">neigh: {{ wrong.join(" ") }}</p>
-      <h2 v-if="countPuzzle() > 0 && wrongCount === 6">{{ currentWord }}</h2>
       <p>{{ definition.toLowerCase() }}</p>
       <button v-if="countPuzzle() === 0 && wrongCount < 6" v-on:click="getNewWord">Next Word</button>
       <button v-if="countPuzzle() > 0 && wrongCount == 6" v-on:click="getNewWord">New Game</button>
@@ -53,7 +62,7 @@ export default {
   methods: {
     getNewWord: function () {
       this.wrongCount = 0;
-      this.wrong = ["🐴", "🐴", "🐴", "🐴", "🐴", "🐴"];
+      this.wrong = [];
       axios
         .get(
           `https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&includePartOfSpeech=noun%2C%20adjective%2C%20verb&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=10&api_key=${process.env.VUE_APP_WORDNIK_API_KEY}`
@@ -70,10 +79,6 @@ export default {
               console.log(response.data[0].text);
               let def = response.data[0].text
                 .slice(0, periodIndex)
-                // .replace(
-                //   /<|>|\/|xref|internalXref|urlencoded|<sub>|<\/sub>|<em>|<\/em>|=|\\/gi,
-                //   ""
-                // );
                 .replace(/(<([^>]+)>)/gi, "");
               this.definition = def;
               if (localStorage.getItem("sajak-horseman") !== null) {
@@ -137,7 +142,7 @@ export default {
     tallyWrong: function (key) {
       this.wrongCount++;
       this.playNeigh();
-      this.wrong.splice(this.wrongCount - 1, 1, key);
+      this.wrong.push(key);
     },
     winGame: function () {
       console.log("win");
