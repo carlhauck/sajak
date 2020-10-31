@@ -1,35 +1,23 @@
 <template>
   <div class="home">
     <div class="container text-center">
-      <h1 class="page-title">sajak horseman</h1>
-      <div class="img-container">
-        <!-- new game -->
-        <img v-show="countPuzzle() > 0 && wrongCount == 0" src="./../assets/horse-portrait-painting-0.png" alt="sajak horseman">
-        <img v-show="countPuzzle() > 0 && wrongCount == 1" src="./../assets/horse-portrait-painting-1.png" alt="sajak horseman">
-        <img v-show="countPuzzle() > 0 && wrongCount == 2" src="./../assets/horse-portrait-painting-2.png" alt="sajak horseman">
-        <img v-show="countPuzzle() > 0 && wrongCount == 3" src="./../assets/horse-portrait-painting-3.png" alt="sajak horseman">
-        <img v-show="countPuzzle() > 0 && wrongCount == 4" src="./../assets/horse-portrait-painting-4.png" alt="sajak horseman">
-        <img v-show="countPuzzle() > 0 && wrongCount == 5" src="./../assets/horse-portrait-painting-5.png" alt="sajak horseman">
-        <!-- loss -->
-        <img v-show="countPuzzle() > 0 && wrongCount == 6" src="./../assets/horse-portrait-painting-fail.png" alt="sajak horseman">
-        <!-- win -->
-        <img v-show="countPuzzle() == 0 && wrongCount < 6" src="./../assets/horse-portrait-painting-6.png" alt="sajak horseman">
-        <div class="top-left">
-          <h4 class="neigh-score neigh" v-if="countPuzzle() > 0 && wrongCount < 6"> {{ wrong.join(" ") }} </h4>
-        </div>
-        <div class="top-right">
-          <h4 class="neigh-score score">score: {{ score }}</h4>
-        </div>
-        <div class="bottom">
-          <h2 class="neigh-score answer" v-if="countPuzzle() > 0 && wrongCount === 6">{{ currentWord }}</h2>
-        </div>
-      </div>
-      <h1 class="puzzle" v-if="countPuzzle() > 0 && wrongCount < 6">{{ puzzle.join("") }}</h1>
-      <h1 class="puzzle win" v-if="countPuzzle() === 0 && wrongCount < 6">{{ puzzle.join("") }}</h1>
-      <h1 class="puzzle loss" v-if="countPuzzle() > 0 && wrongCount == 6">{{ puzzle.join("") }}</h1>
-      <p>{{ definition.toLowerCase() }}</p>
-      <button v-if="countPuzzle() === 0 && wrongCount < 6" v-on:click="getNewWord">Next Word</button>
-      <button v-if="countPuzzle() > 0 && wrongCount == 6" v-on:click="getNewWord">New Game</button>
+      <Header />
+      <ImageContainer
+        v-bind:blankCount="blankCount"
+        v-bind:wrongCount="wrongCount"
+        v-bind:score="score"
+        v-bind:wrong="wrong"
+        v-bind:currentWord="currentWord" />
+      <Puzzle
+        v-bind:blankCount="blankCount"
+        v-bind:wrongCount="wrongCount"
+        v-bind:puzzle="puzzle" />
+      <Definition
+        v-bind:definition="definition" />
+      <Button
+        v-bind:blankCount="blankCount"
+        v-bind:wrongCount="wrongCount"
+        v-on:getNewWord="getNewWord" />
       <audio class="whinny-cooper" src="./../assets/horse-whinny-3.mp3"></audio>
       <audio class="last-straw" src="./../assets/horse-neigh-3.mp3"></audio>
     </div>
@@ -41,13 +29,24 @@
 
 <script>
 import axios from "axios";
+import Header from "./../components/Header";
+import ImageContainer from "./../components/ImageContainer";
+import Puzzle from "./../components/Puzzle";
+import Definition from "./../components/Definition";
+import Button from "./../components/Button";
 export default {
+  components: {
+    Header,
+    ImageContainer,
+    Puzzle,
+    Definition,
+    Button,
+  },
   data: function () {
     return {
       currentWord: "",
       definition: "",
       puzzle: [],
-      wrongCount: 0,
       wrong: [],
       indices: [],
       score: 0,
@@ -59,9 +58,16 @@ export default {
   mounted: function () {
     window.addEventListener("keydown", this.guessLetter);
   },
+  computed: {
+    blankCount: function () {
+      return this.puzzle.reduce((n, x) => n + (x === "_"), 0);
+    },
+    wrongCount: function () {
+      return this.wrong.length;
+    },
+  },
   methods: {
     getNewWord: function () {
-      this.wrongCount = 0;
       this.wrong = [];
       axios
         .get(
@@ -77,10 +83,9 @@ export default {
             .then((response) => {
               let periodIndex = response.data[0].text.indexOf(".") || -1;
               console.log(response.data[0].text);
-              let def = response.data[0].text
+              this.definition = response.data[0].text
                 .slice(0, periodIndex)
                 .replace(/(<([^>]+)>)/gi, "");
-              this.definition = def;
               if (localStorage.getItem("sajak-horseman") !== null) {
                 this.score = parseInt(
                   localStorage.getItem("sajak-horseman").slice(3)
@@ -91,22 +96,6 @@ export default {
             });
         });
     },
-    playNeigh: function () {
-      if (this.wrongCount === 6) {
-        let audio = document.querySelector("audio.last-straw");
-        if (!audio) return; // stop function from running altogether
-        audio.currentTime = 0; // rewind to the start if clip is already playing
-        audio.play();
-      } else {
-        let audio = document.querySelector("audio.whinny-cooper");
-        if (!audio) return; // stop function from running altogether
-        audio.currentTime = 0; // rewind to the start if clip is already playing
-        audio.play();
-      }
-    },
-    countPuzzle: function () {
-      return this.puzzle.reduce((n, x) => n + (x === "_"), 0);
-    },
     guessLetter: function (e) {
       if ((e.which >= 65 && e.which <= 90) || e.which === 189) {
         // a-z + '-'
@@ -114,13 +103,13 @@ export default {
           if (!this.puzzle.includes(e.key)) {
             Promise.resolve(this.getIndices(e.key)).then(this.addLetter(e.key));
             this.score += this.indices.length;
-            if (this.countPuzzle() === 0 && this.wrongCount < 6) {
-              this.winGame();
+            if (this.blankCount === 0 && this.wrongCount < 6) {
+              this.winRound();
             }
           }
         } else if (!this.wrong.includes(e.key)) {
           this.tallyWrong(e.key);
-          if (this.countPuzzle() > 0 && this.wrongCount === 6) {
+          if (this.blankCount > 0 && this.wrongCount === 6) {
             this.loseGame();
           }
         }
@@ -140,11 +129,23 @@ export default {
       });
     },
     tallyWrong: function (key) {
-      this.wrongCount++;
-      this.playNeigh();
       this.wrong.push(key);
+      this.playNeigh();
     },
-    winGame: function () {
+    playNeigh: function () {
+      if (this.wrongCount === 6) {
+        let audio = document.querySelector("audio.last-straw");
+        if (!audio) return; // stop function from running altogether
+        audio.currentTime = 0; // rewind to the start if clip is already playing
+        audio.play();
+      } else {
+        let audio = document.querySelector("audio.whinny-cooper");
+        if (!audio) return; // stop function from running altogether
+        audio.currentTime = 0; // rewind to the start if clip is already playing
+        audio.play();
+      }
+    },
+    winRound: function () {
       console.log("win");
       const gameScore = "312" + this.score;
       localStorage.setItem("sajak-horseman", `${gameScore}`);

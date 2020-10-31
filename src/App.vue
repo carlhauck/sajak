@@ -165,87 +165,6 @@ body {
   margin-left: auto;
 }
 
-img {
-  width: 100%;
-  background-color: #ffffff;
-}
-.img-container {
-  width: 100%;
-  position: relative;
-  margin: 0 auto;
-  color: white;
-}
-
-.top-left {
-  position: absolute;
-  top: -1.1rem;
-  left: 1.2rem;
-  text-align: left;
-}
-
-.top-right {
-  position: absolute;
-  top: -1.1rem;
-  right: 1.2rem;
-  text-align: right;
-}
-
-.bottom {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.neigh-score {
-  font-family: "archiabold";
-  font-size: 1.5em;
-  -webkit-text-stroke-width: 0.2px;
-  -webkit-text-stroke-color: #ffffff;
-}
-
-.neigh {
-  color: #775343;
-  letter-spacing: 0.15rem;
-}
-
-.answer {
-  font-family: "basier_square_monobold_italic";
-  font-size: 3.3em;
-  letter-spacing: 0.12em;
-  color: #ffffff;
-  -webkit-text-stroke-width: 1.5px;
-  -webkit-text-stroke-color: #6e6e6e;
-}
-
-.score {
-  color: #99814c;
-}
-
-.puzzle {
-  font-family: "basier_square_monomedium";
-  letter-spacing: 0.6em;
-}
-
-h1.puzzle {
-  font-size: 1.4em;
-}
-
-.page-title {
-  font-family: "archiabold";
-}
-
-.win {
-  color: rgb(78, 117, 78);
-}
-.loss {
-  color: #9c4444;
-}
-
-.page-title {
-  font-size: 2.9em;
-}
-
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
@@ -255,18 +174,6 @@ h1.puzzle {
 @media (min-width: 768px) {
   .container {
     max-width: 720px;
-  }
-  img {
-    width: 450px;
-  }
-  .img-container {
-    width: 450px;
-  }
-  .puzzle {
-    letter-spacing: 0.75em;
-  }
-  h1.puzzle {
-    font-size: 2em;
   }
 }
 
@@ -279,19 +186,6 @@ h1.puzzle {
 @media (min-width: 1200px) {
   .container {
     max-width: 1140px;
-  }
-  .img-container {
-    width: 500px;
-  }
-  img {
-    width: 500px;
-  }
-  .page-title {
-    font-size: 3.2em;
-  }
-  .answer {
-    font-size: 4em;
-    -webkit-text-stroke-width: 1.5px;
   }
 }
 </style>
