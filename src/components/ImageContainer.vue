@@ -85,8 +85,8 @@ img {
   font-size: 3.3em;
   letter-spacing: 0.12em;
   color: #ffffff;
-  -webkit-text-stroke-width: 1.5px;
-  -webkit-text-stroke-color: #6e6e6e;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #5f5f5f;
 }
 
 @media (min-width: 768px) {
@@ -100,10 +100,10 @@ img {
 
 @media (min-width: 1200px) {
   .img-container {
-    width: 500px;
+    width: 525px;
   }
   img {
-    width: 500px;
+    width: 525px;
   }
   .answer {
     font-size: 4em;

@@ -165,6 +165,11 @@ body {
   margin-left: auto;
 }
 
+h1 {
+  margin-block-start: 0.55em;
+  margin-block-end: 0.55em;
+}
+
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
