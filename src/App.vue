@@ -15,6 +15,10 @@
   box-sizing: border-box;
 }
 
+*:focus {
+  outline: none !important;
+}
+
 @font-face {
   font-family: "basier_square_monobold";
   src: url("./fonts/basiersquaremono-bold-webfont.eot");
@@ -151,6 +155,11 @@ body {
   font-family: "archialight";
   background-color: #f3f6f7;
   color: #464646;
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
 .text-center {

@@ -102,27 +102,39 @@ export default {
           `https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&includePartOfSpeech=noun%2C%20adjective%2C%20verb&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=10&api_key=${process.env.VUE_APP_WORDNIK_API_KEY}`
         )
         .then((response) => {
-          this.currentWord = response.data.word.toLowerCase();
-          this.puzzle = Array(response.data.word.length).fill("_");
-          axios
-            .get(
-              `https://api.wordnik.com/v4/word.json/${response.data.word}/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=${process.env.VUE_APP_WORDNIK_API_KEY}`
-            )
-            .then((response) => {
-              let periodIndex = response.data[0].text.indexOf(".") || -1;
-              console.log(response.data[0].text);
-              this.definition = response.data[0].text
-                .slice(0, periodIndex)
-                .replace(/(<([^>]+)>)/gi, "");
-              if (localStorage.getItem("sajak-horseman") !== null) {
-                this.score = parseInt(
-                  localStorage.getItem("sajak-horseman").slice(3)
-                );
-              } else {
-                this.score = 0;
-              }
-            });
+          if (response.data.word.includes("-")) {
+            this.definition = "loading new word";
+            console.log("Word contains hyphen. New word.");
+            setTimeout(() => this.getNewWord(), 5000);
+          } else {
+            this.currentWord = response.data.word.toLowerCase();
+            this.puzzle = Array(response.data.word.length).fill("_");
+            axios
+              .get(
+                `https://api.wordnik.com/v4/word.json/${response.data.word}/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=${process.env.VUE_APP_WORDNIK_API_KEY}`
+              )
+              .then((response) => {
+                this.definition = this.prepDefinition(response.data[0].text);
+                if (localStorage.getItem("sajak-horseman") !== null) {
+                  this.score = parseInt(
+                    localStorage.getItem("sajak-horseman").slice(3)
+                  );
+                } else {
+                  this.score = 0;
+                }
+              })
+              .catch(() => {
+                this.definition = "loading new word";
+                console.log("No definition. New word.");
+                setTimeout(() => this.getNewWord(), 5000);
+              });
+          }
         });
+    },
+    prepDefinition: function (def) {
+      console.log(def);
+      let periodIndex = def.indexOf(".") || def.length + 1;
+      return def.slice(0, periodIndex).replace(/(<([^>]+)>)/gi, "");
     },
     guessLetter: function (e) {
       if ((e.which >= 65 && e.which <= 90) || e.which === 189) {
@@ -130,7 +142,11 @@ export default {
         if (this.currentWord.includes(e.key)) {
           if (!this.puzzle.includes(e.key)) {
             Promise.resolve(this.getIndices(e.key)).then(this.addLetter(e.key));
-            this.score += this.indices.length * this.scrabblePoints[e.key];
+            if (e.key !== "-") {
+              this.score += this.indices.length * this.scrabblePoints[e.key];
+            } else {
+              this.score += 1;
+            }
             if (this.blankCount === 0 && this.wrongCount < 6) {
               this.winRound();
             }
