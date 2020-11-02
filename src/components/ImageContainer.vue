@@ -30,7 +30,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .img-container {
   width: 100%;
   position: relative;

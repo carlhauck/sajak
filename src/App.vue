@@ -153,6 +153,7 @@
 
 body {
   font-family: "archialight";
+  overflow: hidden;
   background-color: #f3f6f7;
   color: #464646;
   user-select: none; /* supported by Chrome and Opera */
