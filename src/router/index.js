@@ -1,20 +1,20 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Menu from '../views/Menu.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Game from '../views/Game.vue';
+import Menu from '../views/Menu.vue';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home
-  },
-  {
-    path: '/menu',
     name: 'menu',
     component: Menu
+  },
+  {
+    path: '/play',
+    name: 'game',
+    component: Game
   },
   {
     path: '/about',
@@ -32,4 +32,4 @@ const router = new VueRouter({
   routes
 })
 
-export default router
+export default router;

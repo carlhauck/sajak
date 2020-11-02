@@ -141,6 +141,18 @@
 }
 
 @font-face {
+  font-family: "archiamedium";
+  src: url("./fonts/archia-medium-webfont.eot");
+  src: url("./fonts/archia-medium-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/archia-medium-webfont.woff2") format("woff2"),
+    url("./fonts/archia-medium-webfont.woff") format("woff"),
+    url("./fonts/archia-medium-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: "archiabold";
   src: url("./fonts/archia-bold-webfont.eot");
   src: url("./fonts/archia-bold-webfont.eot?#iefix") format("embedded-opentype"),
@@ -155,7 +167,6 @@ body {
   font-family: "archialight";
   height: 100vh;
   overflow: hidden;
-  background-color: #f3f6f7;
   color: #464646;
   user-select: none; /* supported by Chrome and Opera */
   -webkit-user-select: none; /* Safari */
