@@ -1,11 +1,25 @@
 <template>
-  <img id="sajak" src="./../assets/sajak-menu-cutout.png" alt="sajak">
+  <div class="sajak-container">
+    <img id="sajak" src="./../assets/sajak-menu-cutout.png" alt="sajak">
+  </div>
 </template>
 
 <style scoped>
+.sajak-container {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
 #sajak {
   position: absolute;
   height: 70vh;
+  /* max-height: 0; */
+  overflow: hidden;
+  left: 100%;
+  transform: translateX(-50%);
+  top: 80%;
+  transform: translateY(-50%);
   z-index: 2;
   animation: linear infinite alternate;
   -webkit-animation: linear infinite alternate;
@@ -35,13 +49,20 @@
 
 @-webkit-keyframes run {
   0% {
-    right: 0;
-  }
-  50% {
-    right: 100%;
+    max-height: 100vh;
+    overflow: hidden;
+    left: 100%;
+    transform: translateX(-50%);
+    top: 80%;
+    transform: translateY(-50%);
   }
   100% {
-    right: 0;
+    max-height: 100vh;
+    overflow: hidden;
+    left: 60%;
+    transform: translateX(-50%);
+    top: 80%;
+    transform: translateY(-50%);
   }
 }
 </style>

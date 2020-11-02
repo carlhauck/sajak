@@ -1,20 +1,178 @@
 <template>
-  <div class="img-container">
-    <img class="menu-bg" src="./../assets/newburyport-meadows.jpg" alt="sajak horseman">
+  <div class="menu-bg">
+    <img id="sajak" src="./../assets/sajak-menu-cutout.png" alt="sajak">
   </div>
 </template>
 
 <style scoped>
-.img-container {
-  width: 100%;
-}
 .menu-bg {
+  background: url("./../assets/newburyport-meadows.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   height: 100vh;
-  width: 100%;
-  object-fit: cover;
-  display: block;
+  overflow: hidden;
   position: relative;
-  left: 50%;
+}
+
+#sajak {
+  position: absolute;
+  height: 70vh;
+  overflow: hidden;
+  left: 100%;
   transform: translateX(-50%);
+  top: 80%;
+  transform: translateY(-50%);
+  z-index: 2;
+  animation: linear infinite alternate;
+  -webkit-animation: linear infinite alternate;
+  animation-name: run;
+  -webkit-animation-name: run;
+  animation-duration: 2.25s;
+  -webkit-animation-duration: 2.25s;
+  animation-iteration-count: 1;
+  animation-delay: 1.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes run {
+  0% {
+    left: 100%;
+    transform: translateX(-50%);
+    top: 80%;
+    transform: translateY(-50%);
+  }
+  100% {
+    left: 35%;
+    transform: translateX(-50%);
+    top: 80%;
+    transform: translateY(-50%);
+  }
+}
+
+@-webkit-keyframes run {
+  0% {
+    left: 100%;
+    transform: translateX(-50%);
+    top: 80%;
+    transform: translateY(-50%);
+  }
+  100% {
+    left: 35%;
+    transform: translateX(-50%);
+    top: 80%;
+    transform: translateY(-50%);
+  }
+}
+
+@media (min-width: 576px) {
+  #sajak {
+    position: absolute;
+    height: 70vh;
+    overflow: hidden;
+    left: 100%;
+    transform: translateX(-50%);
+    top: 80%;
+    transform: translateY(-50%);
+    z-index: 2;
+    animation: linear infinite alternate;
+    -webkit-animation: linear infinite alternate;
+    animation-name: run;
+    -webkit-animation-name: run;
+    animation-duration: 3s;
+    -webkit-animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes run {
+    0% {
+      left: 100%;
+      transform: translateX(-50%);
+      top: 80%;
+      transform: translateY(-50%);
+    }
+    100% {
+      left: 50%;
+      transform: translateX(-50%);
+      top: 80%;
+      transform: translateY(-50%);
+    }
+  }
+
+  @-webkit-keyframes run {
+    0% {
+      left: 100%;
+      transform: translateX(-50%);
+      top: 80%;
+      transform: translateY(-50%);
+    }
+    100% {
+      left: 50%;
+      transform: translateX(-50%);
+      top: 80%;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+  #sajak {
+    position: absolute;
+    height: 70vh;
+    overflow: hidden;
+    left: 100%;
+    transform: translateX(-50%);
+    top: 80%;
+    transform: translateY(-50%);
+    z-index: 2;
+    animation: linear infinite alternate;
+    -webkit-animation: linear infinite alternate;
+    animation-name: run;
+    -webkit-animation-name: run;
+    animation-duration: 3s;
+    -webkit-animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes run {
+    0% {
+      left: 100%;
+      transform: translateX(-50%);
+      top: 80%;
+      transform: translateY(-50%);
+    }
+    100% {
+      left: 60%;
+      transform: translateX(-50%);
+      top: 80%;
+      transform: translateY(-50%);
+    }
+  }
+
+  @-webkit-keyframes run {
+    0% {
+      left: 100%;
+      transform: translateX(-50%);
+      top: 80%;
+      transform: translateY(-50%);
+    }
+    100% {
+      left: 60%;
+      transform: translateX(-50%);
+      top: 80%;
+      transform: translateY(-50%);
+    }
+  }
 }
 </style>

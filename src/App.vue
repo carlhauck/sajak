@@ -153,6 +153,7 @@
 
 body {
   font-family: "archialight";
+  height: 100vh;
   overflow: hidden;
   background-color: #f3f6f7;
   color: #464646;

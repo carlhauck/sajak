@@ -1,7 +1,7 @@
 <template>
   <div class="menu">
+    <!-- <SajakCutout /> -->
     <MenuPainting />
-    <SajakCutout />
     <MenuTitle />
   </div>
 </template>
@@ -12,7 +12,7 @@
 <script>
 import axios from "axios";
 import MenuPainting from "./../components/MenuPainting";
-import SajakCutout from "./../components/SajakCutout";
+// import SajakCutout from "./../components/SajakCutout";
 import MenuTitle from "./../components/MenuTitle";
 // import ImageContainer from "./../components/ImageContainer";
 // import Puzzle from "./../components/Puzzle";
@@ -21,7 +21,7 @@ import MenuTitle from "./../components/MenuTitle";
 export default {
   components: {
     MenuPainting,
-    SajakCutout,
+    // SajakCutout,
     MenuTitle,
   },
   data: function () {
