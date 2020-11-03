@@ -18,9 +18,10 @@ export default {
   data: function () {
     return {};
   },
-  created: function () {
-    // this.getNewWord();
+  beforeCreate: function () {
+    document.body.className = "menu";
   },
+  created: function () {},
   mounted: function () {
     window.addEventListener("keydown", this.guessLetter);
   },

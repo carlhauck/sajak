@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
+  <div class="game">
     <div class="container text-center">
-      <Header />
+      <!-- <Header /> -->
       <ImageContainer
         v-bind:blankCount="blankCount"
         v-bind:wrongCount="wrongCount"
@@ -50,6 +50,7 @@ export default {
       wrong: [],
       indices: [],
       score: 0,
+      color: "orange",
       scrabblePoints: {
         a: 1,
         e: 1,
@@ -79,6 +80,9 @@ export default {
         z: 10,
       },
     };
+  },
+  beforeCreate: function () {
+    document.body.className = "game";
   },
   created: function () {
     this.getNewWord();

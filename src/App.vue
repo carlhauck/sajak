@@ -1,9 +1,5 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <!-- <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> -->
-    </div>
     <router-view/>
   </div>
 </template>
@@ -187,6 +183,14 @@ body {
   -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
+body.game {
+  background-color: #f3f6f7;
+}
+
+body.menu {
+  background-color: black;
+}
+
 .text-center {
   text-align: center !important;
 }
@@ -200,8 +204,8 @@ body {
 }
 
 h1 {
-  margin-block-start: 0.55em;
-  margin-block-end: 0.55em;
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
 
 @media (min-width: 576px) {

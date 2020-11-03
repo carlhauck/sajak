@@ -21,6 +21,7 @@ export default {
 
 h1.puzzle {
   font-size: 1.4em;
+  margin: 0.45em 0;
 }
 
 .win {

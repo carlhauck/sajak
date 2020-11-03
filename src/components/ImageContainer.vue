@@ -1,6 +1,7 @@
 <template>
   <div class="img-container">
     <!-- new game -->
+    <img v-show="currentWord === ''" src="./../assets/horse-portrait-painting-0.png" alt="sajak horseman">
     <img v-show="blankCount > 0 && wrongCount == 0" src="./../assets/horse-portrait-painting-0.png" alt="sajak horseman">
     <img v-show="blankCount > 0 && wrongCount == 1" src="./../assets/horse-portrait-painting-1.png" alt="sajak horseman">
     <img v-show="blankCount > 0 && wrongCount == 2" src="./../assets/horse-portrait-painting-2.png" alt="sajak horseman">
@@ -10,7 +11,7 @@
     <!-- loss -->
     <img v-show="blankCount > 0 && wrongCount == 6" src="./../assets/horse-portrait-painting-fail.png" alt="sajak horseman">
     <!-- win -->
-    <img v-show="blankCount == 0 && wrongCount < 6" src="./../assets/horse-portrait-painting-6.png" alt="sajak horseman">
+    <img v-show="blankCount == 0 && wrongCount < 6 && currentWord != ''" src="./../assets/horse-portrait-painting-6.png" alt="sajak horseman">
     <div class="top-left">
       <h4 class="neigh-score neigh" v-if="blankCount > 0 && wrongCount < 6"> {{ wrong.join(" ") }} </h4>
     </div>
@@ -45,14 +46,14 @@ img {
 
 .top-left {
   position: absolute;
-  top: -1.1rem;
+  top: 1rem;
   left: 1.2rem;
   text-align: left;
 }
 
 .top-right {
   position: absolute;
-  top: -1.1rem;
+  top: 1rem;
   right: 1.2rem;
   text-align: right;
 }
@@ -80,6 +81,10 @@ img {
   color: #99814c;
 }
 
+h4 {
+  margin: 0;
+}
+
 .answer {
   font-family: "basier_square_monobold_italic";
   font-size: 3.3em;
@@ -91,20 +96,14 @@ img {
 
 @media (min-width: 768px) {
   .img-container {
-    width: 450px;
+    width: 700px;
   }
   img {
-    width: 450px;
+    width: 700px;
   }
 }
 
 @media (min-width: 1200px) {
-  .img-container {
-    width: 525px;
-  }
-  img {
-    width: 525px;
-  }
   .answer {
     font-size: 4em;
     -webkit-text-stroke-width: 1.5px;

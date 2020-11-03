@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-link to="/play">
-      <button>Play</button>
+      <button class="btn-play">Play</button>
     </router-link>
   </div>
 </template>
@@ -13,11 +13,11 @@ export default {
 </script>
 
 <style>
-button {
+button.btn-play {
   position: absolute;
   left: 50%;
   right: 50%;
-  bottom: 32%;
+  bottom: 34%;
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
   transform: translateX(-50%);
@@ -25,14 +25,14 @@ button {
   text-transform: lowercase;
   letter-spacing: 0.05em;
   font-size: 1.9em;
-  padding: 0.75em 1.2em;
+  padding: 0.7em 1.2em;
   border: 4px solid rgba(222, 234, 238, 0.85);
   border-radius: 18px;
   background-color: rgba(222, 234, 238, 0.15);
   color: white;
   z-index: 4;
 }
-button:hover {
+button.btn-play:hover {
   background-color: rgba(222, 234, 238, 0.3);
   border: 4px solid rgba(222, 234, 238, 1);
   cursor: pointer;

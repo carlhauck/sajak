@@ -1,6 +1,6 @@
 <template>
-  <p v-if="definition === 'loading new word'" class="loading">{{ definition }}</p>
-  <p v-else>{{ definition }}</p>
+  <p v-if="definition === 'loading new word'" class="definition loading">{{ definition }}</p>
+  <p v-else class="definition">{{ definition }}</p>
 </template>
 
 <script>
@@ -11,6 +11,10 @@ export default {
 </script>
 
 <style>
+.definition {
+  margin-top: 1.5em;
+}
+
 .loading {
   color: rgb(153, 124, 108);
   animation: loading ease 2.5s;
