@@ -1,8 +1,29 @@
 <template>
   <div class="menu-bg">
     <img id="sajak" src="./../assets/sajak-menu-cutout.png" alt="sajak">
+    <MenuButton />
   </div>
 </template>
+
+<script>
+import axios from "axios";
+import MenuButton from "./../components/MenuButton";
+export default {
+  components: {
+    MenuButton,
+  },
+  data: function () {
+    return {};
+  },
+  created: function () {
+    // this.getNewWord();
+  },
+  mounted: function () {
+    // window.addEventListener("keydown", this.guessLetter);
+  },
+  methods: {},
+};
+</script>
 
 <style scoped>
 .menu-bg {

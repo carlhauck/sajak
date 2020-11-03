@@ -153,6 +153,18 @@
 }
 
 @font-face {
+  font-family: "archiasemibold";
+  src: url("./fonts/archia-semibold-webfont.eot");
+  src: url("./fonts/archia-semibold-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/archia-semibold-webfont.woff2") format("woff2"),
+    url("./fonts/archia-semibold-webfont.woff") format("woff"),
+    url("./fonts/archia-semibold-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: "archiabold";
   src: url("./fonts/archia-bold-webfont.eot");
   src: url("./fonts/archia-bold-webfont.eot?#iefix") format("embedded-opentype"),
