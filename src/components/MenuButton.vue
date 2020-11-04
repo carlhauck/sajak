@@ -17,15 +17,15 @@ button.btn-play {
   position: absolute;
   left: 50%;
   right: 50%;
-  bottom: 34%;
+  bottom: 35%;
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
   transform: translateX(-50%);
   font-family: "archiasemibold";
   text-transform: lowercase;
   letter-spacing: 0.05em;
-  font-size: 1.9em;
-  padding: 0.7em 1.2em;
+  font-size: 1.8em;
+  padding: 0.6em 1.1em;
   border: 4px solid rgba(222, 234, 238, 0.85);
   border-radius: 18px;
   background-color: rgba(222, 234, 238, 0.15);

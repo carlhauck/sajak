@@ -27,7 +27,8 @@ export default {
 
 <style scoped>
 .menu-bg {
-  background: url("./../assets/newburyport-meadows.jpg") no-repeat center center;
+  background: url("./../assets/newburyport-meadows-cropped.jpg") no-repeat
+    center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

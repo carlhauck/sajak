@@ -94,12 +94,25 @@ h4 {
   -webkit-text-stroke-color: #5f5f5f;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 576px) {
   .img-container {
-    width: 700px;
+    width: 100%;
   }
   img {
-    width: 700px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .img-container {
+    /* width: 700px; */
+    height: 78vh;
+    width: 108.68vh;
+  }
+  img {
+    /* width: 700px; */
+    height: 100%;
+    width: 100%;
   }
 }
 

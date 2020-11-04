@@ -12,7 +12,7 @@ export default {
 
 <style>
 .definition {
-  margin-top: 1.5em;
+  margin-top: 1.4em;
 }
 
 .loading {
