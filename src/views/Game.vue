@@ -18,6 +18,10 @@
         v-bind:blankCount="blankCount"
         v-bind:wrongCount="wrongCount"
         v-on:getNewWord="getNewWord" />
+      <MobileInput
+        v-bind:blankCount="blankCount"
+        v-bind:wrongCount="wrongCount"
+        v-if="isMobile()" />
       <audio class="whinny-cooper" src="./../assets/horse-whinny-3.mp3"></audio>
       <audio class="last-straw" src="./../assets/horse-neigh-3.mp3"></audio>
     </div>
@@ -29,18 +33,20 @@
 
 <script>
 import axios from "axios";
-import Header from "./../components/Header";
+// import Header from "./../components/Header";
 import ImageContainer from "./../components/ImageContainer";
 import Puzzle from "./../components/Puzzle";
 import Definition from "./../components/Definition";
 import Button from "./../components/Button";
+import MobileInput from "./../components/MobileInput";
 export default {
   components: {
-    Header,
+    // Header,
     ImageContainer,
     Puzzle,
     Definition,
     Button,
+    MobileInput,
   },
   data: function () {
     return {
@@ -99,6 +105,17 @@ export default {
     },
   },
   methods: {
+    isMobile() {
+      if (
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        )
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     getNewWord: function () {
       this.wrong = [];
       axios

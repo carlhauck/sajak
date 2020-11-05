@@ -25,8 +25,8 @@ button.btn-play {
   text-transform: lowercase;
   letter-spacing: 0.05em;
   font-size: 1.8em;
-  padding: 0.6em 1.1em;
-  border: 4px solid rgba(222, 234, 238, 0.85);
+  padding: 0.55em 1.1em;
+  border: 4px solid rgba(255, 255, 255, 0.85);
   border-radius: 18px;
   background-color: rgba(222, 234, 238, 0.15);
   color: white;
@@ -34,7 +34,7 @@ button.btn-play {
 }
 button.btn-play:hover {
   background-color: rgba(222, 234, 238, 0.3);
-  border: 4px solid rgba(222, 234, 238, 1);
+  border: 4px solid rgb(255, 255, 255);
   cursor: pointer;
 }
 </style>
