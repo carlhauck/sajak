@@ -8,9 +8,24 @@
 <script>
 export default {
   props: ["blankCount", "wrongCount", "currentWord"],
+  mounted: function () {
+    window.addEventListener("keydown", this.onSpaceKeydown);
+  },
   methods: {
     getNewWord: function () {
       this.$emit("getNewWord");
+    },
+    onSpaceKeydown: function (e) {
+      if (
+        (e.which === 32 &&
+          this.currentWord !== "" &&
+          this.blankCount === 0 &&
+          this.wrongCount < 6) ||
+        (this.blankCount > 0 && this.wrongCount === 6)
+      ) {
+        event.preventDefault();
+        this.$emit("getNewWord");
+      }
     },
   },
 };
