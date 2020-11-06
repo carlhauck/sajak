@@ -13,7 +13,7 @@
     <!-- win -->
     <img v-show="blankCount == 0 && wrongCount < 6 && currentWord != ''" src="./../assets/horse-portrait-painting-6.png" alt="sajak horseman">
     <div class="top-left">
-      <h4 class="neigh-score neigh" v-if="blankCount > 0 && wrongCount < 6"> {{ wrong.join(" ") }} </h4>
+      <h4 class="neigh-score neigh" v-if="blankCount > 0 && wrongCount < 6"> {{ wrongGuesses.join(" ") }} </h4>
     </div>
     <div class="top-right">
       <h4 class="neigh-score score">score: {{ score }}</h4>
@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  props: ["blankCount", "wrongCount", "score", "wrong", "currentWord"],
+  props: ["blankCount", "wrongCount", "score", "wrongGuesses", "currentWord"],
   methods: {},
 };
 </script>

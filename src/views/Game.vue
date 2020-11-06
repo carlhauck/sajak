@@ -6,7 +6,7 @@
         v-bind:blankCount="blankCount"
         v-bind:wrongCount="wrongCount"
         v-bind:score="score"
-        v-bind:wrong="wrong"
+        v-bind:wrongGuesses="wrongGuesses"
         v-bind:currentWord="currentWord" />
       <Puzzle
         v-bind:blankCount="blankCount"
@@ -53,7 +53,7 @@ export default {
       currentWord: "",
       definition: "",
       puzzle: [],
-      wrong: [],
+      wrongGuesses: [],
       indices: [],
       score: 0,
       color: "orange",
@@ -101,7 +101,7 @@ export default {
       return this.puzzle.reduce((n, x) => n + (x === "_"), 0);
     },
     wrongCount: function () {
-      return this.wrong.length;
+      return this.wrongGuesses.length;
     },
   },
   methods: {
@@ -117,7 +117,7 @@ export default {
       }
     },
     getNewWord: function () {
-      this.wrong = [];
+      this.wrongGuesses = [];
       axios
         .get(
           `https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&includePartOfSpeech=noun%2C%20adjective%2C%20verb&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=10&api_key=${process.env.VUE_APP_WORDNIK_API_KEY}`
@@ -158,8 +158,8 @@ export default {
       return def.slice(0, periodIndex).replace(/(<([^>]+)>)/gi, "");
     },
     guessLetter: function (e) {
-      if ((e.which >= 65 && e.which <= 90) || e.which === 189) {
-        // a-z + '-'
+      if (e.which >= 65 && e.which <= 90) {
+        // a-z
         if (this.currentWord.includes(e.key)) {
           if (!this.puzzle.includes(e.key)) {
             Promise.resolve(this.getIndices(e.key)).then(this.addLetter(e.key));
@@ -172,7 +172,7 @@ export default {
               this.winRound();
             }
           }
-        } else if (!this.wrong.includes(e.key)) {
+        } else if (!this.wrongGuesses.includes(e.key)) {
           this.tallyWrong(e.key);
           if (this.blankCount > 0 && this.wrongCount === 6) {
             this.loseGame();
@@ -194,7 +194,7 @@ export default {
       });
     },
     tallyWrong: function (key) {
-      this.wrong.push(key);
+      this.wrongGuesses.push(key);
       this.playNeigh();
     },
     playNeigh: function () {
