@@ -12,8 +12,8 @@ export default {
 
 <style scoped>
 button {
-  display: block; /* Why is this adding a purple underline to the text??? */
-  text-decoration: none;
+  /* display: block; Why is this adding a purple underline to the text??? */
+  /* text-decoration: none; */
 }
 button.btn-play {
   font-family: "archiasemibold";

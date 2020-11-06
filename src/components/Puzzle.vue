@@ -25,7 +25,7 @@ h1.puzzle {
 }
 
 .win {
-  color: rgb(78, 117, 78);
+  color: #6e8548;
 }
 .loss {
   color: #9c4444;

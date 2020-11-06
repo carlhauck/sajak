@@ -21,13 +21,25 @@
     <div class="bottom">
       <h2 class="neigh-score answer" v-if="blankCount > 0 && wrongCount === 6">{{ currentWord }}</h2>
     </div>
+    <NextButton
+      v-bind:blankCount="blankCount"
+      v-bind:wrongCount="wrongCount"
+      v-on:getNewWord="getNewWord" />
   </div>
 </template>
 
 <script>
+import NextButton from "./../components/NextButton";
 export default {
+  components: {
+    NextButton,
+  },
   props: ["blankCount", "wrongCount", "score", "wrongGuesses", "currentWord"],
-  methods: {},
+  methods: {
+    getNewWord: function () {
+      this.$emit("getNewWord");
+    },
+  },
 };
 </script>
 

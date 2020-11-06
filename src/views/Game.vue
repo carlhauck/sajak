@@ -7,17 +7,18 @@
         v-bind:wrongCount="wrongCount"
         v-bind:score="score"
         v-bind:wrongGuesses="wrongGuesses"
-        v-bind:currentWord="currentWord" />
+        v-bind:currentWord="currentWord"
+        v-on:getNewWord="getNewWord" />
       <Puzzle
         v-bind:blankCount="blankCount"
         v-bind:wrongCount="wrongCount"
         v-bind:puzzle="puzzle" />
       <Definition
         v-bind:definition="definition" />
-      <Button
+      <!-- <NextButton
         v-bind:blankCount="blankCount"
         v-bind:wrongCount="wrongCount"
-        v-on:getNewWord="getNewWord" />
+        v-on:getNewWord="getNewWord" /> -->
       <MobileInput
         v-bind:blankCount="blankCount"
         v-bind:wrongCount="wrongCount"
@@ -37,7 +38,7 @@ import axios from "axios";
 import ImageContainer from "./../components/ImageContainer";
 import Puzzle from "./../components/Puzzle";
 import Definition from "./../components/Definition";
-import Button from "./../components/Button";
+// import NextButton from "./../components/NextButton";
 import MobileInput from "./../components/MobileInput";
 export default {
   components: {
@@ -45,7 +46,7 @@ export default {
     ImageContainer,
     Puzzle,
     Definition,
-    Button,
+    // NextButton,
     MobileInput,
   },
   data: function () {
