@@ -125,7 +125,7 @@ export default {
         .then((response) => {
           if (response.data.word.includes("-")) {
             this.definition = "loading new word";
-            console.log("Word contains hyphen. New word.");
+            console.log("Word contained hyphen. Getting new word.");
             setTimeout(() => this.getNewWord(), 5000);
           } else {
             this.currentWord = response.data.word.toLowerCase();
@@ -146,7 +146,7 @@ export default {
               })
               .catch(() => {
                 this.definition = "loading new word";
-                console.log("No definition. New word.");
+                console.log("Word didn't have a definition. Getting new word.");
                 setTimeout(() => this.getNewWord(), 5000);
               });
           }

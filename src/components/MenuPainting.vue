@@ -1,16 +1,16 @@
 <template>
   <div class="menu-bg">
     <img id="sajak" src="./../assets/sajak-menu-cutout.png" alt="sajak">
-    <MenuButton />
+    <MenuButtonContainer />
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import MenuButton from "./../components/MenuButton";
+import MenuButtonContainer from "./../components/MenuButtonContainer";
 export default {
   components: {
-    MenuButton,
+    MenuButtonContainer,
   },
   data: function () {
     return {};

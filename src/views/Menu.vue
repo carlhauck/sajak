@@ -23,7 +23,7 @@ export default {
   },
   created: function () {},
   mounted: function () {
-    window.addEventListener("keydown", this.guessLetter);
+    // window.addEventListener("keydown", this.guessLetter);
   },
   methods: {},
 };

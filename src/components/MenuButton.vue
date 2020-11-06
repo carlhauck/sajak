@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <router-link to="/play">
-      <button class="btn-play">Play</button>
-    </router-link>
-  </div>
+  <router-link to="/play">
+    <button class="btn-play">play</button>
+  </router-link>
 </template>
 
 <script>
@@ -12,15 +10,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+button {
+  display: block; /* Why is this adding a purple underline to the text??? */
+  text-decoration: none;
+}
 button.btn-play {
-  position: absolute;
-  left: 50%;
-  right: 50%;
-  bottom: 35%;
-  -webkit-transform: translateX(-50%);
-  -moz-transform: translateX(-50%);
-  transform: translateX(-50%);
   font-family: "archiasemibold";
   text-transform: lowercase;
   letter-spacing: 0.05em;
@@ -30,7 +25,6 @@ button.btn-play {
   border-radius: 18px;
   background-color: rgba(222, 234, 238, 0.15);
   color: white;
-  z-index: 4;
 }
 button.btn-play:hover {
   background-color: rgba(222, 234, 238, 0.3);
