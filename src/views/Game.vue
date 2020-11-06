@@ -15,10 +15,6 @@
         v-bind:puzzle="puzzle" />
       <Definition
         v-bind:definition="definition" />
-      <!-- <NextButton
-        v-bind:blankCount="blankCount"
-        v-bind:wrongCount="wrongCount"
-        v-on:getNewWord="getNewWord" /> -->
       <MobileInput
         v-bind:blankCount="blankCount"
         v-bind:wrongCount="wrongCount"
@@ -38,7 +34,6 @@ import axios from "axios";
 import ImageContainer from "./../components/ImageContainer";
 import Puzzle from "./../components/Puzzle";
 import Definition from "./../components/Definition";
-// import NextButton from "./../components/NextButton";
 import MobileInput from "./../components/MobileInput";
 export default {
   components: {
@@ -46,7 +41,6 @@ export default {
     ImageContainer,
     Puzzle,
     Definition,
-    // NextButton,
     MobileInput,
   },
   data: function () {
