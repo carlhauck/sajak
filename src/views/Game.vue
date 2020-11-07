@@ -21,6 +21,12 @@
         v-bind:wrongCount="wrongCount"
         v-if="isMobile"
         v-on:guessLetterMobile="guessLetterMobile" />
+      <MobileNextButton
+        v-bind:blankCount="blankCount"
+        v-bind:wrongCount="wrongCount"
+        v-bind:currentWord="currentWord"
+        v-if="isMobile"
+        v-on:getNewWord="getNewWord" />
       <audio class="whinny-cooper" src="./../assets/horse-whinny-3.mp3"></audio>
       <audio class="last-straw" src="./../assets/horse-neigh-3.mp3"></audio>
     </div>
@@ -37,6 +43,7 @@ import ImageContainer from "./../components/ImageContainer";
 import Puzzle from "./../components/Puzzle";
 import Definition from "./../components/Definition";
 import MobileInput from "./../components/MobileInput";
+import MobileNextButton from "./../components/MobileNextButton";
 export default {
   components: {
     // Header,
@@ -44,6 +51,7 @@ export default {
     Puzzle,
     Definition,
     MobileInput,
+    MobileNextButton,
   },
   data: function () {
     return {

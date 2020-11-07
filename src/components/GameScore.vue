@@ -24,9 +24,15 @@ h4 {
 
 .score {
   font-family: "archiabold";
-  font-size: 1.5em;
+  font-size: 1.2em;
   -webkit-text-stroke-width: 0.2px;
   -webkit-text-stroke-color: #ffffff;
   color: #99814c;
+}
+
+@media (min-width: 350px) {
+  .score {
+    font-size: 1.5em;
+  }
 }
 </style>

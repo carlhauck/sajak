@@ -13,6 +13,7 @@ export default {
 <style>
 .definition {
   margin-top: 1.4em;
+  font-size: 0.9em;
 }
 
 .loading {
@@ -81,6 +82,12 @@ export default {
   }
   100% {
     opacity: 0;
+  }
+}
+
+@media (min-width: 350px) {
+  .definition {
+    font-size: 1em;
   }
 }
 </style>

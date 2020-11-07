@@ -26,7 +26,7 @@
       v-bind:blankCount="blankCount"
       v-bind:wrongCount="wrongCount"
       v-bind:currentWord="currentWord"
-      v-bind:isMobile="isMobile"
+      v-if="!isMobile"
       v-on:getNewWord="getNewWord" />
   </div>
 </template>

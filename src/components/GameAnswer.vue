@@ -20,11 +20,23 @@ export default {
 
 .answer {
   font-family: "basier_square_monobold_italic";
-  font-size: 3.3em;
+  font-size: 2.6em;
   letter-spacing: 0.12em;
   color: #ffffff;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: #5f5f5f;
+}
+
+@media (min-width: 350px) {
+  .answer {
+    font-size: 2.85em;
+  }
+}
+
+@media (min-width: 576px) {
+  .answer {
+    font-size: 3.3em;
+  }
 }
 
 @media (min-width: 1200px) {

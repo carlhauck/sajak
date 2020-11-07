@@ -1,17 +1,13 @@
 <template>
   <div>
-    <!-- Desktop buttons -->
-    <button v-if="!isMobile && currentWord !== '' && blankCount === 0 && wrongCount < 6" v-on:click="getNewWord" class="btn-next">Next Word</button>
-    <button v-if="!isMobile && blankCount > 0 && wrongCount === 6" v-on:click="getNewWord" class="btn-new">New Game</button>
-    <!-- Mobile buttons -->
-    <button v-if="isMobile && currentWord !== '' && blankCount === 0 && wrongCount < 6" v-on:click="getNewWord" class="btn-next-mobile">Next Word</button>
-    <button v-if="isMobile && blankCount > 0 && wrongCount === 6" v-on:click="getNewWord" class="btn-new-mobile">New Game</button>
+    <button v-if="currentWord !== '' && blankCount === 0 && wrongCount < 6" v-on:click="getNewWord" class="btn-next">Next Word</button>
+    <button v-if="blankCount > 0 && wrongCount === 6" v-on:click="getNewWord" class="btn-new">New Game</button>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["blankCount", "wrongCount", "currentWord", "isMobile"],
+  props: ["blankCount", "wrongCount", "currentWord"],
   mounted: function () {
     if (!this.isMobile) {
       window.addEventListener("keydown", this.onSpaceKeydown);
@@ -37,7 +33,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 button.btn-next {
   position: absolute;
   left: 1.2rem;
@@ -59,7 +55,6 @@ button.btn-next:hover {
   border: 3px solid #6e8548;
   cursor: pointer;
 }
-
 button.btn-new {
   position: absolute;
   left: 1.2rem;
@@ -77,47 +72,6 @@ button.btn-new {
   white-space: nowrap;
 }
 button.btn-new:hover {
-  background-color: rgba(241, 245, 247, 0.87);
-  border: 3px solid #777777;
-  cursor: pointer;
-}
-
-button.btn-next-mobile {
-  position: relative;
-  font-family: "archiasemibold";
-  text-transform: lowercase;
-  letter-spacing: 0.05em;
-  font-size: 1.25em;
-  padding: 0.65em 0.8em;
-  border: 3px solid #6e8548;
-  border-radius: 18px;
-  background-color: rgba(241, 245, 247, 0.8);
-  color: #7d8d62;
-  z-index: 4;
-  white-space: nowrap;
-}
-button.btn-next-mobile:hover {
-  background-color: rgba(241, 245, 247, 0.87);
-  border: 3px solid #6e8548;
-  cursor: pointer;
-}
-/* Add active for button press feedback on phones? */
-
-button.btn-new-mobile {
-  position: relative;
-  font-family: "archiasemibold";
-  text-transform: lowercase;
-  letter-spacing: 0.05em;
-  font-size: 1.25em;
-  padding: 0.65em 0.8em;
-  border: 3px solid #777777;
-  border-radius: 18px;
-  background-color: rgba(241, 245, 247, 0.8);
-  color: #777777;
-  z-index: 4;
-  white-space: nowrap;
-}
-button.btn-new-mobile:hover {
   background-color: rgba(241, 245, 247, 0.87);
   border: 3px solid #777777;
   cursor: pointer;

@@ -24,11 +24,17 @@ h4 {
 
 .neigh {
   font-family: "archiabold";
-  font-size: 1.5em;
+  font-size: 1.3em;
   stroke-width: 0.2px;
   -webkit-text-stroke-width: 0.2px;
   -webkit-text-stroke-color: #ffffff;
   color: #775343;
   letter-spacing: 0.15rem;
+}
+
+@media (min-width: 350px) {
+  .neigh {
+    font-size: 1.5em;
+  }
 }
 </style>
