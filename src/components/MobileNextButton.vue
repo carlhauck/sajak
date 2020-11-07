@@ -18,7 +18,9 @@ export default {
 
 <style scoped>
 button.btn-next-mobile {
-  margin: 0 auto;
+  margin-top: 0.3em;
+  margin-left: auto;
+  margin-right: auto;
   font-family: "archiasemibold";
   text-transform: lowercase;
   letter-spacing: 0.05em;
@@ -28,19 +30,21 @@ button.btn-next-mobile {
   padding-right: 0.65em;
   border: 2px solid #6e8548;
   border-radius: 14px;
-  background-color: rgba(241, 245, 247, 0.8);
-  color: #7d8d62;
+  background-color: #95aa72;
+  /* background-color: rgba(241, 245, 247, 0.8); */
+  /* color: #7d8d62; */
+  color: white;
   z-index: 4;
   white-space: nowrap;
 }
-button.btn-next-mobile:hover {
-  background-color: rgba(241, 245, 247, 0.87);
-  border: 3px solid #6e8548;
-  cursor: pointer;
+button.btn-next-mobile:active {
+  background-color: #a9bd87;
 }
 /* Add active for button press feedback on phones? */
 button.btn-new-mobile {
-  margin: 0 auto;
+  margin-top: 0.3em;
+  margin-left: auto;
+  margin-right: auto;
   font-family: "archiasemibold";
   text-transform: lowercase;
   letter-spacing: 0.05em;
@@ -50,14 +54,12 @@ button.btn-new-mobile {
   padding-right: 0.65em;
   border: 2px solid #777777;
   border-radius: 14px;
-  background-color: rgba(241, 245, 247, 0.8);
-  color: #777777;
+  background-color: #929292;
+  color: white;
   z-index: 4;
   white-space: nowrap;
 }
-button.btn-new-mobile:hover {
-  background-color: rgba(241, 245, 247, 0.87);
-  border: 3px solid #777777;
-  cursor: pointer;
+button.btn-new-mobile:active {
+  background-color: #a3a3a3;
 }
 </style>

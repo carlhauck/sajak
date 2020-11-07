@@ -15,7 +15,7 @@ export default {
   methods: {
     guessLetter: function () {
       this.$emit("guessLetterMobile", this.mobileInput);
-      setTimeout(this.resetInput, 500);
+      setTimeout(this.resetInput, 250);
     },
     resetInput: function () {
       this.mobileInput = "";
@@ -26,6 +26,7 @@ export default {
 
 <style>
 input {
+  margin-top: 0.3em;
   width: 90px;
   height: 45px;
   border-radius: 12px;

@@ -44,6 +44,8 @@ h1.puzzle {
   }
   h1.puzzle {
     font-size: 2em;
+    margin-top: 0.55em;
+    margin-bottom: 0.35em;
   }
 }
 </style>
