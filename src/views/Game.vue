@@ -8,6 +8,7 @@
         v-bind:score="score"
         v-bind:wrongGuesses="wrongGuesses"
         v-bind:currentWord="currentWord"
+        v-bind:isMobile="isMobile"
         v-on:getNewWord="getNewWord" />
       <Puzzle
         v-bind:blankCount="blankCount"
@@ -18,7 +19,8 @@
       <MobileInput
         v-bind:blankCount="blankCount"
         v-bind:wrongCount="wrongCount"
-        v-if="isMobile()" />
+        v-if="isMobile"
+        v-on:guessLetterMobile="guessLetterMobile" />
       <audio class="whinny-cooper" src="./../assets/horse-whinny-3.mp3"></audio>
       <audio class="last-straw" src="./../assets/horse-neigh-3.mp3"></audio>
     </div>
@@ -89,7 +91,9 @@ export default {
     this.getNewWord();
   },
   mounted: function () {
-    window.addEventListener("keydown", this.guessLetter);
+    if (!this.isMobile) {
+      window.addEventListener("keydown", this.guessLetter);
+    }
   },
   computed: {
     blankCount: function () {
@@ -98,9 +102,7 @@ export default {
     wrongCount: function () {
       return this.wrongGuesses.length;
     },
-  },
-  methods: {
-    isMobile() {
+    isMobile: function () {
       if (
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
           navigator.userAgent
@@ -111,6 +113,8 @@ export default {
         return false;
       }
     },
+  },
+  methods: {
     getNewWord: function () {
       this.wrongGuesses = [];
       axios
@@ -158,11 +162,7 @@ export default {
         if (this.currentWord.includes(e.key)) {
           if (!this.puzzle.includes(e.key)) {
             Promise.resolve(this.getIndices(e.key)).then(this.addLetter(e.key));
-            if (e.key !== "-") {
-              this.score += this.indices.length * this.scrabblePoints[e.key];
-            } else {
-              this.score += 1;
-            }
+            this.score += this.indices.length * this.scrabblePoints[e.key];
             if (this.blankCount === 0 && this.wrongCount < 6) {
               this.winRound();
             }
@@ -172,6 +172,21 @@ export default {
           if (this.blankCount > 0 && this.wrongCount === 6) {
             this.loseGame();
           }
+        }
+      }
+    },
+    guessLetterMobile: function (letter) {
+      if (this.currentWord.includes(letter)) {
+        if (!this.puzzle.includes(letter)) {
+          Promise.resolve(this.getIndices(letter)).then(this.addLetter(letter));
+          if (this.blankCount === 0 && this.wrongCount < 6) {
+            this.winRound();
+          }
+        }
+      } else if (!this.wrongGuesses.includes(letter)) {
+        this.tallyWrong(letter);
+        if (this.blankCount > 0 && this.wrongCount === 6) {
+          this.loseGame();
         }
       }
     },

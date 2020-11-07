@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="text" v-if="blankCount > 0 && wrongCount < 6" v-model="mobileInput" v-on:input="guessLetter()" />
+    <input type="text" maxlength="1" v-if="blankCount > 0 && wrongCount < 6" v-model="mobileInput" v-on:input="guessLetter()" />
   </div>
 </template>
 
@@ -14,8 +14,8 @@ export default {
   },
   methods: {
     guessLetter: function () {
-      console.log(this.mobileInput);
-      setTimeout(this.resetInput, 750);
+      this.$emit("guessLetterMobile", this.mobileInput);
+      setTimeout(this.resetInput, 500);
     },
     resetInput: function () {
       this.mobileInput = "";

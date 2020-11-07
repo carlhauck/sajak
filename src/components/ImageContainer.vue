@@ -26,6 +26,7 @@
       v-bind:blankCount="blankCount"
       v-bind:wrongCount="wrongCount"
       v-bind:currentWord="currentWord"
+      v-bind:isMobile="isMobile"
       v-on:getNewWord="getNewWord" />
   </div>
 </template>
@@ -42,7 +43,14 @@ export default {
     GameAnswer,
     NextButton,
   },
-  props: ["blankCount", "wrongCount", "score", "wrongGuesses", "currentWord"],
+  props: [
+    "blankCount",
+    "wrongCount",
+    "score",
+    "wrongGuesses",
+    "currentWord",
+    "isMobile",
+  ],
   methods: {
     getNewWord: function () {
       this.$emit("getNewWord");
