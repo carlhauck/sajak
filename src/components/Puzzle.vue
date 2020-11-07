@@ -17,6 +17,7 @@ export default {
 .puzzle {
   font-family: "basier_square_monomedium";
   letter-spacing: 0.6em;
+  margin-right: -0.6em;
 }
 
 h1.puzzle {
@@ -41,6 +42,7 @@ h1.puzzle {
 @media (min-width: 768px) {
   .puzzle {
     letter-spacing: 0.75em;
+    margin-right: -0.75em;
   }
   h1.puzzle {
     font-size: 2em;

@@ -12,7 +12,7 @@ export default {
 
 <style>
 .definition {
-  margin-top: 1.4em;
+  margin-top: 0.7em;
   font-size: 0.9em;
 }
 

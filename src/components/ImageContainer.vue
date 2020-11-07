@@ -71,6 +71,7 @@ export default {
 img {
   width: 100%;
   background-color: #ffffff;
+  display: block;
 }
 
 @media (min-width: 576px) {
@@ -84,12 +85,10 @@ img {
 
 @media (min-width: 768px) {
   .img-container {
-    /* width: 700px; */
-    height: 78vh;
-    width: 108.68vh;
+    height: 76vh;
+    width: 105.89vh;
   }
   img {
-    /* width: 700px; */
     height: 100%;
     width: 100%;
   }

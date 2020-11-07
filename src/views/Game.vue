@@ -28,13 +28,27 @@
         v-bind:currentWord="currentWord"
         v-if="isMobile"
         v-on:getNewWord="getNewWord" />
-      <audio class="whinny-cooper" src="./../assets/horse-whinny-3.mp3"></audio>
+      <audio class="whinny-cooper-good" src="./../assets/horse-whinny-good.mp3"></audio>
+      <audio class="whinny-cooper-bad" src="./../assets/horse-whinny-bad.mp3"></audio>
       <audio class="last-straw" src="./../assets/horse-neigh-3.mp3"></audio>
     </div>
   </div>
 </template>
 
 <style scoped>
+.game {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
 </style>
 
 <script>
@@ -162,8 +176,12 @@ export default {
     },
     prepDefinition: function (def) {
       console.log(def);
-      let periodIndex = def.indexOf(".") || def.length + 1;
-      return def.slice(0, periodIndex).replace(/(<([^>]+)>)/gi, "");
+      if (def.includes(".")) {
+        const periodIndex = def.indexOf(".") || def.length + 1;
+        return def.slice(0, periodIndex).replace(/(<([^>]+)>)/gi, "");
+      } else {
+        return def.replace(/(<([^>]+)>)/gi, "");
+      }
     },
     guessLetter: function (e) {
       if (e.which >= 65 && e.which <= 90) {
@@ -188,6 +206,7 @@ export default {
       if (this.currentWord.includes(letter)) {
         if (!this.puzzle.includes(letter)) {
           Promise.resolve(this.getIndices(letter)).then(this.addLetter(letter));
+          this.score += this.indices.length * this.scrabblePoints[letter];
           if (this.blankCount === 0 && this.wrongCount < 6) {
             this.winRound();
           }
@@ -223,14 +242,18 @@ export default {
         audio.currentTime = 0; // rewind to the start if clip is already playing
         audio.play();
       } else {
-        let audio = document.querySelector("audio.whinny-cooper");
+        let audio = document.querySelector("audio.whinny-cooper-bad");
         if (!audio) return; // stop function from running altogether
         audio.currentTime = 0; // rewind to the start if clip is already playing
         audio.play();
       }
     },
+    playYay: function () {
+      const audio = document.querySelector("audio.whinny-cooper-good");
+      audio.play();
+    },
     winRound: function () {
-      console.log("win");
+      this.playYay();
       const gameScore = "312" + this.score;
       localStorage.setItem("sajak-horseman", `${gameScore}`);
     },

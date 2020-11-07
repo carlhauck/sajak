@@ -6,7 +6,7 @@
 .page-title {
   font-family: "archiabold";
   font-size: 1.9em;
-  margin-top: 0.5em;
+  margin-top: -1em;
   margin-bottom: 0.5em;
 }
 
