@@ -1,7 +1,8 @@
 <template>
   <div class="game">
     <div class="container text-center">
-      <!-- <Header /> -->
+      <Header
+        v-if="isMobile" />
       <ImageContainer
         v-bind:blankCount="blankCount"
         v-bind:wrongCount="wrongCount"
@@ -33,12 +34,12 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 </style>
 
 <script>
 import axios from "axios";
-// import Header from "./../components/Header";
+import Header from "./../components/Header";
 import ImageContainer from "./../components/ImageContainer";
 import Puzzle from "./../components/Puzzle";
 import Definition from "./../components/Definition";
@@ -46,7 +47,7 @@ import MobileInput from "./../components/MobileInput";
 import MobileNextButton from "./../components/MobileNextButton";
 export default {
   components: {
-    // Header,
+    Header,
     ImageContainer,
     Puzzle,
     Definition,

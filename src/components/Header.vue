@@ -5,12 +5,14 @@
 <style>
 .page-title {
   font-family: "archiabold";
-  font-size: 2.9em;
+  font-size: 1.9em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 350px) {
   .page-title {
-    font-size: 3.2em;
+    font-size: 2.2em;
   }
 }
 </style>
