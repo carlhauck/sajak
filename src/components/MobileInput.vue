@@ -26,7 +26,7 @@ export default {
 
 <style>
 input {
-  margin-top: 0.3em;
+  margin-top: 6px;
   width: 90px;
   height: 45px;
   border-radius: 12px;

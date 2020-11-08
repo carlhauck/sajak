@@ -21,7 +21,7 @@ export default {
 }
 
 h1.puzzle {
-  font-size: 1.45em;
+  font-size: 1.25em;
   margin-top: 0.75em;
   margin-bottom: 0.6em;
 }
@@ -31,6 +31,12 @@ h1.puzzle {
 }
 .loss {
   color: #9c4444;
+}
+
+@media (min-width: 300px) {
+  h1.puzzle {
+    font-size: 1.35em;
+  }
 }
 
 @media (min-width: 350px) {

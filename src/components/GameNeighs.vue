@@ -13,8 +13,8 @@ export default {
 <style scoped>
 .top-left {
   position: absolute;
-  top: 1rem;
-  left: 1.2rem;
+  top: 0.5rem;
+  left: 0.6rem;
   text-align: left;
 }
 
@@ -24,12 +24,24 @@ h4 {
 
 .neigh {
   font-family: "archiabold";
-  font-size: 1.3em;
+  font-size: 1.1em;
   stroke-width: 0.2px;
   -webkit-text-stroke-width: 0.2px;
   -webkit-text-stroke-color: #ffffff;
   color: #775343;
   letter-spacing: 0.15rem;
+}
+
+@media (min-width: 300px) {
+  .neigh {
+    font-size: 1.2em;
+  }
+  .top-left {
+    position: absolute;
+    top: 1rem;
+    left: 1.2rem;
+    text-align: left;
+  }
 }
 
 @media (min-width: 350px) {

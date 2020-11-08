@@ -13,7 +13,7 @@ export default {
 <style>
 .definition {
   margin-top: 0.7em;
-  font-size: 0.9em;
+  font-size: 0.85em;
 }
 
 .loading {
@@ -86,6 +86,12 @@ export default {
 }
 
 @media (min-width: 350px) {
+  .definition {
+    font-size: 0.95em;
+  }
+}
+
+@media (min-width: 576px) {
   .definition {
     font-size: 1em;
   }

@@ -29,6 +29,9 @@ export default {
 .menu-bg {
   background: url("./../assets/newburyport-meadows-cropped.jpg") no-repeat
     center center;
+  margin-left: -0.47em;
+  margin-right: -0.47em;
+  margin-top: -0.47em;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

@@ -23,7 +23,8 @@ export default {
   font-size: 2.6em;
   letter-spacing: 0.12em;
   color: #ffffff;
-  -webkit-text-stroke-width: 2px;
+  stroke-width: 1.5px;
+  -webkit-text-stroke-width: 1.5px;
   -webkit-text-stroke-color: #5f5f5f;
 }
 
@@ -36,13 +37,26 @@ export default {
 @media (min-width: 576px) {
   .answer {
     font-size: 3.3em;
+    stroke-width: 2px;
+    -webkit-text-stroke-width: 2px;
+  }
+}
+
+@media (min-width: 768px) {
+  .answer {
+    font-size: 4em;
+  }
+}
+
+@media (min-width: 992px) {
+  .answer {
+    font-size: 5em;
   }
 }
 
 @media (min-width: 1200px) {
   .answer {
-    font-size: 4em;
-    -webkit-text-stroke-width: 1.5px;
+    font-size: 5.5em;
   }
 }
 </style>

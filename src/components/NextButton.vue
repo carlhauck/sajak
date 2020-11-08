@@ -45,13 +45,13 @@ button.btn-next {
   padding: 0.65em 0.8em;
   border: 3px solid #6e8548;
   border-radius: 18px;
-  background-color: rgba(241, 245, 247, 0.8);
+  background-color: rgba(241, 245, 247, 0.83);
   color: #7d8d62;
   z-index: 4;
   white-space: nowrap;
 }
 button.btn-next:hover {
-  background-color: rgba(241, 245, 247, 0.87);
+  background-color: rgba(241, 245, 247, 0.9);
   border: 3px solid #6e8548;
   cursor: pointer;
 }
@@ -66,13 +66,13 @@ button.btn-new {
   padding: 0.65em 0.8em;
   border: 3px solid #777777;
   border-radius: 18px;
-  background-color: rgba(241, 245, 247, 0.8);
+  background-color: rgba(241, 245, 247, 0.83);
   color: #777777;
   z-index: 4;
   white-space: nowrap;
 }
 button.btn-new:hover {
-  background-color: rgba(241, 245, 247, 0.87);
+  background-color: rgba(241, 245, 247, 0.9);
   border: 3px solid #777777;
   cursor: pointer;
 }

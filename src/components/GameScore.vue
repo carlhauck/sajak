@@ -13,8 +13,8 @@ export default {
 <style scoped>
 .top-right {
   position: absolute;
-  top: 1rem;
-  right: 1.2rem;
+  top: 0.5rem;
+  right: 0.6rem;
   text-align: right;
 }
 
@@ -24,10 +24,22 @@ h4 {
 
 .score {
   font-family: "archiabold";
-  font-size: 1.2em;
+  font-size: 1.1em;
   -webkit-text-stroke-width: 0.2px;
   -webkit-text-stroke-color: #ffffff;
   color: #99814c;
+}
+
+@media (min-width: 300px) {
+  .score {
+    font-size: 1.2em;
+  }
+  .top-right {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    text-align: right;
+  }
 }
 
 @media (min-width: 350px) {

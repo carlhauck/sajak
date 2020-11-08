@@ -29,8 +29,8 @@
         v-if="isMobile"
         v-on:getNewWord="getNewWord" />
       <audio class="whinny-cooper-good" src="./../assets/horse-whinny-good.mp3"></audio>
-      <audio class="whinny-cooper-bad" src="./../assets/horse-whinny-bad.mp3"></audio>
-      <audio class="last-straw" src="./../assets/horse-neigh-3.mp3"></audio>
+      <audio class="whinny-cooper-bad" src="./../assets/horse-snort.mp3"></audio>
+      <audio class="last-straw" src="./../assets/horse-whoa-bad.mp3"></audio>
     </div>
   </div>
 </template>

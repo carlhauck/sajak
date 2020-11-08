@@ -24,11 +24,11 @@ button.btn-next-mobile {
   font-family: "archiasemibold";
   text-transform: lowercase;
   letter-spacing: 0.05em;
-  font-size: 1.1em;
+  font-size: 1em;
   height: 45px;
   padding-left: 0.65em;
   padding-right: 0.65em;
-  border: 2px solid #6e8548;
+  border: 1px solid #6e8548;
   border-radius: 14px;
   background-color: #95aa72;
   /* background-color: rgba(241, 245, 247, 0.8); */
@@ -42,17 +42,17 @@ button.btn-next-mobile:active {
 }
 /* Add active for button press feedback on phones? */
 button.btn-new-mobile {
-  margin-top: 0.3em;
+  margin-top: 6px;
   margin-left: auto;
   margin-right: auto;
   font-family: "archiasemibold";
   text-transform: lowercase;
   letter-spacing: 0.05em;
-  font-size: 1.1em;
+  font-size: 1em;
   height: 45px;
   padding-left: 0.65em;
   padding-right: 0.65em;
-  border: 2px solid #777777;
+  border: 1px solid #777777;
   border-radius: 14px;
   background-color: #929292;
   color: white;

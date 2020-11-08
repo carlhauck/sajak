@@ -15,15 +15,8 @@ export default {
     MenuPainting,
     MenuTitle,
   },
-  data: function () {
-    return {};
-  },
   beforeCreate: function () {
     document.body.className = "menu";
-  },
-  created: function () {},
-  mounted: function () {
-    // window.addEventListener("keydown", this.guessLetter);
   },
   methods: {},
 };
