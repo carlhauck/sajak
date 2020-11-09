@@ -6,11 +6,10 @@
 <script>
 export default {
   props: ["definition"],
-  methods: {},
 };
 </script>
 
-<style>
+<style scoped>
 .definition {
   margin-top: 0.7em;
   font-size: 0.85em;

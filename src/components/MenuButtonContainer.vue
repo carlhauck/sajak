@@ -32,7 +32,6 @@ export default {
     MenuButton,
     // MenuScores,
   },
-  methods: {},
 };
 </script>
 

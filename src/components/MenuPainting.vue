@@ -12,16 +12,6 @@ export default {
   components: {
     MenuButtonContainer,
   },
-  data: function () {
-    return {};
-  },
-  created: function () {
-    // this.getNewWord();
-  },
-  mounted: function () {
-    // window.addEventListener("keydown", this.guessLetter);
-  },
-  methods: {},
 };
 </script>
 
