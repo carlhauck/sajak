@@ -141,7 +141,7 @@ export default {
   },
   methods: {
     setScore: function () {
-      if (localStorage.getItem("sajak") !== null) {
+      if (localStorage.getItem("sajak")) {
         let storage = localStorage.getItem("sajak");
         let decryptedScore = this.CryptoJS.AES.decrypt(
           storage,

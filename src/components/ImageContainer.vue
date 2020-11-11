@@ -22,6 +22,10 @@
       v-bind:blankCount="blankCount"
       v-bind:wrongCount="wrongCount"
       v-bind:currentWord="currentWord" />
+    <GameTimer
+      v-bind:blankCount="blankCount"
+      v-bind:wrongCount="wrongCount"
+      v-bind:currentWord="currentWord" />
     <NextButton
       v-bind:blankCount="blankCount"
       v-bind:wrongCount="wrongCount"
@@ -35,12 +39,14 @@
 import GameNeighs from "./../components/GameNeighs";
 import GameScore from "./../components/GameScore";
 import GameAnswer from "./../components/GameAnswer";
+import GameTimer from "./../components/GameTimer";
 import NextButton from "./../components/NextButton";
 export default {
   components: {
     GameNeighs,
     GameScore,
     GameAnswer,
+    GameTimer,
     NextButton,
   },
   props: [
