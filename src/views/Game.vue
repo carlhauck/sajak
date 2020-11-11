@@ -53,6 +53,7 @@
 
 <script>
 import axios from "axios";
+import VueCryptojs from "vue-cryptojs";
 import Header from "./../components/Header";
 import ImageContainer from "./../components/ImageContainer";
 import Puzzle from "./../components/Puzzle";
@@ -112,6 +113,7 @@ export default {
   },
   created: function () {
     this.getNewWord();
+    this.setScore();
   },
   mounted: function () {
     if (!this.isMobile) {
@@ -138,6 +140,18 @@ export default {
     },
   },
   methods: {
+    setScore: function () {
+      if (localStorage.getItem("sajak") !== null) {
+        let storage = localStorage.getItem("sajak");
+        let decryptedScore = this.CryptoJS.AES.decrypt(
+          storage,
+          `${process.env.VUE_APP_CRYPTO_KEY}`
+        ).toString(this.CryptoJS.enc.Utf8);
+        this.score = Number(decryptedScore);
+      } else {
+        this.score = 0;
+      }
+    },
     getNewWord: function () {
       this.wrongGuesses = [];
       axios
@@ -158,13 +172,6 @@ export default {
               )
               .then((response) => {
                 this.definition = this.prepDefinition(response.data[0].text);
-                if (localStorage.getItem("sajak-horseman") !== null) {
-                  this.score = parseInt(
-                    localStorage.getItem("sajak-horseman").slice(3)
-                  );
-                } else {
-                  this.score = 0;
-                }
               })
               .catch(() => {
                 this.definition = "loading new word";
@@ -254,11 +261,15 @@ export default {
     },
     winRound: function () {
       this.playYay();
-      const gameScore = "312" + this.score;
-      localStorage.setItem("sajak-horseman", `${gameScore}`);
+      let score = JSON.stringify(this.score);
+      let encryptedScore = this.CryptoJS.AES.encrypt(
+        score,
+        `${process.env.VUE_APP_CRYPTO_KEY}`
+      ).toString();
+      localStorage.setItem("sajak", `${encryptedScore}`);
     },
     loseGame: function () {
-      localStorage.removeItem("sajak-horseman");
+      localStorage.removeItem("sajak");
     },
   },
 };
