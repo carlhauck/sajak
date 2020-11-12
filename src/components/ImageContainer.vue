@@ -31,6 +31,7 @@
       v-bind:wrongCount="wrongCount"
       v-bind:currentWord="currentWord"
       v-if="!isMobile"
+      v-on:setScore="setScore"
       v-on:getNewWord="getNewWord" />
   </div>
 </template>
@@ -58,6 +59,10 @@ export default {
     "isMobile",
   ],
   methods: {
+    setScore: function () {
+      console.log("emit from image container component");
+      this.$emit("setScore");
+    },
     getNewWord: function () {
       this.$emit("getNewWord");
     },

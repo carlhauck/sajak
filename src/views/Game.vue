@@ -10,6 +10,7 @@
         v-bind:wrongGuesses="wrongGuesses"
         v-bind:currentWord="currentWord"
         v-bind:isMobile="isMobile"
+        v-on:setScore="setScore"
         v-on:getNewWord="getNewWord" />
       <Puzzle
         v-bind:blankCount="blankCount"
@@ -27,6 +28,7 @@
         v-bind:wrongCount="wrongCount"
         v-bind:currentWord="currentWord"
         v-if="isMobile"
+        v-on:setScore="setScore"
         v-on:getNewWord="getNewWord" />
       <audio class="whinny-cooper-good" src="./../assets/horse-whinny-good.mp3"></audio>
       <audio class="whinny-cooper-bad" src="./../assets/horse-snort.mp3"></audio>
