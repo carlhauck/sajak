@@ -1,6 +1,6 @@
 <template>
   <div class="bottom-right">
-    <h4 class="timer">{{ timer }}</h4>
+    <h4 class="timer">{{ timeLeft }}</h4>
   </div>
 </template>
 
@@ -9,43 +9,58 @@ export default {
   props: ["blankCount", "wrongCount", "currentWord"],
   data: function () {
     return {
-      timer: 60,
+      timeLeft: 60,
       counting: false,
+      timer: new this.clockTimer(
+        function () {
+          this.timeLeft--;
+          if (
+            this.timeLeft <= 0 ||
+            this.blankCount === 0 ||
+            this.wrongCount === 6
+          ) {
+            this.timer.stop();
+            this.counting = false;
+            console.log(this.counting);
+            console.log("stopped counting");
+          }
+        }.bind(this),
+        1000
+      ),
     };
   },
   watch: {
     currentWord: function () {
-      if (!this.counting) {
-        this.countDown();
-      }
+      this.timeLeft = 60;
+      this.timer.start();
     },
   },
   methods: {
-    countDown: function () {
-      // if (this.counting) {
-      //   clearInterval(countdown);
-      // }
-      if (this.timer < 60) {
-        this.timer = 60;
-      }
-      this.counting = true;
-      console.log(this.counting);
-      clearInterval(countdown);
-      let countdown = setInterval(
-        function () {
-          this.timer--;
-          if (
-            this.timer <= 0 ||
-            this.blankCount === 0 ||
-            this.wrongCount === 6
-          ) {
-            clearInterval(countdown);
-            this.counting = false;
-            console.log(this.counting);
-          }
-        }.bind(this),
-        1000
-      );
+    clockTimer: function (fn, t) {
+      var timerObj = setInterval(fn, t);
+
+      this.stop = function () {
+        if (timerObj) {
+          clearInterval(timerObj);
+          timerObj = null;
+        }
+        return this;
+      };
+
+      // start timer using current settings (if it's not already running)
+      this.start = function () {
+        if (!timerObj) {
+          this.stop();
+          timerObj = setInterval(fn, t);
+        }
+        return this;
+      };
+
+      // start with new or original interval, stop current interval
+      this.reset = function (newT = t) {
+        t = newT;
+        return this.stop().start();
+      };
     },
   },
 };

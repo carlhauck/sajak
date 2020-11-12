@@ -44,6 +44,6 @@ export default {
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
   z-index: 4;
-  width: 200px;
+  width: 250px;
 }
 </style>
