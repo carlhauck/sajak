@@ -161,9 +161,11 @@ export default {
           `https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&includePartOfSpeech=noun%2C%20adjective%2C%20verb&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=10&api_key=${process.env.VUE_APP_WORDNIK_API_KEY}`
         )
         .then((response) => {
-          if (response.data.word.includes("-")) {
+          if (response.data.word.match(/[^a-zA-Z]/)) {
             this.definition = "loading new word";
-            console.log("Word contained hyphen. Getting new word.");
+            console.log(
+              `Word (${response.data.word}) contained special character. Getting new word.`
+            );
             setTimeout(() => this.getNewWord(), 5000);
           } else {
             this.currentWord = response.data.word.toLowerCase();
