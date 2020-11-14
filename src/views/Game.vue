@@ -11,7 +11,8 @@
         v-bind:currentWord="currentWord"
         v-bind:isMobile="isMobile"
         v-on:setScore="setScore"
-        v-on:getNewWord="getNewWord" />
+        v-on:getNewWord="getNewWord"
+        v-on:outOfTime="outOfTime" />
       <Puzzle
         v-bind:blankCount="blankCount"
         v-bind:wrongCount="wrongCount"
@@ -262,6 +263,12 @@ export default {
     playYay: function () {
       const audio = document.querySelector("audio.whinny-cooper-good");
       audio.play();
+    },
+    outOfTime: function () {
+      let guessesLeft = 6 - this.wrongGuesses.length;
+      let dashArray = Array(guessesLeft).fill("-");
+      this.wrongGuesses = this.wrongGuesses.concat(dashArray);
+      this.loseGame();
     },
     winRound: function () {
       this.playYay();

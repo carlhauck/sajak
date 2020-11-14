@@ -14,15 +14,13 @@ export default {
       timer: new this.clockTimer(
         function () {
           this.timeLeft--;
-          if (
-            this.timeLeft <= 0 ||
-            this.blankCount === 0 ||
-            this.wrongCount === 6
-          ) {
+          if (this.timeLeft <= 0) {
             this.timer.stop();
             this.counting = false;
-            console.log(this.counting);
-            console.log("stopped counting");
+            this.$emit("outOfTime");
+          } else if (this.blankCount === 0 || this.wrongCount === 6) {
+            this.timer.stop();
+            this.counting = false;
           }
         }.bind(this),
         1000

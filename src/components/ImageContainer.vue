@@ -25,7 +25,8 @@
     <GameTimer
       v-bind:blankCount="blankCount"
       v-bind:wrongCount="wrongCount"
-      v-bind:currentWord="currentWord" />
+      v-bind:currentWord="currentWord"
+      v-on:outOfTime="outOfTime" />
     <NextButton
       v-bind:blankCount="blankCount"
       v-bind:wrongCount="wrongCount"
@@ -65,6 +66,9 @@ export default {
     },
     getNewWord: function () {
       this.$emit("getNewWord");
+    },
+    outOfTime: function () {
+      this.$emit("outOfTime");
     },
   },
 };
