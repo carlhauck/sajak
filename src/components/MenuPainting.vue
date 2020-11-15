@@ -1,7 +1,8 @@
 <template>
   <div class="menu-bg">
     <img id="sajak" src="./../assets/sajak-menu-cutout.png" alt="sajak">
-    <MenuButtonContainer />
+    <MenuButtonContainer
+      v-on:openAbout="openAbout" />
   </div>
 </template>
 
@@ -11,6 +12,11 @@ import MenuButtonContainer from "./../components/MenuButtonContainer";
 export default {
   components: {
     MenuButtonContainer,
+  },
+  methods: {
+    openAbout: function () {
+      this.$emit("openAbout");
+    },
   },
 };
 </script>

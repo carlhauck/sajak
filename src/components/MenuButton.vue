@@ -12,11 +12,11 @@
 export default {
   props: ["button"],
   methods: {
+    openAbout: function () {
+      this.$emit("openAbout");
+    },
     openScores: function () {
       console.log("Scores");
-    },
-    openAbout: function () {
-      console.log("About");
     },
   },
 };

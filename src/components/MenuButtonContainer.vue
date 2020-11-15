@@ -1,6 +1,10 @@
 <template>
   <div class="menu-btn-container text-center">
-    <MenuButton v-for="button in buttons" :key="button.id" :button="button" />
+    <MenuButton
+      v-for="button in buttons"
+      :key="button.id"
+      :button="button"
+      v-on:openAbout="openAbout" />
   </div>
 </template>
 
@@ -31,6 +35,11 @@ export default {
   components: {
     MenuButton,
     // MenuScores,
+  },
+  methods: {
+    openAbout: function () {
+      this.$emit("openAbout");
+    },
   },
 };
 </script>

@@ -21,4 +21,10 @@
     font-size: 2.2em;
   }
 }
+
+@media (min-width: 576px) {
+  .page-title {
+    font-size: 3em;
+  }
+}
 </style>

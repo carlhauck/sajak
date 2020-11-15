@@ -34,8 +34,6 @@ button.btn-next-mobile {
   border: 1px solid #6e8548;
   border-radius: 14px;
   background-color: #95aa72;
-  /* background-color: rgba(241, 245, 247, 0.8); */
-  /* color: #7d8d62; */
   color: white;
   z-index: 4;
   white-space: nowrap;
