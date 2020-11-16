@@ -43,7 +43,7 @@ export default {
 
 #sajak {
   position: absolute;
-  height: 50vh;
+  height: 55vh;
   overflow: hidden;
   left: 100%;
   transform: translateX(-50%);
@@ -69,7 +69,7 @@ export default {
     transform: translateY(-50%);
   }
   100% {
-    left: 35%;
+    left: 50%;
     transform: translateX(-50%);
     top: 80%;
     transform: translateY(-50%);
@@ -84,7 +84,7 @@ export default {
     transform: translateY(-50%);
   }
   100% {
-    left: 35%;
+    left: 50%;
     transform: translateX(-50%);
     top: 80%;
     transform: translateY(-50%);
@@ -93,23 +93,10 @@ export default {
 
 @media (min-width: 576px) {
   #sajak {
-    position: absolute;
     height: 70vh;
-    overflow: hidden;
-    left: 100%;
-    transform: translateX(-50%);
-    top: 80%;
-    transform: translateY(-50%);
-    z-index: 2;
-    animation: linear infinite alternate;
-    -webkit-animation: linear infinite alternate;
-    animation-name: run;
-    -webkit-animation-name: run;
     animation-duration: 3s;
     -webkit-animation-duration: 3s;
-    animation-iteration-count: 1;
     animation-delay: 2s;
-    animation-fill-mode: forwards;
   }
 
   @keyframes run {
@@ -120,7 +107,7 @@ export default {
       transform: translateY(-50%);
     }
     100% {
-      left: 50%;
+      left: 68%;
       transform: translateX(-50%);
       top: 80%;
       transform: translateY(-50%);
@@ -135,7 +122,7 @@ export default {
       transform: translateY(-50%);
     }
     100% {
-      left: 50%;
+      left: 68%;
       transform: translateX(-50%);
       top: 80%;
       transform: translateY(-50%);
@@ -144,30 +131,74 @@ export default {
 }
 
 @media (min-width: 768px) {
+  @keyframes run {
+    0% {
+      left: 100%;
+      transform: translateX(-50%);
+      top: 80%;
+      transform: translateY(-50%);
+    }
+    100% {
+      left: 65%;
+      transform: translateX(-50%);
+      top: 80%;
+      transform: translateY(-50%);
+    }
+  }
+  @-webkit-keyframes run {
+    0% {
+      left: 100%;
+      transform: translateX(-50%);
+      top: 80%;
+      transform: translateY(-50%);
+    }
+    100% {
+      left: 65%;
+      transform: translateX(-50%);
+      top: 80%;
+      transform: translateY(-50%);
+    }
+  }
 }
 
 @media (min-width: 992px) {
+  @keyframes run {
+    0% {
+      left: 100%;
+      transform: translateX(-50%);
+      top: 80%;
+      transform: translateY(-50%);
+    }
+    100% {
+      left: 63%;
+      transform: translateX(-50%);
+      top: 80%;
+      transform: translateY(-50%);
+    }
+  }
+
+  @-webkit-keyframes run {
+    0% {
+      left: 100%;
+      transform: translateX(-50%);
+      top: 80%;
+      transform: translateY(-50%);
+    }
+    100% {
+      left: 63%;
+      transform: translateX(-50%);
+      top: 80%;
+      transform: translateY(-50%);
+    }
+  }
 }
 
 @media (min-width: 1200px) {
   #sajak {
-    position: absolute;
     height: 70vh;
-    overflow: hidden;
-    left: 100%;
-    transform: translateX(-50%);
-    top: 80%;
-    transform: translateY(-50%);
-    z-index: 2;
-    animation: linear infinite alternate;
-    -webkit-animation: linear infinite alternate;
-    animation-name: run;
-    -webkit-animation-name: run;
     animation-duration: 3s;
     -webkit-animation-duration: 3s;
-    animation-iteration-count: 1;
     animation-delay: 2s;
-    animation-fill-mode: forwards;
   }
 
   @keyframes run {

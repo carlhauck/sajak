@@ -49,25 +49,25 @@ export default {
 <style>
 .menu-btn-container {
   position: absolute;
-  bottom: 20%;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
   z-index: 4;
   width: 65%;
+  margin-top: 14em;
 }
 @media (min-width: 300px) {
   .menu-btn-container {
     width: 180px;
-    bottom: 17%;
   }
 }
 
 @media (min-width: 350px) {
   .menu-btn-container {
     width: 220px;
-    bottom: 16%;
+    margin-top: 18.5em;
   }
 }
 
@@ -80,7 +80,13 @@ export default {
 
 @media (min-width: 576px) {
   .menu-btn-container {
-    bottom: 14%;
+    margin-top: 21em;
+  }
+}
+
+@media (min-width: 768px) {
+  .menu-btn-container {
+    margin-top: 21.75em;
   }
 }
 </style>
