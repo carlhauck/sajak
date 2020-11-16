@@ -272,6 +272,7 @@ export default {
       let guessesLeft = 6 - this.wrongGuesses.length;
       let dashArray = Array(guessesLeft).fill("-");
       this.wrongGuesses = this.wrongGuesses.concat(dashArray);
+      this.playNay();
       this.loseGame();
     },
     winRound: function () {
