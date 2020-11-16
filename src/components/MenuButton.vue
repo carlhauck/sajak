@@ -3,7 +3,7 @@
     <a v-if="button.name === 'play'" :href="`/${button.route}`">
       <button class="btn-menu">{{ button.name }}</button>
     </a>
-    <button v-if="button.name === 'wtf'" @click="openAbout()" class="btn-menu">{{ button.name }}</button>
+    <button v-if="button.name === 'wut'" @click="openAbout()" class="btn-menu">{{ button.name }}</button>
     <button v-if="button.name === 'scores'" @click="openScores()" class="btn-menu">{{ button.name }}</button>
   </div>
 </template>

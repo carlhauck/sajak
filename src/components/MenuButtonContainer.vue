@@ -22,7 +22,7 @@ export default {
         },
         {
           id: 2,
-          name: "wtf",
+          name: "wut",
           route: "about",
         },
         {

@@ -20,13 +20,13 @@
           id="modalDescription"
         >
           <slot name="body">
-            <p>Sajak Horseman is a Hangman-inspired word game that puts Pat Sajak's head onto a horse's body. Why? Because it makes more sense than punishing a stick figure for your linguistic ineptitude, and because Pat Sajak's head on a horse's body—while mildly disturbing—isn't evocative of America's legacy of racial terror.</p>
+            <p>Sajak Horseman is a Hangman-inspired word game that puts Pat Sajak's head onto a horse's body. Why? Because it makes more sense than punishing a stick figure for your linguistic ineptitude, and because Pat Sajak's head on a horse's body—while mildly disturbing—doesn't evoke America's legacy of racial terror.</p>
 
-            <p>You have 60 seconds per word. Simply type the letters you wish to guess. Correct letters are rewarded with their Scrabble scores (thanks, Hasbro!). Incorrect letters are branded in the upper-left corner of the screen. Hit space bar to receive your next word.</p>
+            <p>You get 60 seconds per word. Simply type the letters you wish to guess. Correct letters are rewarded with their Scrabble score values (thanks, Hasbro!). Incorrect letters are branded in the upper-left corner of the screen. Hit space bar to receive your next word or start a new game.</p>
 
-            <p>If time runs out or you rack up more than 5 incorrect guesses on a single word, you lose and Vanna White will personally put you out to pasture.</p>
+            <p>If time runs out or you rack up more than 5 incorrect guesses on a single word, you lose and Vanna White will promptly put you out to pasture.</p>
 
-            <p>Each word is 5-10 characters in length, and there are no hyphens or accented characters. Words and definitions are drawn randomly from <a href="https://www.wordnik.com/about" target="_blank">Wordnik</a>, so blame them if you get a crappy one. Or just don't donate to their 501(c)(3).</p>
+            <p>Each word is 5-10 characters in length; there are no hyphens or accented characters. Words and definitions are drawn randomly from <a href="https://www.wordnik.com/about" target="_blank">Wordnik</a>, so blame them if you get a crappy one. Or just don't donate to their 501(c)(3).</p>
 
             <p>Bugs? Suggestions? <a href="https://carlhauck.github.io/" target="_blank">Email me</a>.</p>
 
