@@ -1,11 +1,15 @@
 <template>
   <div class="menu">
     <MenuPainting
-      v-on:openAbout="toggleAbout" />
+      v-on:openAbout="toggleAbout"
+      v-on:openScores="toggleScores" />
     <MenuTitle />
     <AboutModal
       v-show="aboutVisible"
-      @close="toggleAbout" />
+      @closeAbout="toggleAbout" />
+    <ScoresModal
+      v-show="scoresVisible"
+      @closeScores="toggleScores" />
   </div>
 </template>
 
@@ -14,25 +18,29 @@ import axios from "axios";
 import MenuPainting from "./../components/MenuPainting";
 import MenuTitle from "./../components/MenuTitle";
 import AboutModal from "./../components/AboutModal";
+import ScoresModal from "./../components/ScoresModal";
 export default {
   data: function () {
     return {
       aboutVisible: false,
+      scoresVisible: false,
     };
   },
   components: {
     MenuPainting,
     MenuTitle,
     AboutModal,
+    ScoresModal,
   },
   beforeCreate: function () {
     document.body.className = "menu";
   },
   methods: {
     toggleAbout: function () {
-      console.log(this.aboutVisible);
       this.aboutVisible = !this.aboutVisible;
-      console.log(this.aboutVisible);
+    },
+    toggleScores: function () {
+      this.scoresVisible = !this.scoresVisible;
     },
   },
 };

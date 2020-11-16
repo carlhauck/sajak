@@ -2,7 +2,8 @@
   <div class="menu-bg">
     <img id="sajak" src="./../assets/sajak-menu-cutout.png" alt="sajak">
     <MenuButtonContainer
-      v-on:openAbout="openAbout" />
+      v-on:openAbout="openAbout"
+      v-on:openScores="openScores" />
   </div>
 </template>
 
@@ -16,6 +17,9 @@ export default {
   methods: {
     openAbout: function () {
       this.$emit("openAbout");
+    },
+    openScores: function () {
+      this.$emit("openScores");
     },
   },
 };
@@ -39,7 +43,7 @@ export default {
 
 #sajak {
   position: absolute;
-  height: 70vh;
+  height: 50vh;
   overflow: hidden;
   left: 100%;
   transform: translateX(-50%);

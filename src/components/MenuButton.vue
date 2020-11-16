@@ -16,7 +16,7 @@ export default {
       this.$emit("openAbout");
     },
     openScores: function () {
-      console.log("Scores");
+      this.$emit("openScores");
     },
   },
 };
@@ -33,7 +33,7 @@ button.btn-menu {
   font-family: "archiasemibold";
   text-transform: lowercase;
   letter-spacing: 0.05em;
-  font-size: 1.7em;
+  font-size: 1.5em;
   width: 100%;
   height: 65px;
   border: 4px solid rgba(255, 255, 255, 0.85);
@@ -45,5 +45,17 @@ button.btn-menu:hover {
   background-color: rgba(222, 234, 238, 0.3);
   border: 4px solid rgb(255, 255, 255);
   cursor: pointer;
+}
+
+@media (min-width: 300px) {
+  button.btn-menu {
+    font-size: 1.5em;
+  }
+}
+
+@media (min-width: 350px) {
+  button.btn-menu {
+    font-size: 1.7em;
+  }
 }
 </style>

@@ -12,7 +12,7 @@
           id="modalTitle"
         >
           <slot name="header">
-            <Header style="margin: 0;" />
+            <h1 class="page-title">high horses</h1>
           </slot>
         </header>
         <section
@@ -20,17 +20,56 @@
           id="modalDescription"
         >
           <slot name="body">
-            <p>Sajak Horseman is a Hangman-inspired word game that puts Pat Sajak's head onto a horse's body. Why? Because it makes more sense than punishing a stick figure for your linguistic ineptitude, and because Pat Sajak's head on a horse's body—while mildly disturbing—isn't evocative of America's legacy of racial terror.</p>
-
-            <p>You have 60 seconds per word. Simply type the letters you wish to guess. Correct letters are rewarded with their Scrabble scores (thanks, Hasbro!). Incorrect letters are branded in the upper-left corner of the screen. Hit space bar to receive your next word.</p>
-
-            <p>If time runs out or you rack up more than 5 incorrect guesses on a single word, you lose and Vanna White will personally put you out to pasture.</p>
-
-            <p>Each word is 5-10 characters in length, and there are no hyphens or accented characters. Words and definitions are drawn randomly from <a href="https://www.wordnik.com/about" target="_blank">Wordnik</a>, so blame them if you get a crappy one. Or just don't donate to their 501(c)(3).</p>
-
-            <p>Bugs? Suggestions? <a href="https://carlhauck.github.io/" target="_blank">Email me</a>.</p>
-
-            <p>Otherwise, giddy-up and get guessin'!</p>
+            <div class="row">
+              <div class="column left">1</div>
+              <div class="column middle">carl</div>
+              <div class="column right">215</div>
+            </div>
+            <div class="row">
+              <div class="column left">2</div>
+              <div class="column middle">drchacho</div>
+              <div class="column right">212</div>
+            </div>
+            <div class="row">
+              <div class="column left">3</div>
+              <div class="column middle">matt</div>
+              <div class="column right">201</div>
+            </div>
+            <div class="row">
+              <div class="column left">4</div>
+              <div class="column middle">steph</div>
+              <div class="column right">164</div>
+            </div>
+            <div class="row">
+              <div class="column left">5</div>
+              <div class="column middle">mrmann</div>
+              <div class="column right">127</div>
+            </div>
+            <div class="row">
+              <div class="column left">6</div>
+              <div class="column middle">donkey</div>
+              <div class="column right">126</div>
+            </div>
+            <div class="row">
+              <div class="column left">7</div>
+              <div class="column middle">kong</div>
+              <div class="column right">116</div>
+            </div>
+            <div class="row">
+              <div class="column left">8</div>
+              <div class="column middle">superdave</div>
+              <div class="column right">102</div>
+            </div>
+            <div class="row">
+              <div class="column left">9</div>
+              <div class="column middle">blahb</div>
+              <div class="column right">92</div>
+            </div>
+            <div class="row">
+              <div class="column left">10</div>
+              <div class="column middle">bbking</div>
+              <div class="column right">90</div>
+            </div>
           </slot>
         </section>
         <footer class="modal-footer">
@@ -51,22 +90,46 @@
 </template>
 
 <script>
-import Header from "./../components/Header";
 export default {
-  name: "AboutModal",
-  components: {
-    Header,
-  },
-  props: ["aboutVisible"],
+  name: "ScoresModal",
+  components: {},
+  props: ["scoresVisible"],
   methods: {
     close() {
-      this.$emit("closeAbout");
+      this.$emit("closeScores");
     },
   },
 };
 </script>
 
 <style scoped>
+.page-title {
+  font-family: "archiabold";
+  font-size: 1.75em;
+  margin: 0;
+}
+
+.column {
+  float: left;
+  padding: 10px;
+}
+
+.left,
+.right {
+  width: 25%;
+}
+
+.middle {
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 p {
   margin: 1.2em 0;
 }
@@ -98,8 +161,7 @@ a:hover {
   overflow: auto;
   display: flex;
   flex-direction: column;
-  /* width: 100vw;
-  max-height: 100vh; */
+  border-radius: 12px;
   width: 96vw;
   max-height: 98vh;
   left: 50%;
@@ -159,10 +221,18 @@ button.btn-next-mobile:active {
   background-color: #a0b47e;
 }
 
+@media (min-width: 300px) {
+  .page-title {
+    font-size: 1.9em;
+  }
+}
+
 @media (min-width: 350px) {
+  .page-title {
+    font-size: 2.2em;
+  }
   .modal {
     background: rgba(255, 255, 255, 0.95);
-    border-radius: 12px;
   }
   .modal-body {
     margin: 0 1.6em;
@@ -171,10 +241,12 @@ button.btn-next-mobile:active {
 }
 
 @media (min-width: 576px) {
+  .page-title {
+    font-size: 3em;
+  }
   .modal {
     background: rgba(255, 255, 255, 0.95);
-    border-radius: 12px;
-    width: 90vw;
+    width: 80vw;
     max-height: 95vh;
   }
   .modal-body {
@@ -185,21 +257,21 @@ button.btn-next-mobile:active {
 
 @media (min-width: 768px) {
   .modal {
-    width: 85vw;
+    width: 70vw;
     max-height: 90vh;
   }
 }
 
 @media (min-width: 992px) {
   .modal {
-    width: 75vw;
+    width: 60vw;
     max-height: 85vh;
   }
 }
 
 @media (min-width: 1200px) {
   .modal {
-    width: 65vw;
+    width: 50vw;
     max-height: 85vh;
   }
 }

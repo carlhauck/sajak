@@ -11,7 +11,7 @@
   left: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: top;
   height: 100vh;
   resize: vertical;
   overflow: auto;
@@ -23,39 +23,41 @@
   font-size: 3em;
   color: white;
   z-index: 1;
-  margin-bottom: 2.8em;
+  margin-top: 2em;
 }
 
 @media (min-width: 350px) {
   .menu-title {
     font-size: 4em;
-    margin-bottom: 2.6em;
+    margin-top: 2em;
   }
 }
 
 @media (min-width: 576px) {
   .menu-title {
-    font-size: 6.5em;
-    margin-bottom: 2.2em;
+    font-size: 5.5em;
+    margin-top: 1.2em;
   }
 }
 
 @media (min-width: 768px) {
   .menu-title {
     font-size: 5.5em;
-    margin-bottom: 1.3em;
+    margin-top: 2.5em;
   }
 }
 
 @media (min-width: 992px) {
   .menu-title {
     font-size: 7em;
+    margin-top: 1.85em;
   }
 }
 
 @media (min-width: 1200px) {
   .menu-title {
     font-size: 8em;
+    margin-top: 1.5em;
   }
 }
 </style>
