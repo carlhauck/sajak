@@ -1,7 +1,8 @@
 <template>
   <transition name="modal-fade">
-    <div class="modal-backdrop">
+    <div class="modal-backdrop" @click="close">
       <div class="modal"
+        @click="close"
         role="dialog"
         aria-labelledby="modalTitle"
         aria-describedby="modalDescription"
@@ -19,7 +20,17 @@
           id="modalDescription"
         >
           <slot name="body">
-            I'm the default body!
+            <p>Sajak Horseman is a Hangman-inspired word game that puts Pat Sajak's head onto a horse's body. Why? Because it makes more sense than punishing a stick figure for your linguistic ineptitude, and because the world doesn't need a children's game born out of America's legacy of racial terror.</p>
+
+            <p>You get 60 seconds per word. Simply type the letters you wish to guess. Correct letters are rewarded with their Scrabble scores (thanks, Hasbro!) multiplied by the number of times they appear in the word. Incorrect guesses are branded in the upper-left corner of the window.</p>
+
+            <p>If time runs out or you rack up more than 5 incorrect guesses on a word, Vanna White will put you out to pasture.</p>
+
+            <p>Each word is 5-10 characters in length, with no hyphens or accented characters. Words and definitions are drawn randomly from <a href="https://www.wordnik.com/about" target="_blank">Wordnik</a>, so blame them if you get a crappy one. Or just don't donate to their 501(c)(3).</p>
+
+            <p>Bugs? Suggestions? <a href="https://carlhauck.github.io/" target="_blank">Email me</a>.</p>
+
+            <p>Otherwise, giddy-up and get guessin'!</p>
           </slot>
         </section>
         <footer class="modal-footer">
@@ -56,27 +67,41 @@ export default {
 </script>
 
 <style scoped>
+p {
+  margin: 1.2em 0;
+}
+
+a {
+  color: #7d915b;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #95aa72;
+}
+
 .modal-backdrop {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .modal {
-  background: #FFFFFF;
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
   box-shadow: 2px 2px 20px 1px;
-  overflow-x: auto;
+  overflow: auto;
   display: flex;
   flex-direction: column;
-  width: 70vw;
-  height: 80vh;
+  /* width: 100vw;
+  max-height: 100vh; */
+  width: 96vw;
+  max-height: 98vh;
   left: 50%;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
@@ -86,39 +111,30 @@ export default {
 
 .modal-header,
 .modal-footer {
-  padding: 15px;
   display: flex;
 }
 
 .modal-header {
-  border-bottom: 1px solid #eeeeee;
+  margin-top: 1.5em;
+  margin-bottom: 0.25em;
   align-items: center;
   justify-content: center;
 }
 
 .modal-footer {
-  border-top: 1px solid #eeeeee;
   justify-content: center;
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
 }
 
 .modal-body {
   position: relative;
-  padding: 20px 10px;
-  margin: 1.5em 2em;
-}
-
-.btn-close {
-  border: none;
-  font-size: 20px;
-  padding: 20px;
-  cursor: pointer;
-  font-weight: bold;
-  color: #4AAE9B;
-  background: transparent;
+  margin: 0 1.3em;
+  font-size: 0.85em;
+  text-align: center;
 }
 
 .btn-green {
-  margin-top: 0.3em;
   margin-left: auto;
   margin-right: auto;
   font-family: "archiasemibold";
@@ -141,5 +157,50 @@ export default {
 }
 button.btn-next-mobile:active {
   background-color: #a0b47e;
+}
+
+@media (min-width: 350px) {
+  .modal {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+  }
+  .modal-body {
+    margin: 0 1.6em;
+    font-size: 0.95em;
+  }
+}
+
+@media (min-width: 576px) {
+  .modal {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    width: 90vw;
+    max-height: 95vh;
+  }
+  .modal-body {
+    margin: 0 3em;
+    font-size: 1em;
+  }
+}
+
+@media (min-width: 768px) {
+  .modal {
+    width: 85vw;
+    max-height: 90vh;
+  }
+}
+
+@media (min-width: 992px) {
+  .modal {
+    width: 75vw;
+    max-height: 85vh;
+  }
+}
+
+@media (min-width: 1200px) {
+  .modal {
+    width: 65vw;
+    max-height: 85vh;
+  }
 }
 </style>

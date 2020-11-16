@@ -198,23 +198,27 @@ export default {
     guessLetter: function (e) {
       if (e.which >= 65 && e.which <= 90) {
         // a-z
-        if (this.currentWord.includes(e.key)) {
-          if (!this.puzzle.includes(e.key)) {
-            Promise.resolve(this.getIndices(e.key)).then(this.addLetter(e.key));
-            this.score += this.indices.length * this.scrabblePoints[e.key];
+        const letter = e.key.toLowerCase();
+        if (this.currentWord.includes(letter)) {
+          if (!this.puzzle.includes(letter)) {
+            Promise.resolve(this.getIndices(letter)).then(
+              this.addLetter(letter)
+            );
+            this.score += this.indices.length * this.scrabblePoints[letter];
             if (this.blankCount === 0 && this.wrongCount < 6) {
               this.winRound();
             }
           }
-        } else if (!this.wrongGuesses.includes(e.key)) {
-          this.tallyWrong(e.key);
+        } else if (!this.wrongGuesses.includes(letter)) {
+          this.tallyWrong(letter);
           if (this.blankCount > 0 && this.wrongCount === 6) {
             this.loseGame();
           }
         }
       }
     },
-    guessLetterMobile: function (letter) {
+    guessLetterMobile: function (ltr) {
+      const letter = ltr.toLowerCase();
       if (this.currentWord.includes(letter)) {
         if (!this.puzzle.includes(letter)) {
           Promise.resolve(this.getIndices(letter)).then(this.addLetter(letter));
