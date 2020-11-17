@@ -31,6 +31,7 @@
       v-bind:blankCount="blankCount"
       v-bind:wrongCount="wrongCount"
       v-bind:currentWord="currentWord"
+      v-bind:newScoreVisible="newScoreVisible"
       v-if="!isMobile"
       v-on:setScore="setScore"
       v-on:getNewWord="getNewWord" />
@@ -58,6 +59,7 @@ export default {
     "wrongGuesses",
     "currentWord",
     "isMobile",
+    "newScoreVisible",
   ],
   methods: {
     setScore: function () {

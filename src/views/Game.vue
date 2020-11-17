@@ -10,6 +10,7 @@
         v-bind:wrongGuesses="wrongGuesses"
         v-bind:currentWord="currentWord"
         v-bind:isMobile="isMobile"
+        v-bind:newScoreVisible="newScoreVisible"
         v-on:setScore="setScore"
         v-on:getNewWord="getNewWord"
         v-on:outOfTime="outOfTime" />
@@ -31,6 +32,12 @@
         v-if="isMobile"
         v-on:setScore="setScore"
         v-on:getNewWord="getNewWord" />
+      <NewScoreModal
+        v-if="newScoreVisible"
+        v-bind:newScoreVisible="newScoreVisible"
+        v-bind:score="score"
+        v-bind:gameId="gameId"
+        v-on:closeNewScore="toggleNewScore" />
       <audio class="whinny-cooper-good" src="./../assets/horse-whinny-good.mp3"></audio>
       <audio class="whinny-cooper-bad" src="./../assets/horse-whinny-bad.mp3"></audio>
       <audio class="last-straw" src="./../assets/horse-whoa-bad.mp3"></audio>
@@ -63,6 +70,7 @@ import Puzzle from "./../components/Puzzle";
 import Definition from "./../components/Definition";
 import MobileInput from "./../components/MobileInput";
 import MobileNextButton from "./../components/MobileNextButton";
+import NewScoreModal from "./../components/NewScoreModal";
 export default {
   components: {
     Header,
@@ -71,6 +79,7 @@ export default {
     Definition,
     MobileInput,
     MobileNextButton,
+    NewScoreModal,
   },
   data: function () {
     return {
@@ -109,6 +118,9 @@ export default {
         q: 10,
         z: 10,
       },
+      scoreToBeat: null,
+      newScoreVisible: false,
+      gameId: null,
     };
   },
   beforeCreate: function () {
@@ -117,6 +129,9 @@ export default {
   created: function () {
     this.getNewWord();
     this.setScore();
+    axios.get("/api/high_scores").then((response) => {
+      this.scoreToBeat = response.data[9].score;
+    });
   },
   mounted: function () {
     if (!this.isMobile) {
@@ -286,6 +301,23 @@ export default {
     },
     loseGame: function () {
       localStorage.removeItem("sajak");
+      const params = {
+        score: this.score,
+      };
+      axios
+        .post("/api/games", params)
+        .then((response) => {
+          this.gameId = response.data;
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
+      if (this.score > this.scoreToBeat) {
+        this.toggleNewScore();
+      }
+    },
+    toggleNewScore: function () {
+      this.newScoreVisible = !this.newScoreVisible;
     },
   },
 };

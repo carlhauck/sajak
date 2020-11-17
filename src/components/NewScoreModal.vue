@@ -1,8 +1,7 @@
 <template>
   <transition name="modal-fade">
-    <div class="modal-backdrop" @click="close">
+    <div class="modal-backdrop">
       <div class="modal"
-        @click="close"
         role="dialog"
         aria-labelledby="modalTitle"
         aria-describedby="modalDescription"
@@ -12,7 +11,7 @@
           id="modalTitle"
         >
           <slot name="header">
-            <h1 class="page-title">high horses</h1>
+            <h1 class="page-title">{{score}}</h1>
           </slot>
         </header>
         <section
@@ -20,25 +19,16 @@
           id="modalDescription"
         >
           <slot name="body">
-            <div v-for="(highScore, index) in highScores" class="row">
-              <div class="column left">{{ index + 1 }}</div>
-              <div class="column middle">{{ highScore.player }}</div>
-              <div class="column right">{{ highScore.score }}</div>
+            <div>
+              <h4>Welcome to the winner's circle!</h4>
+              <h4>Enter a player name to accompany your high score.</h4>
+              <h4>Horse puns encouraged.</h4>
+              <input v-model="playerName" type="text" autofocus maxlength="15" />
+              <button v-if="!playerName" class="btn-green disabled" disabled>submit</button>
+              <button v-else class="btn-green" @click="close(); postHighScore()">submit</button>
             </div>
           </slot>
         </section>
-        <footer class="modal-footer">
-          <slot name="footer">
-            <button
-              type="button"
-              class="btn-green"
-              @click="close"
-              aria-label="Close modal"
-            >
-              mane menu
-            </button>
-          </slot>
-        </footer>
       </div>
     </div>
   </transition>
@@ -47,30 +37,48 @@
 <script>
 import axios from "axios";
 export default {
-  name: "ScoresModal",
-  props: ["scoresVisible"],
+  name: "NewScoreModal",
+  props: ["newScoreVisible", "score", "gameId"],
   data: function () {
     return {
-      highScores: [],
+      playerName: "",
     };
-  },
-  created: function () {
-    axios.get("/api/high_scores").then((response) => {
-      this.highScores = response.data;
-    });
   },
   methods: {
     close() {
-      this.$emit("closeScores");
+      this.$emit("closeNewScore");
+    },
+    postHighScore() {
+      const params = {
+        player: this.playerName,
+        score: this.score,
+        game_id: this.gameId,
+      };
+      axios
+        .post("/api/high_scores", params)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
     },
   },
 };
 </script>
 
 <style scoped>
+input {
+  width: 210px;
+  height: 1.6em;
+  display: block;
+  margin: 0 auto 0.75em auto;
+  border-radius: 8px;
+}
+
 .page-title {
   font-family: "archiabold";
-  font-size: 1.75em;
+  font-size: 2.5em;
   margin: 0;
 }
 
@@ -81,11 +89,11 @@ export default {
 
 .left,
 .right {
-  width: 22%;
+  width: 25%;
 }
 
 .middle {
-  width: 56%;
+  width: 50%;
 }
 
 /* Clear floats after the columns */
@@ -143,15 +151,9 @@ a:hover {
 
 .modal-header {
   margin-top: 1.5em;
-  margin-bottom: 0.25em;
+  margin-bottom: -0.25em;
   align-items: center;
   justify-content: center;
-}
-
-.modal-footer {
-  justify-content: center;
-  margin-top: 0.5em;
-  margin-bottom: 1.5em;
 }
 
 .modal-body {
@@ -164,13 +166,14 @@ a:hover {
 .btn-green {
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 1.5em;
   font-family: "archiasemibold";
   text-transform: lowercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   font-size: 1em;
   height: 45px;
-  padding-left: 0.65em;
-  padding-right: 0.65em;
+  padding-left: 0.85em;
+  padding-right: 0.85em;
   border: 2px solid #6e8548;
   border-radius: 14px;
   background-color: #95aa72;
@@ -186,15 +189,21 @@ button.btn-next-mobile:active {
   background-color: #a0b47e;
 }
 
+.btn-green.disabled,
+.btn-green:hover.disabled {
+  z-index: -1;
+  cursor: not-allowed;
+}
+
 @media (min-width: 300px) {
   .page-title {
-    font-size: 1.9em;
+    font-size: 3em;
   }
 }
 
 @media (min-width: 350px) {
   .page-title {
-    font-size: 2.2em;
+    font-size: 3.5em;
   }
   .modal {
     background: rgba(255, 255, 255, 0.95);
@@ -207,7 +216,7 @@ button.btn-next-mobile:active {
 
 @media (min-width: 576px) {
   .page-title {
-    font-size: 3em;
+    font-size: 4em;
   }
   .modal {
     background: rgba(255, 255, 255, 0.95);

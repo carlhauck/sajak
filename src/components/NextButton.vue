@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  props: ["blankCount", "wrongCount", "currentWord"],
+  props: ["blankCount", "wrongCount", "currentWord", "newScoreVisible"],
   mounted: function () {
     if (!this.isMobile) {
       window.addEventListener("keydown", this.onSpaceKeydown);
@@ -26,8 +26,12 @@ export default {
         (e.which === 32 &&
           this.currentWord !== "" &&
           this.blankCount === 0 &&
-          this.wrongCount < 6) ||
-        (this.blankCount > 0 && this.wrongCount === 6)
+          this.wrongCount < 6 &&
+          !this.newScoreVisible) ||
+        (e.which === 32 &&
+          this.blankCount > 0 &&
+          this.wrongCount === 6 &&
+          !this.newScoreVisible)
       ) {
         event.preventDefault();
         this.$emit("setScore");
