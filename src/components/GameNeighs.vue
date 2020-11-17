@@ -38,8 +38,8 @@ h4 {
   }
   .top-left {
     position: absolute;
-    top: 1rem;
-    left: 1.2rem;
+    top: 0.6rem;
+    left: 0.8rem;
     text-align: left;
   }
 }
@@ -47,6 +47,12 @@ h4 {
 @media (min-width: 350px) {
   .neigh {
     font-size: 1.5em;
+  }
+  .top-left {
+    position: absolute;
+    top: 1rem;
+    left: 1.2rem;
+    text-align: left;
   }
 }
 </style>

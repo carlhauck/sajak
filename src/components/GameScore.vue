@@ -36,8 +36,8 @@ h4 {
   }
   .top-right {
     position: absolute;
-    top: 1rem;
-    right: 1.2rem;
+    top: 0.6rem;
+    right: 0.8rem;
     text-align: right;
   }
 }
@@ -45,6 +45,13 @@ h4 {
 @media (min-width: 350px) {
   .score {
     font-size: 1.5em;
+    -webkit-text-stroke-width: 0.2px;
+  }
+  .top-right {
+    position: absolute;
+    top: 1rem;
+    right: 1.4rem;
+    text-align: right;
   }
 }
 </style>

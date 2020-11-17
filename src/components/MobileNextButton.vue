@@ -21,17 +21,17 @@ export default {
 
 <style scoped>
 button.btn-next-mobile {
-  margin-top: 0.3em;
+  margin-top: 0.35em;
   margin-left: auto;
   margin-right: auto;
   font-family: "archiasemibold";
   text-transform: lowercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
   font-size: 1em;
   height: 45px;
   padding-left: 0.65em;
   padding-right: 0.65em;
-  border: 1px solid #6e8548;
+  border: 2px solid #6e8548;
   border-radius: 14px;
   background-color: #95aa72;
   color: white;

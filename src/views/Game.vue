@@ -36,7 +36,6 @@
         v-if="newScoreVisible"
         v-bind:newScoreVisible="newScoreVisible"
         v-bind:score="score"
-        v-bind:gameId="gameId"
         v-on:closeNewScore="toggleNewScore" />
       <audio class="whinny-cooper-good" src="./../assets/horse-whinny-good.mp3"></audio>
       <audio class="whinny-cooper-bad" src="./../assets/horse-whinny-bad.mp3"></audio>
@@ -120,7 +119,6 @@ export default {
       },
       scoreToBeat: null,
       newScoreVisible: false,
-      gameId: null,
     };
   },
   beforeCreate: function () {
@@ -306,17 +304,6 @@ export default {
     },
     loseGame: function () {
       localStorage.removeItem("sajak");
-      const params = {
-        score: this.score,
-      };
-      axios
-        .post("/api/games", params)
-        .then((response) => {
-          this.gameId = response.data;
-        })
-        .catch((error) => {
-          this.errors = error.response.data.errors;
-        });
       if (this.score > this.scoreToBeat) {
         this.toggleNewScore();
       }

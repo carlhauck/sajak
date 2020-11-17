@@ -20,7 +20,7 @@ export default {
 
 .answer {
   font-family: "basier_square_monobold_italic";
-  font-size: 2.6em;
+  font-size: 2.3em;
   letter-spacing: 0.12em;
   color: #ffffff;
   stroke-width: 1.5px;

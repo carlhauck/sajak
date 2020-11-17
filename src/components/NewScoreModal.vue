@@ -38,7 +38,7 @@
 import axios from "axios";
 export default {
   name: "NewScoreModal",
-  props: ["newScoreVisible", "score", "gameId"],
+  props: ["newScoreVisible", "score"],
   data: function () {
     return {
       playerName: "",
@@ -52,7 +52,6 @@ export default {
       const params = {
         player: this.playerName,
         score: this.score,
-        game_id: this.gameId,
       };
       axios
         .post("/api/high_scores", params)

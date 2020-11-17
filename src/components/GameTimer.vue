@@ -78,15 +78,28 @@ h4 {
 
 .timer {
   font-family: "archiabold";
-  font-size: 1.1em;
-  -webkit-text-stroke-width: 1.3px;
+  font-size: 1.3em;
+  -webkit-text-stroke-width: 0.7px;
   -webkit-text-stroke-color: #eeeded;
   color: #924646;
 }
 
 @media (min-width: 300px) {
   .timer {
-    font-size: 1.2em;
+    font-size: 1.4em;
+  }
+  .bottom-right {
+    position: absolute;
+    bottom: 0.6rem;
+    right: 0.8rem;
+    text-align: right;
+  }
+}
+
+@media (min-width: 350px) {
+  .timer {
+    font-size: 1.8em;
+    -webkit-text-stroke-width: 1px;
   }
   .bottom-right {
     position: absolute;
@@ -96,9 +109,10 @@ h4 {
   }
 }
 
-@media (min-width: 350px) {
+@media (min-width: 576px) {
   .timer {
     font-size: 2.2em;
+    -webkit-text-stroke-width: 1.2px;
   }
 }
 </style>
