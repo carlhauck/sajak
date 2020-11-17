@@ -150,7 +150,7 @@ a:hover {
 
 .modal-footer {
   justify-content: center;
-  margin-top: 0.5em;
+  margin-top: 1em;
   margin-bottom: 1.5em;
 }
 

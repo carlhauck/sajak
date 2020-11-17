@@ -23,7 +23,7 @@
               <h4>Welcome to the winner's circle!</h4>
               <h4>Enter a player name to accompany your high score.</h4>
               <h4>Horse puns encouraged.</h4>
-              <input v-model="playerName" type="text" autofocus maxlength="15" />
+              <input v-model="playerName" type="text" maxlength="15" autofocus />
               <button v-if="!playerName" class="btn-green disabled" disabled>submit</button>
               <button v-else class="btn-green" @click="close(); postHighScore()">submit</button>
             </div>
@@ -70,10 +70,16 @@ export default {
 <style scoped>
 input {
   width: 210px;
-  height: 1.6em;
+  height: 40px;
   display: block;
   margin: 0 auto 0.75em auto;
+  border: 1px solid gray;
   border-radius: 8px;
+  margin-bottom: 1em;
+  text-align: center;
+  font-family: "archiabold";
+  font-size: 1.3em;
+  color: #99814c;
 }
 
 .page-title {
@@ -193,6 +199,8 @@ button.btn-next-mobile:active {
 .btn-green:hover.disabled {
   z-index: -1;
   cursor: not-allowed;
+  background-color: #c1c4bd;
+  border: 2px solid #b3b3b3;
 }
 
 @media (min-width: 300px) {

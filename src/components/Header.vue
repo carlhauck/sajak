@@ -2,7 +2,7 @@
   <h1 class="page-title">sajak horseman</h1>
 </template>
 
-<style>
+<style scoped>
 .page-title {
   font-family: "archiabold";
   font-size: 1.75em;

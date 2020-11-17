@@ -211,7 +211,12 @@ export default {
       }
     },
     guessLetter: function (e) {
-      if (e.which >= 65 && e.which <= 90) {
+      if (
+        e.which >= 65 &&
+        e.which <= 90 &&
+        !this.newScoreVisible &&
+        this.wrongCount !== 6
+      ) {
         // a-z
         const letter = e.key.toLowerCase();
         if (this.currentWord.includes(letter)) {

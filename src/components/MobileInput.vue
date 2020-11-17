@@ -14,7 +14,9 @@ export default {
   },
   methods: {
     guessLetter: function () {
-      this.$emit("guessLetterMobile", this.mobileInput);
+      if (this.mobileInput.match(/[a-zA-Z]/)) {
+        this.$emit("guessLetterMobile", this.mobileInput);
+      }
       setTimeout(this.resetInput, 250);
     },
     resetInput: function () {
@@ -24,7 +26,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 input {
   margin-top: 6px;
   width: 90px;

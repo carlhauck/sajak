@@ -12,7 +12,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .puzzle {
   font-family: "basier_square_monomedium";
   letter-spacing: 0.6em;

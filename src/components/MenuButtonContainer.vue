@@ -74,7 +74,7 @@ export default {
 @media (min-width: 400px) {
   .menu-btn-container {
     width: 220px;
-    bottom: 19%;
+    margin-top: 19em;
   }
 }
 
