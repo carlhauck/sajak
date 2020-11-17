@@ -35,6 +35,9 @@ export default {
   beforeCreate: function () {
     document.body.className = "menu";
   },
+  mounted: function () {
+    this.$ga.page("/");
+  },
   methods: {
     toggleAbout: function () {
       this.aboutVisible = !this.aboutVisible;

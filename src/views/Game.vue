@@ -135,6 +135,7 @@ export default {
     if (!this.isMobile) {
       window.addEventListener("keydown", this.guessLetter);
     }
+    this.$ga.page("/play");
   },
   computed: {
     blankCount: function () {
@@ -304,6 +305,7 @@ export default {
     },
     loseGame: function () {
       localStorage.removeItem("sajak");
+      this.$ga.event("game", "end", "score", this.score);
       if (this.score > this.scoreToBeat) {
         this.toggleNewScore();
       }
