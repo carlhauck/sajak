@@ -7,7 +7,7 @@ import VueAnalytics from 'vue-analytics';
 
 // axios.defaults.baseURL = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/";
 
-axios.defaults.baseURL = process.env.NODE_ENV === "production" ? "https://stormy-beyond-65642.com" : "/";
+axios.defaults.baseURL = process.env.NODE_ENV === "production" ? "https://stormy-beyond-65642.herokuapp.com" : "/";
 
 Vue.config.productionTip = false;
 
