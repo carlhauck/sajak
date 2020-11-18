@@ -125,8 +125,8 @@ export default {
     document.body.className = "game";
   },
   created: function () {
-    this.getNewWord();
     this.setScore();
+    this.getNewWord();
     axios.get("/api/high_scores").then((response) => {
       this.scoreToBeat = response.data[9].score;
     });
@@ -158,15 +158,17 @@ export default {
   },
   methods: {
     setScore: function () {
-      if (localStorage.getItem("sajak")) {
-        let storage = localStorage.getItem("sajak");
-        let decryptedScore = this.CryptoJS.AES.decrypt(
-          storage,
-          `${process.env.VUE_APP_CRYPTO_KEY}`
-        ).toString(this.CryptoJS.enc.Utf8);
-        this.score = Number(decryptedScore);
-      } else {
-        this.score = 0;
+      if (!this.score) {
+        if (localStorage.getItem("sajak")) {
+          let storage = localStorage.getItem("sajak");
+          let decryptedScore = this.CryptoJS.AES.decrypt(
+            storage,
+            `${process.env.VUE_APP_CRYPTO_KEY}`
+          ).toString(this.CryptoJS.enc.Utf8);
+          this.score = Number(decryptedScore);
+        } else {
+          this.score = 0;
+        }
       }
     },
     getNewWord: function () {
@@ -191,14 +193,29 @@ export default {
               )
               .then((response) => {
                 this.definition = this.prepDefinition(response.data[0].text);
+                setTimeout(() => localStorage.removeItem("sajak"), 2000);
               })
               .catch(() => {
                 this.definition = "loading new word";
                 console.log("Word didn't have a definition. Getting new word.");
+                this.storeScore();
                 setTimeout(() => this.getNewWord(), 5000);
               });
           }
+        })
+        .catch(() => {
+          this.definition = "loading new word";
+          console.log("429");
+          this.storeScore();
         });
+    },
+    storeScore: function () {
+      let score = JSON.stringify(this.score);
+      let encryptedScore = this.CryptoJS.AES.encrypt(
+        score,
+        `${process.env.VUE_APP_CRYPTO_KEY}`
+      ).toString();
+      localStorage.setItem("sajak", `${encryptedScore}`);
     },
     prepDefinition: function (def) {
       console.log(def);
@@ -296,12 +313,6 @@ export default {
     },
     winRound: function () {
       this.playYay();
-      let score = JSON.stringify(this.score);
-      let encryptedScore = this.CryptoJS.AES.encrypt(
-        score,
-        `${process.env.VUE_APP_CRYPTO_KEY}`
-      ).toString();
-      localStorage.setItem("sajak", `${encryptedScore}`);
     },
     loseGame: function () {
       localStorage.removeItem("sajak");
