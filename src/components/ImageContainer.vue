@@ -33,6 +33,7 @@
       v-bind:currentWord="currentWord"
       v-bind:newScoreVisible="newScoreVisible"
       v-if="!isMobile"
+      v-on:clearScore="clearScore"
       v-on:setScore="setScore"
       v-on:getNewWord="getNewWord" />
   </div>
@@ -62,6 +63,9 @@ export default {
     "newScoreVisible",
   ],
   methods: {
+    clearScore: function () {
+      this.$emit("clearScore");
+    },
     setScore: function () {
       console.log("emit from image container component");
       this.$emit("setScore");

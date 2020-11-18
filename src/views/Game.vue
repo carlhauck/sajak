@@ -11,6 +11,7 @@
         v-bind:currentWord="currentWord"
         v-bind:isMobile="isMobile"
         v-bind:newScoreVisible="newScoreVisible"
+        v-on:clearScore="clearScore"
         v-on:setScore="setScore"
         v-on:getNewWord="getNewWord"
         v-on:outOfTime="outOfTime" />
@@ -30,6 +31,7 @@
         v-bind:wrongCount="wrongCount"
         v-bind:currentWord="currentWord"
         v-if="isMobile"
+        v-on:clearScore="clearScore"
         v-on:setScore="setScore"
         v-on:getNewWord="getNewWord" />
       <NewScoreModal
@@ -157,6 +159,9 @@ export default {
     },
   },
   methods: {
+    clearScore: function () {
+      this.score = 0;
+    },
     setScore: function () {
       if (!this.score) {
         if (localStorage.getItem("sajak")) {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <button v-if="currentWord !== '' && blankCount === 0 && wrongCount < 6" v-on:click="getNewWord" class="btn-next">Next Word</button>
-    <button v-if="blankCount > 0 && wrongCount === 6" v-on:click="setScore(); getNewWord();" class="btn-new">New Game</button>
+    <button v-if="blankCount > 0 && wrongCount === 6" v-on:click="clearScore(); setScore(); getNewWord();" class="btn-new">New Game</button>
   </div>
 </template>
 
@@ -14,6 +14,9 @@ export default {
     }
   },
   methods: {
+    clearScore: function () {
+      this.$emit("clearScore");
+    },
     setScore: function () {
       console.log("emit from next button component");
       this.$emit("setScore");
@@ -36,6 +39,9 @@ export default {
         event.preventDefault();
         this.$emit("setScore");
         this.$emit("getNewWord");
+        if (this.blankCount > 0 && this.wrongCount === 6) {
+          this.$emit("clearScore");
+        }
       }
     },
   },
