@@ -126,7 +126,7 @@ a:hover {
 .modal-footer {
   justify-content: center;
   margin-top: 0.5em;
-  margin-bottom: 1.5em;
+  margin-bottom: 2em;
 }
 
 .modal-body {
@@ -180,6 +180,9 @@ button.btn-next-mobile:active {
   .modal-body {
     margin: 0 3em;
     font-size: 1em;
+  }
+  .modal-footer {
+    margin-bottom: 1.5em;
   }
 }
 

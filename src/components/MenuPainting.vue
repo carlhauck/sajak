@@ -32,14 +32,14 @@ export default {
   margin-left: -0.47em;
   margin-right: -0.47em;
   margin-top: -0.47em;
+  background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
   overflow: hidden;
   position: relative;
-  min-height: 100vh;
-  min-height: calc(var(--vh, 1vh) * 100);
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 #sajak {
