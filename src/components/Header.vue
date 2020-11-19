@@ -6,8 +6,6 @@
 .page-title {
   font-family: "archiabold";
   font-size: 1.75em;
-  margin-top: -1.1em;
-  margin-bottom: 0.5em;
 }
 
 @media (min-width: 300px) {

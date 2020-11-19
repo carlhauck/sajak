@@ -36,8 +36,8 @@ export default {
   width: 100%;
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
-  top: 16vh;
-  top: calc(var(--vh, 1vh) * 16);
+  top: 14vh;
+  top: calc(var(--vh, 1vh) * 14);
 }
 
 .menu-title {
@@ -48,6 +48,10 @@ export default {
 }
 
 @media (min-width: 350px) {
+  .title-container {
+    top: 16vh;
+    top: calc(var(--vh, 1vh) * 16);
+  }
   .menu-title {
     font-size: 4em;
   }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="text" maxlength="1" v-if="blankCount > 0 && wrongCount < 6" v-model="mobileInput" v-on:input="guessLetter()" />
+    <input type="text" maxlength="1" v-if="blankCount > 0 && wrongCount < 6" v-model="mobileInput" v-on:input="guessLetter()" autofocus />
   </div>
 </template>
 

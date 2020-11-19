@@ -71,7 +71,6 @@ export default {
 .page-title {
   font-family: "archiabold";
   font-size: 1.75em;
-  margin: 0;
 }
 
 .column {
@@ -133,8 +132,8 @@ a:hover {
   -webkit-transform: translateX(-50%) translateY(-50%);
   -moz-transform: translateX(-50%) translateY(-50%);
   width: 96vw;
-  height: 96vh;
-  height: calc(var(--vh, 1vh) * 96);
+  max-height: 96vh;
+  max-height: calc(var(--vh, 1vh) * 96);
 }
 
 .modal-header,
@@ -144,7 +143,6 @@ a:hover {
 
 .modal-header {
   margin-top: 1.5em;
-  margin-bottom: 0.25em;
   align-items: center;
   justify-content: center;
 }

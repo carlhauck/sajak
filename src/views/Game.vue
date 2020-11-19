@@ -1,8 +1,8 @@
 <template>
   <div class="game">
     <div class="container text-center">
-      <Header
-        v-if="isMobile" />
+      <!-- <Header
+        v-if="isMobile" /> -->
       <ImageContainer
         v-bind:blankCount="blankCount"
         v-bind:wrongCount="wrongCount"
@@ -65,7 +65,7 @@
 <script>
 import axios from "axios";
 import VueCryptojs from "vue-cryptojs";
-import Header from "./../components/Header";
+// import Header from "./../components/Header";
 import ImageContainer from "./../components/ImageContainer";
 import Puzzle from "./../components/Puzzle";
 import Definition from "./../components/Definition";
@@ -74,7 +74,7 @@ import MobileNextButton from "./../components/MobileNextButton";
 import NewScoreModal from "./../components/NewScoreModal";
 export default {
   components: {
-    Header,
+    // Header,
     ImageContainer,
     Puzzle,
     Definition,

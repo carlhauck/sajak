@@ -12,7 +12,7 @@
           id="modalTitle"
         >
           <slot name="header">
-            <Header style="margin: 0;" />
+            <Header />
           </slot>
         </header>
         <section
@@ -106,8 +106,8 @@ a:hover {
   transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
   -moz-transform: translateX(-50%) translateY(-50%);
-  height: 96vh;
-  height: calc(var(--vh, 1vh) * 96);
+  max-height: 96vh;
+  max-height: calc(var(--vh, 1vh) * 96);
   border-radius: 12px;
 }
 
@@ -118,7 +118,6 @@ a:hover {
 
 .modal-header {
   margin-top: 1.5em;
-  margin-bottom: 0.25em;
   align-items: center;
   justify-content: center;
 }
