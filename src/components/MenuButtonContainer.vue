@@ -48,50 +48,20 @@ export default {
 
 <style>
 .menu-btn-container {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-  -moz-transform: translateX(-50%);
+  position: relative;
+  margin: 0.9em auto 0 auto;
   z-index: 4;
   width: 65%;
-  margin-top: 36vh;
-  margin-top: calc(var(--vh, 1vh) * 36);
 }
 @media (min-width: 300px) {
   .menu-btn-container {
     width: 180px;
-    margin-top: 38vh;
-    margin-top: calc(var(--vh, 1vh) * 38);
   }
 }
 
 @media (min-width: 350px) {
   .menu-btn-container {
     width: 220px;
-    /* margin-top: 18.5em; */
-    margin-top: 41vh;
-    margin-top: calc(var(--vh, 1vh) * 41);
-  }
-}
-
-@media (min-width: 400px) {
-  .menu-btn-container {
-    width: 220px;
-    margin-top: 19em;
-  }
-}
-
-@media (min-width: 576px) {
-  .menu-btn-container {
-    margin-top: 21em;
-  }
-}
-
-@media (min-width: 768px) {
-  .menu-btn-container {
-    margin-top: 21.75em;
   }
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
   <div class="menu">
-    <MenuPainting
+    <MenuBackground />
+    <MenuText
       v-on:openAbout="toggleAbout"
       v-on:openScores="toggleScores" />
-    <MenuTitle />
     <AboutModal
       v-show="aboutVisible"
       @closeAbout="toggleAbout" />
@@ -15,8 +15,8 @@
 
 <script>
 import axios from "axios";
-import MenuPainting from "./../components/MenuPainting";
-import MenuTitle from "./../components/MenuTitle";
+import MenuBackground from "./../components/MenuBackground";
+import MenuText from "./../components/MenuText";
 import AboutModal from "./../components/AboutModal";
 import ScoresModal from "./../components/ScoresModal";
 export default {
@@ -27,8 +27,8 @@ export default {
     };
   },
   components: {
-    MenuPainting,
-    MenuTitle,
+    MenuBackground,
+    MenuText,
     AboutModal,
     ScoresModal,
   },

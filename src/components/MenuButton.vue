@@ -32,7 +32,7 @@ button.btn-menu {
   margin-bottom: 0.6em;
   font-family: "archiasemibold";
   text-transform: lowercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   font-size: 1.5em;
   width: 100%;
   height: 65px;

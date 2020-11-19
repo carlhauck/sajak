@@ -1,29 +1,8 @@
 <template>
   <div class="menu-bg">
     <img id="sajak" src="./../assets/sajak-menu-cutout.png" alt="sajak">
-    <MenuButtonContainer
-      v-on:openAbout="openAbout"
-      v-on:openScores="openScores" />
   </div>
 </template>
-
-<script>
-import axios from "axios";
-import MenuButtonContainer from "./../components/MenuButtonContainer";
-export default {
-  components: {
-    MenuButtonContainer,
-  },
-  methods: {
-    openAbout: function () {
-      this.$emit("openAbout");
-    },
-    openScores: function () {
-      this.$emit("openScores");
-    },
-  },
-};
-</script>
 
 <style scoped>
 .menu-bg {
