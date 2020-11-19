@@ -36,9 +36,10 @@ export default {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 100vh;
   overflow: hidden;
   position: relative;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 #sajak {
