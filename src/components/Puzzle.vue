@@ -21,7 +21,7 @@ export default {
 
 h1.puzzle {
   font-size: 1.25em;
-  margin-top: 0.75em;
+  margin-top: 0.65em;
   margin-bottom: 0.6em;
 }
 

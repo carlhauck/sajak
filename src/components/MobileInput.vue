@@ -28,9 +28,9 @@ export default {
 
 <style scoped>
 input {
-  margin-top: 6px;
-  width: 90px;
-  height: 45px;
+  margin-top: 4px;
+  width: 80px;
+  height: 40px;
   border-radius: 12px;
   border: 1px solid rgb(194, 194, 194);
   font-family: "basier_square_monomedium";

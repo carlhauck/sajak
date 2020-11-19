@@ -48,17 +48,40 @@
 
 <style scoped>
 .game {
+  /* position: absolute;
+  left: 0;
+  width: 100%;
   align-items: center;
   display: flex;
-  justify-content: center;
+  justify-content: center; */
 }
 
 .container {
+  position: absolute;
+  left: 0;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: top;
   align-items: center;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+@media (min-width: 992px) {
+  .game {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  .container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+  }
 }
 </style>
 
@@ -138,6 +161,12 @@ export default {
       window.addEventListener("keydown", this.guessLetter);
     }
     this.$ga.page("/play");
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+    window.addEventListener("resize", () => {
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    });
   },
   computed: {
     blankCount: function () {

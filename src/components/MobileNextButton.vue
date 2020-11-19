@@ -24,7 +24,7 @@ export default {
 
 <style scoped>
 button.btn-next-mobile {
-  margin-top: 0.35em;
+  margin-top: 4px;
   margin-left: auto;
   margin-right: auto;
   font-family: "archiasemibold";
@@ -46,7 +46,7 @@ button.btn-next-mobile:active {
 }
 /* Add active for button press feedback on phones? */
 button.btn-new-mobile {
-  margin-top: 6px;
+  margin-top: 4px;
   margin-left: auto;
   margin-right: auto;
   font-family: "archiasemibold";

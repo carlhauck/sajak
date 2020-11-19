@@ -120,7 +120,7 @@ a:hover {
 }
 
 .modal {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   box-shadow: 2px 2px 20px 1px;
   overflow: auto;
   display: flex;
@@ -194,9 +194,6 @@ button.btn-next-mobile:active {
 @media (min-width: 350px) {
   .page-title {
     font-size: 2.2em;
-  }
-  .modal {
-    background: rgba(255, 255, 255, 0.95);
   }
   .modal-body {
     margin: 0 1.6em;

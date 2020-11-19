@@ -11,8 +11,8 @@ export default {
 
 <style scoped>
 .definition {
-  margin-top: 0.7em;
   font-size: 0.85em;
+  margin-top: 0.35em;
 }
 
 .loading {
@@ -93,6 +93,7 @@ export default {
 @media (min-width: 576px) {
   .definition {
     font-size: 1em;
+    margin-top: 0.7em;
   }
 }
 </style>
