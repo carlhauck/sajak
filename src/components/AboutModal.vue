@@ -106,8 +106,9 @@ a:hover {
   transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
   -moz-transform: translateX(-50%) translateY(-50%);
-  height: 98vh;
-  height: calc(var(--vh, 1vh) * 98);
+  height: 96vh;
+  height: calc(var(--vh, 1vh) * 96);
+  border-radius: 12px;
 }
 
 .modal-header,
@@ -163,7 +164,6 @@ button.btn-next-mobile:active {
 @media (min-width: 350px) {
   .modal {
     background: rgba(255, 255, 255, 0.95);
-    border-radius: 12px;
   }
   .modal-body {
     margin: 0 1.6em;
@@ -173,10 +173,9 @@ button.btn-next-mobile:active {
 
 @media (min-width: 576px) {
   .modal {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 12px;
     width: 90vw;
     max-height: 95vh;
+    max-height: calc(var(--vh, 1vh) * 95);
   }
   .modal-body {
     margin: 0 3em;

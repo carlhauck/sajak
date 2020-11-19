@@ -38,8 +38,8 @@ export default {
   background-size: cover;
   overflow: hidden;
   position: relative;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
 }
 
 #sajak {
