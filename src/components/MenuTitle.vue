@@ -23,13 +23,16 @@
   font-size: 3em;
   color: white;
   z-index: 1;
-  margin-top: 2em;
+  margin-top: 15vh;
+  margin-top: calc(var(--vh, 1vh) * 15);
 }
 
 @media (min-width: 350px) {
   .menu-title {
     font-size: 4em;
-    margin-top: 2em;
+    /* margin-top: 2em; */
+    margin-top: 16vh;
+    margin-top: calc(var(--vh, 1vh) * 16);
   }
 }
 

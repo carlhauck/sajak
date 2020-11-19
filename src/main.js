@@ -17,14 +17,6 @@ Vue.use(VueAnalytics, {
   id: `${process.env.VUE_APP_GA_KEY}`
 });
 
-// let vh = window.innerHeight * 0.01;
-// document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-// window.addEventListener('resize', () => {
-//   let vh = window.innerHeight * 0.01;
-//   document.documentElement.style.setProperty('--vh', `${vh}px`);
-// });
-
 new Vue({
   router,
   render: h => h(App)

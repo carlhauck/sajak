@@ -56,18 +56,23 @@ export default {
   -moz-transform: translateX(-50%);
   z-index: 4;
   width: 65%;
-  margin-top: 14em;
+  margin-top: 36vh;
+  margin-top: calc(var(--vh, 1vh) * 36);
 }
 @media (min-width: 300px) {
   .menu-btn-container {
     width: 180px;
+    margin-top: 38vh;
+    margin-top: calc(var(--vh, 1vh) * 38);
   }
 }
 
 @media (min-width: 350px) {
   .menu-btn-container {
     width: 220px;
-    margin-top: 18.5em;
+    /* margin-top: 18.5em; */
+    margin-top: 41vh;
+    margin-top: calc(var(--vh, 1vh) * 41);
   }
 }
 
