@@ -30,11 +30,13 @@ export default {
   display: inline-block;
   margin-top: 0.6em;
   margin-right: 1.55vw;
+  margin-right: calc(var(--vw, 1vw) * 1.55);
   font-family: "archiamedium";
   text-transform: lowercase;
   font-size: 1em;
   text-align: center;
   width: 8.3vw;
+  width: calc(var(--vw, 1vw) * 8.3);
   height: 36px;
   border: 1px solid #9c9c9c;
   border-radius: 4px;
@@ -45,11 +47,12 @@ export default {
   display: inline-block;
   margin-top: 0.6em;
   margin-right: 1.55vw;
-  font-family: "archiamedium";
+  margin-right: calc(var(--vw, 1vw) * 1.55);  font-family: "archiamedium";
   text-transform: lowercase;
   font-size: 1em;
   text-align: center;
   width: 8.3vw;
+  width: calc(var(--vw, 1vw) * 8.3);
   height: 36px;
   border-radius: 4px;
   color: #464646;
@@ -65,8 +68,11 @@ export default {
 }
 
 @media (min-width: 350px) {
-  /* button.btn-menu {
-    font-size: 1.7em;
-  } */
+  .keyboard-key {
+    height: 42px;
+  }
+  .keyboard-key-pressed {
+    height: 44px;
+  }
 }
 </style>

@@ -159,20 +159,17 @@ export default {
 
 <style scoped>
 .keyboard-container {
-  /* display: flex; */
-  width: 100vw;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+  width: calc(var(--vw, 1vw) * 100);
 }
 .key-row {
   display: inline-block;
   width: 100vw;
+  width: calc(var(--vw, 1vw) * 100);
   justify-content: space-between;
   margin-right: -1.55vw;
-  /* display: inline-block;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column; */
-  /* flex-wrap: wrap; */
+  margin-right: calc(var(--vw, 1vw) * -1.55);
 }
 </style>
