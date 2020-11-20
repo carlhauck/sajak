@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <h1 class="puzzle" v-if="blankCount > 0 && wrongCount < 6">{{ puzzle.join("") }}</h1>
-    <h1 class="puzzle win" v-if="blankCount === 0 && wrongCount < 6">{{ puzzle.join("") }}</h1>
-    <h1 class="puzzle loss" v-if="blankCount > 0 && wrongCount == 6">{{ puzzle.join("") }}</h1>
+  <div class="disable-dbl-tap-zoom">
+    <h1 class="puzzle disable-dbl-tap-zoom" v-if="blankCount > 0 && wrongCount < 6">{{ puzzle.join("") }}</h1>
+    <h1 class="puzzle win disable-dbl-tap-zoom" v-if="blankCount === 0 && wrongCount < 6">{{ puzzle.join("") }}</h1>
+    <h1 class="puzzle loss disable-dbl-tap-zoom" v-if="blankCount > 0 && wrongCount == 6">{{ puzzle.join("") }}</h1>
   </div>
 </template>
 
