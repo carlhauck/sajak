@@ -4,21 +4,25 @@
       <KeyboardButton
         v-for="keyboardKey in topRowKeys"
         :key="keyboardKey.id"
-        :keyboardKey="keyboardKey" />
+        :keyboardKey="keyboardKey"
+        :currentWord="currentWord"
+        v-on:guessLetterMobile="guessLetterMobile" />
     </div>
     <div class="key-row">
       <KeyboardButton
         v-for="keyboardKey in midRowKeys"
         :key="keyboardKey.id"
-        :keyboardKey="keyboardKey" />
+        :keyboardKey="keyboardKey"
+        :currentWord="currentWord"
+        v-on:guessLetterMobile="guessLetterMobile" />
     </div>
     <div class="key-row">
       <KeyboardButton
         v-for="keyboardKey in bottomRowKeys"
         :key="keyboardKey.id"
-        :keyboardKey="keyboardKey" />
-        <!-- v-on:openAbout="openAbout"
-        v-on:openScores="openScores" -->
+        :keyboardKey="keyboardKey"
+        :currentWord="currentWord"
+        v-on:guessLetterMobile="guessLetterMobile" />
     </div>
   </div>
 </template>
@@ -26,7 +30,7 @@
 <script>
 import KeyboardButton from "./../components/KeyboardButton";
 export default {
-  props: ["blankCount", "wrongCount"],
+  props: ["currentWord"],
   components: {
     KeyboardButton,
   },
@@ -145,12 +149,10 @@ export default {
     };
   },
   methods: {
-    // guessLetter: function () {
-    //   if (this.mobileInput.match(/[a-zA-Z]/)) {
-    //     this.$emit("guessLetterMobile", this.mobileInput);
-    //   }
-    //   setTimeout(this.resetInput, 250);
-    // },
+    guessLetterMobile: function (ltr) {
+      console.log(ltr);
+      this.$emit("guessLetterMobile", ltr);
+    },
   },
 };
 </script>
@@ -166,6 +168,7 @@ export default {
   display: inline-block;
   width: 100vw;
   justify-content: space-between;
+  margin-right: -1.55vw;
   /* display: inline-block;
   justify-content: space-between;
   align-items: center;

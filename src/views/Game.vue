@@ -1,8 +1,6 @@
 <template>
   <div class="game">
     <div class="container text-center">
-      <!-- <Header
-        v-if="isMobile" /> -->
       <ImageContainer
         v-bind:blankCount="blankCount"
         v-bind:wrongCount="wrongCount"
@@ -21,11 +19,6 @@
         v-bind:puzzle="puzzle" />
       <Definition
         v-bind:definition="definition" />
-      <!-- <MobileInput
-        v-bind:blankCount="blankCount"
-        v-bind:wrongCount="wrongCount"
-        v-if="isMobile"
-        v-on:guessLetterMobile="guessLetterMobile" /> -->
       <MobileNextButton
         v-bind:blankCount="blankCount"
         v-bind:wrongCount="wrongCount"
@@ -35,8 +28,7 @@
         v-on:setScore="setScore"
         v-on:getNewWord="getNewWord" />
       <MobileKeyboard
-        v-bind:blankCount="blankCount"
-        v-bind:wrongCount="wrongCount"
+        :currentWord="currentWord"
         v-if="isMobile"
         v-on:guessLetterMobile="guessLetterMobile" />
       <NewScoreModal
@@ -52,14 +44,6 @@
 </template>
 
 <style scoped>
-.game {
-  /* position: absolute;
-  left: 0;
-  width: 100%;
-  align-items: center;
-  display: flex;
-  justify-content: center; */
-}
 
 .container {
   position: absolute;
@@ -93,21 +77,17 @@
 <script>
 import axios from "axios";
 import VueCryptojs from "vue-cryptojs";
-// import Header from "./../components/Header";
 import ImageContainer from "./../components/ImageContainer";
 import Puzzle from "./../components/Puzzle";
 import Definition from "./../components/Definition";
-// import MobileInput from "./../components/MobileInput";
 import MobileNextButton from "./../components/MobileNextButton";
 import NewScoreModal from "./../components/NewScoreModal";
 import MobileKeyboard from "./../components/MobileKeyboard";
 export default {
   components: {
-    // Header,
     ImageContainer,
     Puzzle,
     Definition,
-    // MobileInput,
     MobileNextButton,
     NewScoreModal,
     MobileKeyboard,

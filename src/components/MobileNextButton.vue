@@ -27,6 +27,7 @@ button.btn-next-mobile {
   margin-top: 4px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 10px;
   font-family: "archiasemibold";
   text-transform: lowercase;
   letter-spacing: 0.03em;
@@ -49,6 +50,7 @@ button.btn-new-mobile {
   margin-top: 4px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 10px;
   font-family: "archiasemibold";
   text-transform: lowercase;
   letter-spacing: 0.05em;
@@ -56,9 +58,9 @@ button.btn-new-mobile {
   height: 45px;
   padding-left: 0.65em;
   padding-right: 0.65em;
-  border: 1px solid #777777;
+  border: 2px solid #777777;
   border-radius: 14px;
-  background-color: #929292;
+  background-color: #9c9c9c;
   color: white;
   z-index: 4;
   white-space: nowrap;

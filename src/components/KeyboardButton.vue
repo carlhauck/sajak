@@ -1,47 +1,61 @@
 <template>
   <span>
-    <button class="keyboard-key">{{ keyboardKey.name }}</button>
+    <button @click="guessLetterMobile(); isPressed = true" v-bind:class="{ 'keyboard-key': !isPressed,'keyboard-key-pressed': isPressed }">{{ keyboardKey.name }}</button>
   </span>
 </template>
 
 <script>
 export default {
-  props: ["keyboardKey"],
+  props: ["keyboardKey", "currentWord"],
+  data: function () {
+    return {
+      isPressed: false,
+    };
+  },
+  watch: {
+    currentWord: function () {
+      this.isPressed = false;
+    },
+  },
   methods: {
-    // openAbout: function () {
-    //   this.$emit("openAbout");
-    // },
-    // openScores: function () {
-    //   this.$emit("openScores");
-    // },
+    guessLetterMobile: function () {
+      this.$emit("guessLetterMobile", this.keyboardKey.name);
+    },
   },
 };
 </script>
 
 <style scoped>
-/* a {
-  text-decoration: none !important;
-} */
-
 .keyboard-key {
   display: inline-block;
   margin-top: 0.6em;
-  margin-right: 0.3em;
+  margin-right: 1.55vw;
   font-family: "archiamedium";
   text-transform: lowercase;
   font-size: 1em;
   text-align: center;
-  width: 7.5vw;
-  height: 35px;
-  border: 1px solid #646464;
+  width: 8.3vw;
+  height: 36px;
+  border: 1px solid #9c9c9c;
   border-radius: 4px;
-  background-color: rgb(238, 238, 238);
+  background-color: rgb(236, 236, 236);
   color: #464646;
 }
 .keyboard-key-pressed {
-  background-color: rgba(222, 234, 238, 0.3);
-  border: 4px solid rgb(255, 255, 255);
-  cursor: pointer;
+  display: inline-block;
+  margin-top: 0.6em;
+  margin-right: 1.55vw;
+  font-family: "archiamedium";
+  text-transform: lowercase;
+  font-size: 1em;
+  text-align: center;
+  width: 8.3vw;
+  height: 36px;
+  border-radius: 4px;
+  color: #464646;
+  z-index: -1;
+  background-color: rgb(185, 185, 185);
+  border: 1px solid #9c9c9c;
 }
 
 @media (min-width: 300px) {
