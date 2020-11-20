@@ -232,7 +232,14 @@ export default {
               `Word (${response.data.word}) contained special character. Getting new word.`
             );
             setTimeout(() => this.getNewWord(), 5000);
-            this.$ga.event("word", "bad", "special-character");
+            this.$ga.event("wordnik", "bad-get", "special-character");
+          } else if (response.data.word.toLowerCase().includes("plural")) {
+            this.definition = "loading new word";
+            console.log(
+              `Word (${response.data.word}) had 'plural form' in the definition. Too easy! Getting new word.`
+            );
+            setTimeout(() => this.getNewWord(), 5000);
+            this.$ga.event("wordnik", "bad-get", "plural form");
           } else {
             this.currentWord = response.data.word.toLowerCase();
             this.puzzle = Array(response.data.word.length).fill("_");
@@ -243,14 +250,14 @@ export default {
               .then((response) => {
                 this.definition = this.prepDefinition(response.data[0].text);
                 setTimeout(() => localStorage.removeItem("sajak"), 2000);
-                this.$ga.event("word", "good");
+                this.$ga.event("wordnik", "good-get");
               })
               .catch(() => {
                 this.definition = "loading new word";
                 console.log("Word didn't have a definition. Getting new word.");
                 this.storeScore();
                 setTimeout(() => this.getNewWord(), 5000);
-                this.$ga.event("word", "bad", "no-definition");
+                this.$ga.event("wordnik", "bad-get", "no-definition");
               });
           }
         })
@@ -319,7 +326,7 @@ export default {
         this.tallyWrong(letter);
         if (this.blankCount > 0 && this.wrongCount === 6) {
           this.loseGame();
-          this.$ga.event("round", "lose", "guesses");
+          this.$ga.event("round", "loss", "guesses");
         }
       }
     },
@@ -363,7 +370,7 @@ export default {
       this.wrongGuesses = this.wrongGuesses.concat(dashArray);
       this.playNay();
       this.loseGame();
-      this.$ga.event("round", "lose", "time");
+      this.$ga.event("round", "loss", "time");
     },
     winRound: function () {
       this.playYay();
