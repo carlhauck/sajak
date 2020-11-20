@@ -12,8 +12,8 @@ export default {
 <style scoped>
 p.definition {
   font-size: 0.85em;
-  margin-top: 0.3em;
-  margin-bottom: 0.7em;
+  margin-top: 0.25em;
+  margin-bottom: 0.65em;
 }
 
 .loading {
