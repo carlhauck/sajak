@@ -1,6 +1,6 @@
 <template>
   <div class="game">
-    <div class="container text-center">
+    <div class="container text-center disable-dbl-tap-zoom">
       <ImageContainer
         v-bind:blankCount="blankCount"
         v-bind:wrongCount="wrongCount"

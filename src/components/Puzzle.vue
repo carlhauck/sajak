@@ -1,5 +1,5 @@
 <template>
-  <div class="disable-dbl-tap-zoom">
+  <div>
     <h1 class="puzzle" v-if="blankCount > 0 && wrongCount < 6">{{ puzzle.join("") }}</h1>
     <h1 class="puzzle win" v-if="blankCount === 0 && wrongCount < 6">{{ puzzle.join("") }}</h1>
     <h1 class="puzzle loss" v-if="blankCount > 0 && wrongCount == 6">{{ puzzle.join("") }}</h1>
