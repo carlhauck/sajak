@@ -21,11 +21,11 @@
         v-bind:puzzle="puzzle" />
       <Definition
         v-bind:definition="definition" />
-      <MobileInput
+      <!-- <MobileInput
         v-bind:blankCount="blankCount"
         v-bind:wrongCount="wrongCount"
         v-if="isMobile"
-        v-on:guessLetterMobile="guessLetterMobile" />
+        v-on:guessLetterMobile="guessLetterMobile" /> -->
       <MobileNextButton
         v-bind:blankCount="blankCount"
         v-bind:wrongCount="wrongCount"
@@ -34,6 +34,11 @@
         v-on:clearScore="clearScore"
         v-on:setScore="setScore"
         v-on:getNewWord="getNewWord" />
+      <MobileKeyboard
+        v-bind:blankCount="blankCount"
+        v-bind:wrongCount="wrongCount"
+        v-if="isMobile"
+        v-on:guessLetterMobile="guessLetterMobile" />
       <NewScoreModal
         v-if="newScoreVisible"
         v-bind:newScoreVisible="newScoreVisible"
@@ -92,18 +97,20 @@ import VueCryptojs from "vue-cryptojs";
 import ImageContainer from "./../components/ImageContainer";
 import Puzzle from "./../components/Puzzle";
 import Definition from "./../components/Definition";
-import MobileInput from "./../components/MobileInput";
+// import MobileInput from "./../components/MobileInput";
 import MobileNextButton from "./../components/MobileNextButton";
 import NewScoreModal from "./../components/NewScoreModal";
+import MobileKeyboard from "./../components/MobileKeyboard";
 export default {
   components: {
     // Header,
     ImageContainer,
     Puzzle,
     Definition,
-    MobileInput,
+    // MobileInput,
     MobileNextButton,
     NewScoreModal,
+    MobileKeyboard,
   },
   data: function () {
     return {
