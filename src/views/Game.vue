@@ -29,7 +29,7 @@
         v-on:getNewWord="getNewWord" />
       <MobileKeyboard
         :currentWord="currentWord"
-        v-if="isMobile"
+        v-if="isMobile && wrongCount < 6 && blankCount > 0"
         v-on:guessLetterMobile="guessLetterMobile" />
       <NewScoreModal
         v-if="newScoreVisible"
