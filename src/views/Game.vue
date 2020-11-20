@@ -45,8 +45,8 @@
 
 <style scoped>
 
-body {
-  touch-action: none;
+html {
+  -webkit-text-size-adjust: none;
   touch-action: pan-y;
 }
 
