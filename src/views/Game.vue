@@ -1,8 +1,6 @@
 <template>
   <div class="game">
     <div class="container text-center">
-      <!-- <Header
-        v-if="isMobile" /> -->
       <ImageContainer
         v-bind:blankCount="blankCount"
         v-bind:wrongCount="wrongCount"
@@ -47,14 +45,6 @@
 </template>
 
 <style scoped>
-.game {
-  /* position: absolute;
-  left: 0;
-  width: 100%;
-  align-items: center;
-  display: flex;
-  justify-content: center; */
-}
 
 .container {
   position: absolute;
@@ -88,7 +78,6 @@
 <script>
 import axios from "axios";
 import VueCryptojs from "vue-cryptojs";
-// import Header from "./../components/Header";
 import ImageContainer from "./../components/ImageContainer";
 import Puzzle from "./../components/Puzzle";
 import Definition from "./../components/Definition";
@@ -97,7 +86,6 @@ import MobileNextButton from "./../components/MobileNextButton";
 import NewScoreModal from "./../components/NewScoreModal";
 export default {
   components: {
-    // Header,
     ImageContainer,
     Puzzle,
     Definition,
@@ -200,6 +188,7 @@ export default {
             `${process.env.VUE_APP_CRYPTO_KEY}`
           ).toString(this.CryptoJS.enc.Utf8);
           this.score = Number(decryptedScore);
+          this.$ga.event("localstorage", "get", "score", this.score);
         } else {
           this.score = 0;
         }
@@ -218,6 +207,7 @@ export default {
               `Word (${response.data.word}) contained special character. Getting new word.`
             );
             setTimeout(() => this.getNewWord(), 5000);
+            this.$ga.event("word", "bad", "special-character");
           } else {
             this.currentWord = response.data.word.toLowerCase();
             this.puzzle = Array(response.data.word.length).fill("_");
@@ -228,12 +218,14 @@ export default {
               .then((response) => {
                 this.definition = this.prepDefinition(response.data[0].text);
                 setTimeout(() => localStorage.removeItem("sajak"), 2000);
+                this.$ga.event("word", "good");
               })
               .catch(() => {
                 this.definition = "loading new word";
                 console.log("Word didn't have a definition. Getting new word.");
                 this.storeScore();
                 setTimeout(() => this.getNewWord(), 5000);
+                this.$ga.event("word", "bad", "no-definition");
               });
           }
         })
@@ -250,6 +242,7 @@ export default {
         `${process.env.VUE_APP_CRYPTO_KEY}`
       ).toString();
       localStorage.setItem("sajak", `${encryptedScore}`);
+      this.$ga.event("localstorage", "set", "score", this.score);
     },
     prepDefinition: function (def) {
       console.log(def);
@@ -353,6 +346,7 @@ export default {
       this.$ga.event("game", "end", "score", this.score);
       if (this.score > this.scoreToBeat) {
         this.toggleNewScore();
+        this.$ga.event("game", "end", "high-score", this.score);
       }
     },
     toggleNewScore: function () {
