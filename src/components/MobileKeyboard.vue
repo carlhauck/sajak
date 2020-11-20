@@ -161,17 +161,17 @@ export default {
 .keyboard-container {
   justify-content: center;
   align-items: center;
-  width: calc(100vw - (100vw - 100%));
-  /* width: 100vw;
-  width: calc(var(--vw, 1vw) * 100); */
+  /* width: calc(100vw - (100vw - 100%)); */
+  width: 100vw;
+  width: calc(var(--vw, 1vw) * 100);
 }
 .key-row {
   display: inline-block;
-  /* width: 100vw;
-  width: calc(var(--vw, 1vw) * 100); */
-  width: calc(100vw - (100vw - 100%));
-  justify-content: space-between;
-  margin-right: -1.5vw;
-  margin-right: calc(var(--vw, 1vw) * -1.5);
+  width: 100vw;
+  width: calc(var(--vw, 1vw) * 100);
+  /* width: calc(100vw - (100vw - 100%)); */
+  justify-content: center;
+  margin-right: -1.4vw;
+  margin-right: calc(var(--vw, 1vw) * -1.4);
 }
 </style>

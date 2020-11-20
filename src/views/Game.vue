@@ -45,6 +45,10 @@
 
 <style scoped>
 
+body {
+  overflow-y: auto;
+}
+
 .container {
   position: absolute;
   left: 0;
@@ -54,6 +58,12 @@
   align-items: center;
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
+}
+
+@media (min-width: 576px) {
+  body {
+    overflow-y: hidden;
+  }
 }
 
 @media (min-width: 992px) {
@@ -362,14 +372,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-body {
-  overflow-y: auto;
-}
-@media (min-width: 576px) {
-  body {
-    overflow-y: hidden;
-  }
-}
-</style>
