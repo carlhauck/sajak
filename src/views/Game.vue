@@ -46,6 +46,7 @@
 <style scoped>
 
 body {
+  touch-action: none;
   touch-action: pan-y;
 }
 
