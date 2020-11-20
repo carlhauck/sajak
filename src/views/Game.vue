@@ -45,6 +45,10 @@
 
 <style scoped>
 
+body {
+  touch-action: pan-y;
+}
+
 .container {
   position: absolute;
   left: 0;
