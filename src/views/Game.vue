@@ -45,9 +45,11 @@
 
 <style scoped>
 
-html {
-  -webkit-text-size-adjust: none;
-  touch-action: pan-y;
+@media screen {
+  html, body {
+    -webkit-text-size-adjust: none;
+    touch-action: pan-y;
+  }
 }
 
 .container {
