@@ -233,13 +233,6 @@ export default {
             );
             setTimeout(() => this.getNewWord(), 5000);
             this.$ga.event("wordnik", "bad-get", "special-character");
-          } else if (response.data.word.toLowerCase().includes("plural")) {
-            this.definition = "loading new word";
-            console.log(
-              `Word (${response.data.word}) had 'plural form' in the definition. Too easy! Getting new word.`
-            );
-            setTimeout(() => this.getNewWord(), 5000);
-            this.$ga.event("wordnik", "bad-get", "plural form");
           } else {
             this.currentWord = response.data.word.toLowerCase();
             this.puzzle = Array(response.data.word.length).fill("_");
@@ -248,9 +241,18 @@ export default {
                 `https://api.wordnik.com/v4/word.json/${response.data.word}/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=${process.env.VUE_APP_WORDNIK_API_KEY}`
               )
               .then((response) => {
-                this.definition = this.prepDefinition(response.data[0].text);
-                setTimeout(() => localStorage.removeItem("sajak"), 2000);
-                this.$ga.event("wordnik", "good-get");
+                if (response.data[0].text.toLowerCase().includes("plural")) {
+                  this.definition = "loading new word";
+                  console.log(
+                    `Definition (${response.data[0].text}) contained the phrase 'plural form'. Too easy! Getting new word.`
+                  );
+                  setTimeout(() => this.getNewWord(), 5000);
+                  this.$ga.event("wordnik", "bad-get", "plural form");
+                } else {
+                  this.definition = this.prepDefinition(response.data[0].text);
+                  setTimeout(() => localStorage.removeItem("sajak"), 2000);
+                  this.$ga.event("wordnik", "good-get");
+                }
               })
               .catch(() => {
                 this.definition = "loading new word";
