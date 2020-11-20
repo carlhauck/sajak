@@ -38,7 +38,7 @@ export default {
   text-align: center;
   /* width: 7.9vw;
   width: calc(var(--vw, 1vw) * 7.9); */
-  width: 8%;
+  width: 8.2%;
   height: 36px;
   border: 1px solid #9c9c9c;
   border-radius: 4px;
@@ -56,7 +56,7 @@ export default {
   text-align: center;
   /* width: 7.9vw;
   width: calc(var(--vw, 1vw) * 7.9); */
-  width: 8%;
+  width: 8.2%;
   height: 36px;
   border-radius: 4px;
   color: #464646;
