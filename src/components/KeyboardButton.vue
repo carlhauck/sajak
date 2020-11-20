@@ -30,15 +30,15 @@ export default {
   display: inline-block;
   padding: 0;
   margin-top: 0.6em;
-  margin-right: 1.4vw;
-  margin-right: calc(var(--vw, 1vw) * 1.4);
+  margin-right: 1.2vw;
+  margin-right: calc(var(--vw, 1vw) * 1.2);
   font-family: "archiamedium";
   text-transform: lowercase;
   font-size: 1em;
   text-align: center;
   /* width: 7.9vw;
   width: calc(var(--vw, 1vw) * 7.9); */
-  width: 4%;
+  width: 4.5%;
   height: 36px;
   border: 1px solid #9c9c9c;
   border-radius: 4px;
@@ -49,14 +49,14 @@ export default {
   display: inline-block;
   padding: 0;
   margin-top: 0.6em;
-  margin-right: 1.4vw;
-  margin-right: calc(var(--vw, 1vw) * 1.4);font-family: "archiamedium";
+  margin-right: 1.2vw;
+  margin-right: calc(var(--vw, 1vw) * 1.2);font-family: "archiamedium";
   text-transform: lowercase;
   font-size: 1em;
   text-align: center;
   /* width: 7.9vw;
   width: calc(var(--vw, 1vw) * 7.9); */
-  width: 4%;
+  width: 4.5%;
   height: 36px;
   border-radius: 4px;
   color: #464646;
