@@ -319,6 +319,7 @@ export default {
         this.tallyWrong(letter);
         if (this.blankCount > 0 && this.wrongCount === 6) {
           this.loseGame();
+          this.$ga.event("round", "lose", "guesses");
         }
       }
     },
@@ -362,9 +363,11 @@ export default {
       this.wrongGuesses = this.wrongGuesses.concat(dashArray);
       this.playNay();
       this.loseGame();
+      this.$ga.event("round", "lose", "time");
     },
     winRound: function () {
       this.playYay();
+      this.$ga.event("round", "win");
     },
     loseGame: function () {
       localStorage.removeItem("sajak");
