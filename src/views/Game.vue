@@ -45,13 +45,6 @@
 
 <style scoped>
 
-@media screen {
-  html, body {
-    -webkit-text-size-adjust: none;
-    touch-action: pan-y;
-  }
-}
-
 .container {
   position: absolute;
   left: 0;
@@ -161,6 +154,17 @@ export default {
     if (!this.isMobile) {
       window.addEventListener("keydown", this.guessLetter);
     }
+
+    document.addEventListener(
+      "touchmove",
+      function (event) {
+        if (event.scale !== 1) {
+          event.preventDefault();
+        }
+      },
+      { passive: false }
+    );
+
     this.$ga.page("/play");
 
     let vh = window.innerHeight * 0.01;
