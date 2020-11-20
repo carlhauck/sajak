@@ -45,10 +45,6 @@
 
 <style scoped>
 
-body {
-  overflow-y: auto;
-}
-
 .container {
   position: absolute;
   left: 0;
@@ -58,10 +54,11 @@ body {
   align-items: center;
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
+  overflow-y: auto;
 }
 
 @media (min-width: 576px) {
-  body {
+  .container {
     overflow-y: hidden;
   }
 }

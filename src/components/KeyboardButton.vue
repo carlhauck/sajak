@@ -28,6 +28,7 @@ export default {
 <style scoped>
 .keyboard-key {
   display: inline-block;
+  padding: 0;
   margin-top: 0.6em;
   margin-right: 1.4vw;
   margin-right: calc(var(--vw, 1vw) * 1.4);
@@ -37,7 +38,7 @@ export default {
   text-align: center;
   /* width: 7.9vw;
   width: calc(var(--vw, 1vw) * 7.9); */
-  width: 8%;
+  width: 7%;
   height: 36px;
   border: 1px solid #9c9c9c;
   border-radius: 4px;
@@ -46,6 +47,7 @@ export default {
 }
 .keyboard-key-pressed {
   display: inline-block;
+  padding: 0;
   margin-top: 0.6em;
   margin-right: 1.4vw;
   margin-right: calc(var(--vw, 1vw) * 1.4);font-family: "archiamedium";
@@ -54,7 +56,7 @@ export default {
   text-align: center;
   /* width: 7.9vw;
   width: calc(var(--vw, 1vw) * 7.9); */
-  width: 8%;
+  width: 7%;
   height: 36px;
   border-radius: 4px;
   color: #464646;
