@@ -169,7 +169,7 @@ export default {
   width: 100vw;
   width: calc(var(--vw, 1vw) * 100);
   justify-content: space-between;
-  margin-right: -1.55vw;
-  margin-right: calc(var(--vw, 1vw) * -1.55);
+  margin-right: -1.54vw;
+  margin-right: calc(var(--vw, 1vw) * -1.54);
 }
 </style>

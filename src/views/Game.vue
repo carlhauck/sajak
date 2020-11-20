@@ -364,4 +364,12 @@ export default {
 </script>
 
 <style scoped>
+body {
+  overflow-y: auto;
+}
+@media (min-width: 576px) {
+  body {
+    overflow-y: hidden;
+  }
+}
 </style>
