@@ -3,6 +3,10 @@
 </template>
 
 <style scoped>
+h1.page-title {
+  margin: 0;
+}
+
 .page-title {
   font-family: "archiabold";
   font-size: 1.75em;

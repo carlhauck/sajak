@@ -120,6 +120,7 @@ a:hover {
   margin-top: 1.5em;
   align-items: center;
   justify-content: center;
+  margin-bottom: 1em;
 }
 
 .modal-footer {
