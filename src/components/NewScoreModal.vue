@@ -11,6 +11,7 @@
           id="modalTitle"
         >
           <slot name="header">
+            <Crown />
             <h1 class="page-title">{{score}}</h1>
           </slot>
         </header>
@@ -36,8 +37,12 @@
 
 <script>
 import axios from "axios";
+import Crown from "./../components/Crown";
 export default {
   name: "NewScoreModal",
+  components: {
+    Crown,
+  },
   props: ["newScoreVisible", "score"],
   data: function () {
     return {
@@ -85,6 +90,10 @@ input {
   font-family: "archiabold";
   font-size: 2.5em;
   margin: 0;
+}
+
+h1.page-title {
+  display: block;
 }
 
 .column {
@@ -149,7 +158,10 @@ a:hover {
   -moz-transform: translateX(-50%) translateY(-50%);
 }
 
-.modal-header,
+.modal-header {
+  display: block;
+}
+
 .modal-footer {
   display: flex;
 }
