@@ -195,6 +195,10 @@ body.menu {
   text-align: center !important;
 }
 
+.disable-dbl-tap-zoom {
+  touch-action: manipulation;
+}
+
 .container {
   width: 100%;
   padding-right: 15px;

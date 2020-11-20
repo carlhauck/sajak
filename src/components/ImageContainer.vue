@@ -1,5 +1,5 @@
 <template>
-  <div class="img-container">
+  <div class="img-container disable-dbl-tap-zoom">
     <!-- new game -->
     <img v-show="currentWord === ''" src="./../assets/horse-portrait-painting-0.png" alt="sajak horseman">
     <img v-show="blankCount > 0 && wrongCount == 0" src="./../assets/horse-portrait-painting-0.png" alt="sajak horseman">

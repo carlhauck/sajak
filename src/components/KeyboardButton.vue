@@ -1,6 +1,6 @@
 <template>
   <span>
-    <button @click="guessLetterMobile(); isPressed = true" v-bind:class="{ 'keyboard-key': !isPressed,'keyboard-key-pressed': isPressed }">{{ keyboardKey.name }}</button>
+    <button @click="guessLetterMobile(); isPressed = true" class="disable-dbl-tap-zoom" v-bind:class="{ 'keyboard-key': !isPressed,'keyboard-key-pressed': isPressed }">{{ keyboardKey.name }}</button>
   </span>
 </template>
 

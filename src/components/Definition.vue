@@ -1,6 +1,6 @@
 <template>
-  <p v-if="definition === 'loading new word'" class="definition loading">{{ definition }}</p>
-  <p v-else class="definition">{{ definition }}</p>
+  <p v-if="definition === 'loading new word'" class="definition loading disable-dbl-tap-zoom">{{ definition }}</p>
+  <p v-else class="definition disable-dbl-tap-zoom">{{ definition }}</p>
 </template>
 
 <script>
