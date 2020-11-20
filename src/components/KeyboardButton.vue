@@ -29,14 +29,14 @@ export default {
 .keyboard-key {
   display: inline-block;
   margin-top: 0.6em;
-  margin-right: 1.54vw;
-  margin-right: calc(var(--vw, 1vw) * 1.54);
+  margin-right: 1.5vw;
+  margin-right: calc(var(--vw, 1vw) * 1.5);
   font-family: "archiamedium";
   text-transform: lowercase;
   font-size: 1em;
   text-align: center;
-  width: 8.25vw;
-  width: calc(var(--vw, 1vw) * 8.25);
+  width: 8.25%;
+  /* width: calc(var(--vw, 1vw) * 8.25); */
   height: 36px;
   border: 1px solid #9c9c9c;
   border-radius: 4px;
@@ -46,13 +46,13 @@ export default {
 .keyboard-key-pressed {
   display: inline-block;
   margin-top: 0.6em;
-  margin-right: 1.54vw;
-  margin-right: calc(var(--vw, 1vw) * 1.54);  font-family: "archiamedium";
+  margin-right: 1.5vw;
+  margin-right: calc(var(--vw, 1vw) * 1.5);font-family: "archiamedium";
   text-transform: lowercase;
   font-size: 1em;
   text-align: center;
-  width: 8.25vw;
-  width: calc(var(--vw, 1vw) * 8.25);
+  width: 8.25%;
+  /* width: calc(var(--vw, 1vw) * 8.25); */
   height: 36px;
   border-radius: 4px;
   color: #464646;

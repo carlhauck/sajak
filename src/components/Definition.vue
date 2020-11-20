@@ -10,9 +10,10 @@ export default {
 </script>
 
 <style scoped>
-.definition {
+p.definition {
   font-size: 0.85em;
-  margin-top: 0.35em;
+  margin-top: 0.3em;
+  margin-bottom: 0.7em;
 }
 
 .loading {
@@ -85,13 +86,15 @@ export default {
 }
 
 @media (min-width: 350px) {
-  .definition {
+  p.definition {
     font-size: 0.95em;
+    margin-top: 0.35em;
+    margin-bottom: 0.7em;
   }
 }
 
 @media (min-width: 576px) {
-  .definition {
+  p.definition {
     font-size: 1em;
     margin-top: 0.7em;
   }
