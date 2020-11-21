@@ -171,6 +171,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "fingerpaint";
+  src: url("./fonts/FingerPaint-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   font-family: "archialight";
   height: 100vh;

@@ -4,6 +4,7 @@
       <ImageContainer
         :blankCount="blankCount"
         :brandCount="brandCount"
+        :brands="brands"
         :currentWord="currentWord"
         :isMobile="isMobile"
         :newScoreVisible="newScoreVisible"

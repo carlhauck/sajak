@@ -22,6 +22,8 @@
       :blankCount="blankCount"
       :wrongCount="wrongCount"
       :currentWord="currentWord" />
+    <GameBrands
+      :brands="brands" />
     <GameTimer
       :blankCount="blankCount"
       :wrongCount="wrongCount"
@@ -45,6 +47,7 @@
 import GameNeighs from "./../components/GameNeighs";
 import GameScore from "./../components/GameScore";
 import GameAnswer from "./../components/GameAnswer";
+import GameBrands from "./../components/GameBrands";
 import GameTimer from "./../components/GameTimer";
 import NextButton from "./../components/NextButton";
 export default {
@@ -52,11 +55,13 @@ export default {
     GameNeighs,
     GameScore,
     GameAnswer,
+    GameBrands,
     GameTimer,
     NextButton,
   },
   props: [
     "blankCount",
+    "brands",
     "brandCount",
     "currentWord",
     "isMobile",

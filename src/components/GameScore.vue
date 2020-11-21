@@ -44,6 +44,19 @@ h4 {
 
 @media (min-width: 350px) {
   .score {
+    font-size: 1.4em;
+    -webkit-text-stroke-width: 0.2px;
+  }
+  .top-right {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    text-align: right;
+  }
+}
+
+@media (min-width: 576px) {
+  .score {
     font-size: 1.5em;
     -webkit-text-stroke-width: 0.2px;
   }
