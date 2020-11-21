@@ -240,7 +240,7 @@ export default {
             console.log(
               `Word (${response.data.word}) contained special character. Getting new word.`
             );
-            setTimeout(() => this.getNewWord(), 4000);
+            setTimeout(() => this.getNewWord(), 3000);
             this.$ga.event("wordnik", "bad-get", "special-character");
           } else {
             this.currentWord = response.data.word.toLowerCase();
@@ -255,7 +255,7 @@ export default {
                   console.log(
                     `Definition (${response.data[0].text}) contained the phrase 'plural form'. Too easy! Getting new word.`
                   );
-                  setTimeout(() => this.getNewWord(), 4000);
+                  setTimeout(() => this.getNewWord(), 3000);
                   this.$ga.event("wordnik", "bad-get", "plural form");
                 } else {
                   this.definition = this.prepDefinition(response.data[0].text);
@@ -267,7 +267,7 @@ export default {
                 this.definition = "loading new word";
                 console.log("Word didn't have a definition. Getting new word.");
                 this.storeScore();
-                setTimeout(() => this.getNewWord(), 4000);
+                setTimeout(() => this.getNewWord(), 3000);
                 this.$ga.event("wordnik", "bad-get", "no-definition");
               });
           }

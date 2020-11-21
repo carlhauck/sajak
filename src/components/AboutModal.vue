@@ -22,13 +22,13 @@
           <slot name="body">
             <p>Sajak Horseman is a Hangman-inspired word game that puts Pat Sajak's head onto a horse's body. Why? Because it makes more sense than punishing a stick figure for your linguistic ineptitude, and because Pat Sajak's head on a horse's body—while mildly disturbing—doesn't evoke America's legacy of racial terror.</p>
 
-            <p>You get 60 seconds per word. Simply type the letters you wish to guess. Correct letters are rewarded with their Scrabble score values (thanks, Hasbro!). Incorrect letters are branded in the upper-left corner of the screen. After you successfully complete a word, hit the space bar to receive your next word.</p>
+            <p>You get 60 seconds per word. Simply type the letters you wish to guess. Correct letters are rewarded with their Scrabble score values (thanks, Hasbro!). After you successfully complete a word, hit the space bar to receive your next word.</p>
 
-            <p>If time runs out or you rack up more than 5 incorrect guesses on a single word, you lose and Vanna White will promptly put you out to pasture.</p>
+            <p>Incorrect guesses appear in the upper-left corner of the screen. If time runs out or you rack up more than 5 incorrect guesses on a word, you receive a brand (just under your score, where it really hurts). Once you've been branded 3 times, you lose and Vanna White will promptly put you out to pasture.</p>
 
             <p>Each word is 5-10 characters in length; there are no hyphens or accented characters. Words and definitions are drawn randomly from <a href="https://www.wordnik.com/about" target="_blank">Wordnik</a>, so blame them if you get a crappy one. Or just don't donate to their 501(c)(3).</p>
 
-            <p>Bugs? Suggestions? <a href="https://carlhauck.github.io/" target="_blank">Email me</a>.</p>
+            <p>Bugs? Suggestions? <a href="https://carlhauck.github.io/" target="_blank">Email me</a>. Screenshots help.</p>
 
             <p>Otherwise, giddy-up and get guessin'!</p>
           </slot>
@@ -72,7 +72,7 @@ p {
 }
 
 a {
-  color: #7d915b;
+  color: #778b54;
   text-decoration: none;
 }
 
@@ -194,7 +194,7 @@ button.btn-next-mobile:active {
   }
   .modal {
     width: 75vw;
-    max-height: 85vh;
+    max-height: 88vh;
   }
   .modal-header {
     margin-bottom: 0;
@@ -204,7 +204,7 @@ button.btn-next-mobile:active {
 @media (min-width: 1200px) {
   .modal {
     width: 65vw;
-    max-height: 85vh;
+    max-height: 88vh;
   }
 }
 </style>
