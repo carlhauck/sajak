@@ -29,7 +29,7 @@ h4 {
   -webkit-text-stroke-width: 0.2px;
   -webkit-text-stroke-color: #ffffff;
   color: #775343;
-  letter-spacing: 0.15rem;
+  letter-spacing: 0.05rem;
 }
 
 @media (min-width: 300px) {
@@ -46,6 +46,19 @@ h4 {
 
 @media (min-width: 350px) {
   .neigh {
+    font-size: 1.4em;
+  }
+  .top-left {
+    position: absolute;
+    top: 0.8rem;
+    left: 0.8rem;
+    text-align: left;
+    letter-spacing: 0.1rem;
+  }
+}
+
+@media (min-width: 576px) {
+  .neigh {
     font-size: 1.5em;
   }
   .top-left {
@@ -53,6 +66,7 @@ h4 {
     top: 1rem;
     left: 1.2rem;
     text-align: left;
+    letter-spacing: 0.15rem;
   }
 }
 </style>

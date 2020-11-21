@@ -3,12 +3,15 @@
     <div class="container text-center disable-dbl-tap-zoom">
       <ImageContainer
         :blankCount="blankCount"
-        :wrongCount="wrongCount"
-        :score="score"
-        :wrongGuesses="wrongGuesses"
+        :brandCount="brandCount"
+        :brands="brands"
         :currentWord="currentWord"
         :isMobile="isMobile"
         :newScoreVisible="newScoreVisible"
+        :score="score"
+        :wrongCount="wrongCount"
+        :wrongGuesses="wrongGuesses"
+        @clearBrands="clearBrands"
         @clearScore="clearScore"
         @setScore="setScore"
         @getNewWord="getNewWord"
@@ -20,16 +23,18 @@
       <Definition
         :definition="definition" />
       <MobileNextButton
-        :blankCount="blankCount"
-        :wrongCount="wrongCount"
-        :currentWord="currentWord"
         v-if="isMobile"
+        :blankCount="blankCount"
+        :brandCount="brandCount"
+        :currentWord="currentWord"
+        :wrongCount="wrongCount"
+        @clearBrands="clearBrands"
         @clearScore="clearScore"
         @setScore="setScore"
         @getNewWord="getNewWord" />
       <MobileKeyboard
+        v-if="isMobile && wrongCount < 6 && blankCount > 0 && definition !== 'loading new word'"
         :currentWord="currentWord"
-        v-if="isMobile && wrongCount < 6 && blankCount > 0"
         @guessLetterMobile="guessLetterMobile" />
       <NewScoreModal
         v-if="newScoreVisible"
@@ -44,7 +49,6 @@
 </template>
 
 <style scoped>
-
 .container {
   position: absolute;
   left: 0;
@@ -105,6 +109,7 @@ export default {
       definition: "",
       puzzle: [],
       wrongGuesses: [],
+      brands: [],
       indices: [],
       score: 0,
       color: "orange",
@@ -185,8 +190,8 @@ export default {
     blankCount: function () {
       return this.puzzle.reduce((n, x) => n + (x === "_"), 0);
     },
-    wrongCount: function () {
-      return this.wrongGuesses.length;
+    brandCount: function () {
+      return this.brands.length;
     },
     isMobile: function () {
       if (
@@ -199,6 +204,9 @@ export default {
         return false;
       }
     },
+    wrongCount: function () {
+      return this.wrongGuesses.length;
+    },
   },
   methods: {
     addLetter: function (key) {
@@ -208,6 +216,9 @@ export default {
     },
     clearScore: function () {
       this.score = 0;
+    },
+    clearBrands: function () {
+      this.brands = [];
     },
     getCorrectIndices: function (key) {
       this.indices = [];
@@ -229,7 +240,7 @@ export default {
             console.log(
               `Word (${response.data.word}) contained special character. Getting new word.`
             );
-            setTimeout(() => this.getNewWord(), 5000);
+            setTimeout(() => this.getNewWord(), 3000);
             this.$ga.event("wordnik", "bad-get", "special-character");
           } else {
             this.currentWord = response.data.word.toLowerCase();
@@ -244,7 +255,7 @@ export default {
                   console.log(
                     `Definition (${response.data[0].text}) contained the phrase 'plural form'. Too easy! Getting new word.`
                   );
-                  setTimeout(() => this.getNewWord(), 5000);
+                  setTimeout(() => this.getNewWord(), 3000);
                   this.$ga.event("wordnik", "bad-get", "plural form");
                 } else {
                   this.definition = this.prepDefinition(response.data[0].text);
@@ -256,15 +267,16 @@ export default {
                 this.definition = "loading new word";
                 console.log("Word didn't have a definition. Getting new word.");
                 this.storeScore();
-                setTimeout(() => this.getNewWord(), 5000);
+                setTimeout(() => this.getNewWord(), 3000);
                 this.$ga.event("wordnik", "bad-get", "no-definition");
               });
           }
         })
         .catch(() => {
           this.definition = "loading new word";
-          console.log("429");
           this.storeScore();
+          setTimeout(() => this.getNewWord(), 10000);
+          this.$ga.event("wordnik", "bad-get", "429");
         });
     },
     guessLetter: function (e) {
@@ -276,20 +288,22 @@ export default {
       ) {
         // a-z
         const letter = e.key.toLowerCase();
-        if (this.currentWord.includes(letter)) {
-          if (!this.puzzle.includes(letter)) {
-            Promise.resolve(this.getCorrectIndices(letter)).then(
-              this.addLetter(letter)
-            );
-            this.score += this.indices.length * this.scrabblePoints[letter];
-            if (this.blankCount === 0 && this.wrongCount < 6) {
-              this.winRound();
+        if (this.definition !== "loading new word") {
+          if (this.currentWord.includes(letter)) {
+            if (!this.puzzle.includes(letter)) {
+              Promise.resolve(this.getCorrectIndices(letter)).then(
+                this.addLetter(letter)
+              );
+              this.score += this.indices.length * this.scrabblePoints[letter];
+              if (this.blankCount === 0 && this.wrongCount < 6) {
+                this.winRound();
+              }
             }
-          }
-        } else if (!this.wrongGuesses.includes(letter)) {
-          this.tallyWrong(letter);
-          if (this.blankCount > 0 && this.wrongCount === 6) {
-            this.loseGame();
+          } else if (!this.wrongGuesses.includes(letter)) {
+            this.tallyWrong(letter);
+            if (this.blankCount > 0 && this.wrongCount === 6) {
+              this.loseRound();
+            }
           }
         }
       }
@@ -298,7 +312,9 @@ export default {
       const letter = ltr.toLowerCase();
       if (this.currentWord.includes(letter)) {
         if (!this.puzzle.includes(letter)) {
-          Promise.resolve(this.getCorrectIndices(letter)).then(this.addLetter(letter));
+          Promise.resolve(this.getCorrectIndices(letter)).then(
+            this.addLetter(letter)
+          );
           this.score += this.indices.length * this.scrabblePoints[letter];
           if (this.blankCount === 0 && this.wrongCount < 6) {
             this.winRound();
@@ -307,7 +323,7 @@ export default {
       } else if (!this.wrongGuesses.includes(letter)) {
         this.tallyWrong(letter);
         if (this.blankCount > 0 && this.wrongCount === 6) {
-          this.loseGame();
+          this.loseRound();
           this.$ga.event("round", "loss", "guesses");
         }
       }
@@ -320,12 +336,18 @@ export default {
         this.$ga.event("game", "end", "high-score", this.score);
       }
     },
+    async loseRound() {
+      await this.brands.push("X");
+      if (this.brandCount === 3) {
+        this.loseGame();
+      }
+    },
     outOfTime: function () {
       let guessesLeft = 6 - this.wrongGuesses.length;
       let dashArray = Array(guessesLeft).fill("-");
       this.wrongGuesses = this.wrongGuesses.concat(dashArray);
       this.playNay();
-      this.loseGame();
+      this.loseRound();
       this.$ga.event("round", "loss", "time");
     },
     playNeigh: function () {
