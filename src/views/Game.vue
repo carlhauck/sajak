@@ -33,7 +33,7 @@
         @setScore="setScore"
         @getNewWord="getNewWord" />
       <MobileKeyboard
-        v-if="isMobile && wrongCount < 6 && blankCount > 0"
+        v-if="isMobile && wrongCount < 6 && blankCount > 0 && definition !== 'loading new word'"
         :currentWord="currentWord"
         @guessLetterMobile="guessLetterMobile" />
       <NewScoreModal
@@ -288,20 +288,22 @@ export default {
       ) {
         // a-z
         const letter = e.key.toLowerCase();
-        if (this.currentWord.includes(letter)) {
-          if (!this.puzzle.includes(letter)) {
-            Promise.resolve(this.getCorrectIndices(letter)).then(
-              this.addLetter(letter)
-            );
-            this.score += this.indices.length * this.scrabblePoints[letter];
-            if (this.blankCount === 0 && this.wrongCount < 6) {
-              this.winRound();
+        if (this.definition !== "loading new word") {
+          if (this.currentWord.includes(letter)) {
+            if (!this.puzzle.includes(letter)) {
+              Promise.resolve(this.getCorrectIndices(letter)).then(
+                this.addLetter(letter)
+              );
+              this.score += this.indices.length * this.scrabblePoints[letter];
+              if (this.blankCount === 0 && this.wrongCount < 6) {
+                this.winRound();
+              }
             }
-          }
-        } else if (!this.wrongGuesses.includes(letter)) {
-          this.tallyWrong(letter);
-          if (this.blankCount > 0 && this.wrongCount === 6) {
-            this.loseRound();
+          } else if (!this.wrongGuesses.includes(letter)) {
+            this.tallyWrong(letter);
+            if (this.blankCount > 0 && this.wrongCount === 6) {
+              this.loseRound();
+            }
           }
         }
       }

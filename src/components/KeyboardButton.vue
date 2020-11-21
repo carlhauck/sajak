@@ -72,7 +72,7 @@ export default {
     height: 42px;
   }
   .keyboard-key-pressed {
-    height: 44px;
+    height: 42px;
   }
 }
 </style>
