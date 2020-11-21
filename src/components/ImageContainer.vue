@@ -29,10 +29,12 @@
       @outOfTime="outOfTime" />
     <NextButton
       :blankCount="blankCount"
-      :wrongCount="wrongCount"
+      :brandCount="brandCount"
       :currentWord="currentWord"
       :newScoreVisible="newScoreVisible"
+      :wrongCount="wrongCount"
       v-if="!isMobile"
+      @clearBrands="clearBrands"
       @clearScore="clearScore"
       @setScore="setScore"
       @getNewWord="getNewWord" />
@@ -55,14 +57,18 @@ export default {
   },
   props: [
     "blankCount",
-    "wrongCount",
-    "score",
-    "wrongGuesses",
+    "brandCount",
     "currentWord",
     "isMobile",
     "newScoreVisible",
+    "score",
+    "wrongCount",
+    "wrongGuesses",
   ],
   methods: {
+    clearBrands: function () {
+      this.$emit("clearBrands");
+    },
     clearScore: function () {
       this.$emit("clearScore");
     },
