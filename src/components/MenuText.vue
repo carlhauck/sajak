@@ -2,8 +2,8 @@
   <div class="title-container text-center">
     <h1 class="menu-title">sajak horseman</h1>
     <MenuButtonContainer
-      v-on:openAbout="openAbout"
-      v-on:openScores="openScores" />
+      @openAbout="openAbout"
+      @openScores="openScores" />
   </div>
 </template>
 

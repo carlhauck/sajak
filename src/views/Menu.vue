@@ -2,8 +2,8 @@
   <div class="menu">
     <MenuBackground />
     <MenuText
-      v-on:openAbout="toggleAbout"
-      v-on:openScores="toggleScores" />
+      @openAbout="toggleAbout"
+      @openScores="toggleScores" />
     <AboutModal
       v-show="aboutVisible"
       @closeAbout="toggleAbout" />

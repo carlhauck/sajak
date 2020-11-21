@@ -2,7 +2,7 @@
   <div class="admin">
     <div class="d-flex flex-row">
       <div class="p-4">
-        <form v-on:submit.prevent="validateBeforeSubmit">
+        <form @submit.prevent="validateBeforeSubmit">
           <div class="form-group text-center">
             <h5 class="text-center">Admin Login</h5>
             <input type="password" class="form-control password-field" placeholder="Input password" v-model.trim="password">
@@ -107,19 +107,19 @@ export default {
     });
   },
   methods: {
+    destroyHighScore: function (highScore, index) {
+      if (confirm("Are you sure you want to delete this score?")) {
+        axios.delete(`api/high_scores/${highScore.id}`).then((response) => {
+          this.highScores.splice(index, 1);
+        });
+      }
+    },
     validateBeforeSubmit() {
       if (this.password === process.env.VUE_APP_ADMIN_KEY) {
         this.error = false;
         this.showScores = true;
       } else {
         this.error = true;
-      }
-    },
-    destroyHighScore: function (highScore, index) {
-      if (confirm("Are you sure you want to delete this score?")) {
-        axios.delete(`api/high_scores/${highScore.id}`).then((response) => {
-          this.highScores.splice(index, 1);
-        });
       }
     },
   },

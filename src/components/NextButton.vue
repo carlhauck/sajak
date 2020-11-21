@@ -17,10 +17,6 @@ export default {
     clearScore: function () {
       this.$emit("clearScore");
     },
-    setScore: function () {
-      console.log("emit from next button component");
-      this.$emit("setScore");
-    },
     getNewWord: function () {
       this.$emit("getNewWord");
     },
@@ -43,6 +39,10 @@ export default {
           this.$emit("clearScore");
         }
       }
+    },
+    setScore: function () {
+      console.log("emit from next button component");
+      this.$emit("setScore");
     },
   },
 };

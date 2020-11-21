@@ -6,7 +6,7 @@
         :key="keyboardKey.id"
         :keyboardKey="keyboardKey"
         :currentWord="currentWord"
-        v-on:guessLetterMobile="guessLetterMobile" />
+        @guessLetterMobile="guessLetterMobile" />
     </div>
     <div class="key-row">
       <KeyboardButton
@@ -14,7 +14,7 @@
         :key="keyboardKey.id"
         :keyboardKey="keyboardKey"
         :currentWord="currentWord"
-        v-on:guessLetterMobile="guessLetterMobile" />
+        @guessLetterMobile="guessLetterMobile" />
     </div>
     <div class="key-row">
       <KeyboardButton
@@ -22,7 +22,7 @@
         :key="keyboardKey.id"
         :keyboardKey="keyboardKey"
         :currentWord="currentWord"
-        v-on:guessLetterMobile="guessLetterMobile" />
+        @guessLetterMobile="guessLetterMobile" />
     </div>
   </div>
 </template>
@@ -161,7 +161,6 @@ export default {
 .keyboard-container {
   justify-content: center;
   align-items: center;
-  /* width: calc(100vw - (100vw - 100%)); */
   width: 100vw;
   width: calc(var(--vw, 1vw) * 100);
 }
@@ -169,7 +168,6 @@ export default {
   display: inline-block;
   width: 100vw;
   width: calc(var(--vw, 1vw) * 100);
-  /* width: calc(100vw - (100vw - 100%)); */
   justify-content: center;
   margin-right: -1.4vw;
   margin-right: calc(var(--vw, 1vw) * -1.4);

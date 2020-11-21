@@ -2,40 +2,40 @@
   <div class="game">
     <div class="container text-center disable-dbl-tap-zoom">
       <ImageContainer
-        v-bind:blankCount="blankCount"
-        v-bind:wrongCount="wrongCount"
-        v-bind:score="score"
-        v-bind:wrongGuesses="wrongGuesses"
-        v-bind:currentWord="currentWord"
-        v-bind:isMobile="isMobile"
-        v-bind:newScoreVisible="newScoreVisible"
-        v-on:clearScore="clearScore"
-        v-on:setScore="setScore"
-        v-on:getNewWord="getNewWord"
-        v-on:outOfTime="outOfTime" />
+        :blankCount="blankCount"
+        :wrongCount="wrongCount"
+        :score="score"
+        :wrongGuesses="wrongGuesses"
+        :currentWord="currentWord"
+        :isMobile="isMobile"
+        :newScoreVisible="newScoreVisible"
+        @clearScore="clearScore"
+        @setScore="setScore"
+        @getNewWord="getNewWord"
+        @outOfTime="outOfTime" />
       <Puzzle
-        v-bind:blankCount="blankCount"
-        v-bind:wrongCount="wrongCount"
-        v-bind:puzzle="puzzle" />
+        :blankCount="blankCount"
+        :wrongCount="wrongCount"
+        :puzzle="puzzle" />
       <Definition
-        v-bind:definition="definition" />
+        :definition="definition" />
       <MobileNextButton
-        v-bind:blankCount="blankCount"
-        v-bind:wrongCount="wrongCount"
-        v-bind:currentWord="currentWord"
+        :blankCount="blankCount"
+        :wrongCount="wrongCount"
+        :currentWord="currentWord"
         v-if="isMobile"
-        v-on:clearScore="clearScore"
-        v-on:setScore="setScore"
-        v-on:getNewWord="getNewWord" />
+        @clearScore="clearScore"
+        @setScore="setScore"
+        @getNewWord="getNewWord" />
       <MobileKeyboard
         :currentWord="currentWord"
         v-if="isMobile && wrongCount < 6 && blankCount > 0"
-        v-on:guessLetterMobile="guessLetterMobile" />
+        @guessLetterMobile="guessLetterMobile" />
       <NewScoreModal
         v-if="newScoreVisible"
-        v-bind:newScoreVisible="newScoreVisible"
-        v-bind:score="score"
-        v-on:closeNewScore="toggleNewScore" />
+        :newScoreVisible="newScoreVisible"
+        :score="score"
+        @closeNewScore="toggleNewScore" />
       <audio class="whinny-cooper-good" src="./../assets/horse-whinny-good.mp3"></audio>
       <audio class="whinny-cooper-bad" src="./../assets/horse-whinny-bad.mp3"></audio>
       <audio class="last-straw" src="./../assets/horse-whoa-bad.mp3"></audio>
@@ -201,21 +201,19 @@ export default {
     },
   },
   methods: {
+    addLetter: function (key) {
+      this.indices.forEach((i) => {
+        this.puzzle.splice(i, 1, key);
+      });
+    },
     clearScore: function () {
       this.score = 0;
     },
-    setScore: function () {
-      if (!this.score) {
-        if (localStorage.getItem("sajak")) {
-          let storage = localStorage.getItem("sajak");
-          let decryptedScore = this.CryptoJS.AES.decrypt(
-            storage,
-            `${process.env.VUE_APP_CRYPTO_KEY}`
-          ).toString(this.CryptoJS.enc.Utf8);
-          this.score = Number(decryptedScore);
-          this.$ga.event("localstorage", "get", "score", this.score);
-        } else {
-          this.score = 0;
+    getCorrectIndices: function (key) {
+      this.indices = [];
+      for (let i = 0; i < this.currentWord.length; i++) {
+        if (this.currentWord[i] === key) {
+          this.indices.push(i);
         }
       }
     },
@@ -269,24 +267,6 @@ export default {
           this.storeScore();
         });
     },
-    storeScore: function () {
-      let score = JSON.stringify(this.score);
-      let encryptedScore = this.CryptoJS.AES.encrypt(
-        score,
-        `${process.env.VUE_APP_CRYPTO_KEY}`
-      ).toString();
-      localStorage.setItem("sajak", `${encryptedScore}`);
-      this.$ga.event("localstorage", "set", "score", this.score);
-    },
-    prepDefinition: function (def) {
-      console.log(def);
-      if (def.includes(".")) {
-        const periodIndex = def.indexOf(".") || def.length + 1;
-        return def.slice(0, periodIndex).replace(/(<([^>]+)>)/gi, "");
-      } else {
-        return def.replace(/(<([^>]+)>)/gi, "");
-      }
-    },
     guessLetter: function (e) {
       if (
         e.which >= 65 &&
@@ -298,7 +278,7 @@ export default {
         const letter = e.key.toLowerCase();
         if (this.currentWord.includes(letter)) {
           if (!this.puzzle.includes(letter)) {
-            Promise.resolve(this.getIndices(letter)).then(
+            Promise.resolve(this.getCorrectIndices(letter)).then(
               this.addLetter(letter)
             );
             this.score += this.indices.length * this.scrabblePoints[letter];
@@ -318,7 +298,7 @@ export default {
       const letter = ltr.toLowerCase();
       if (this.currentWord.includes(letter)) {
         if (!this.puzzle.includes(letter)) {
-          Promise.resolve(this.getIndices(letter)).then(this.addLetter(letter));
+          Promise.resolve(this.getCorrectIndices(letter)).then(this.addLetter(letter));
           this.score += this.indices.length * this.scrabblePoints[letter];
           if (this.blankCount === 0 && this.wrongCount < 6) {
             this.winRound();
@@ -332,22 +312,21 @@ export default {
         }
       }
     },
-    getIndices: function (key) {
-      this.indices = [];
-      for (let i = 0; i < this.currentWord.length; i++) {
-        if (this.currentWord[i] === key) {
-          this.indices.push(i);
-        }
+    loseGame: function () {
+      localStorage.removeItem("sajak");
+      this.$ga.event("game", "end", "score", this.score);
+      if (this.score > this.scoreToBeat) {
+        this.toggleNewScore();
+        this.$ga.event("game", "end", "high-score", this.score);
       }
     },
-    addLetter: function (key) {
-      this.indices.forEach((i) => {
-        this.puzzle.splice(i, 1, key);
-      });
-    },
-    tallyWrong: function (key) {
-      this.wrongGuesses.push(key);
-      this.playNeigh();
+    outOfTime: function () {
+      let guessesLeft = 6 - this.wrongGuesses.length;
+      let dashArray = Array(guessesLeft).fill("-");
+      this.wrongGuesses = this.wrongGuesses.concat(dashArray);
+      this.playNay();
+      this.loseGame();
+      this.$ga.event("round", "loss", "time");
     },
     playNeigh: function () {
       if (this.wrongCount === 6) {
@@ -366,28 +345,49 @@ export default {
       const audio = document.querySelector("audio.whinny-cooper-good");
       audio.play();
     },
-    outOfTime: function () {
-      let guessesLeft = 6 - this.wrongGuesses.length;
-      let dashArray = Array(guessesLeft).fill("-");
-      this.wrongGuesses = this.wrongGuesses.concat(dashArray);
-      this.playNay();
-      this.loseGame();
-      this.$ga.event("round", "loss", "time");
+    prepDefinition: function (def) {
+      console.log(def);
+      if (def.includes(".")) {
+        const periodIndex = def.indexOf(".") || def.length + 1;
+        return def.slice(0, periodIndex).replace(/(<([^>]+)>)/gi, "");
+      } else {
+        return def.replace(/(<([^>]+)>)/gi, "");
+      }
+    },
+    setScore: function () {
+      if (!this.score) {
+        if (localStorage.getItem("sajak")) {
+          let storage = localStorage.getItem("sajak");
+          let decryptedScore = this.CryptoJS.AES.decrypt(
+            storage,
+            `${process.env.VUE_APP_CRYPTO_KEY}`
+          ).toString(this.CryptoJS.enc.Utf8);
+          this.score = Number(decryptedScore);
+          this.$ga.event("localstorage", "get", "score", this.score);
+        } else {
+          this.score = 0;
+        }
+      }
+    },
+    storeScore: function () {
+      let score = JSON.stringify(this.score);
+      let encryptedScore = this.CryptoJS.AES.encrypt(
+        score,
+        `${process.env.VUE_APP_CRYPTO_KEY}`
+      ).toString();
+      localStorage.setItem("sajak", `${encryptedScore}`);
+      this.$ga.event("localstorage", "set", "score", this.score);
+    },
+    tallyWrong: function (key) {
+      this.wrongGuesses.push(key);
+      this.playNeigh();
+    },
+    toggleNewScore: function () {
+      this.newScoreVisible = !this.newScoreVisible;
     },
     winRound: function () {
       this.playYay();
       this.$ga.event("round", "win");
-    },
-    loseGame: function () {
-      localStorage.removeItem("sajak");
-      this.$ga.event("game", "end", "score", this.score);
-      if (this.score > this.scoreToBeat) {
-        this.toggleNewScore();
-        this.$ga.event("game", "end", "high-score", this.score);
-      }
-    },
-    toggleNewScore: function () {
-      this.newScoreVisible = !this.newScoreVisible;
     },
   },
 };

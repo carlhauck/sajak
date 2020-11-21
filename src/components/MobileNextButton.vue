@@ -1,7 +1,17 @@
 <template>
   <div>
-    <button v-if="currentWord !== '' && blankCount === 0 && wrongCount < 6" v-on:click="getNewWord" class="btn-next-mobile">Next Word</button>
-    <button v-if="blankCount > 0 && wrongCount === 6" v-on:click="clearScore(); setScore(); getNewWord();" class="btn-new-mobile">New Game</button>
+    <button
+      v-if="currentWord !== '' && blankCount === 0 && wrongCount < 6"
+      @click="getNewWord"
+      class="btn-next-mobile">
+      Next Word
+    </button>
+    <button
+      v-if="blankCount > 0 && wrongCount === 6"
+      @click="clearScore(); setScore(); getNewWord();"
+      class="btn-new-mobile">
+      New Game
+    </button>
   </div>
 </template>
 
@@ -12,11 +22,11 @@ export default {
     clearScore: function () {
       this.$emit("clearScore");
     },
-    setScore: function () {
-      this.$emit("setScore");
-    },
     getNewWord: function () {
       this.$emit("getNewWord");
+    },
+    setScore: function () {
+      this.$emit("setScore");
     },
   },
 };

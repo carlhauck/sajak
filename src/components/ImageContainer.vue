@@ -13,29 +13,29 @@
     <!-- win -->
     <img v-show="blankCount == 0 && wrongCount < 6 && currentWord != ''" src="./../assets/horse-portrait-painting-6.png" alt="sajak horseman">
     <GameNeighs
-      v-bind:blankCount="blankCount"
-      v-bind:wrongCount="wrongCount"
-      v-bind:wrongGuesses="wrongGuesses" />
+      :blankCount="blankCount"
+      :wrongCount="wrongCount"
+      :wrongGuesses="wrongGuesses" />
     <GameScore
-      v-bind:score="score" />
+      :score="score" />
     <GameAnswer
-      v-bind:blankCount="blankCount"
-      v-bind:wrongCount="wrongCount"
-      v-bind:currentWord="currentWord" />
+      :blankCount="blankCount"
+      :wrongCount="wrongCount"
+      :currentWord="currentWord" />
     <GameTimer
-      v-bind:blankCount="blankCount"
-      v-bind:wrongCount="wrongCount"
-      v-bind:currentWord="currentWord"
-      v-on:outOfTime="outOfTime" />
+      :blankCount="blankCount"
+      :wrongCount="wrongCount"
+      :currentWord="currentWord"
+      @outOfTime="outOfTime" />
     <NextButton
-      v-bind:blankCount="blankCount"
-      v-bind:wrongCount="wrongCount"
-      v-bind:currentWord="currentWord"
-      v-bind:newScoreVisible="newScoreVisible"
+      :blankCount="blankCount"
+      :wrongCount="wrongCount"
+      :currentWord="currentWord"
+      :newScoreVisible="newScoreVisible"
       v-if="!isMobile"
-      v-on:clearScore="clearScore"
-      v-on:setScore="setScore"
-      v-on:getNewWord="getNewWord" />
+      @clearScore="clearScore"
+      @setScore="setScore"
+      @getNewWord="getNewWord" />
   </div>
 </template>
 
@@ -66,15 +66,15 @@ export default {
     clearScore: function () {
       this.$emit("clearScore");
     },
-    setScore: function () {
-      console.log("emit from image container component");
-      this.$emit("setScore");
-    },
     getNewWord: function () {
       this.$emit("getNewWord");
     },
     outOfTime: function () {
       this.$emit("outOfTime");
+    },
+    setScore: function () {
+      console.log("emit from image container component");
+      this.$emit("setScore");
     },
   },
 };

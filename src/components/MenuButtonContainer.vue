@@ -4,8 +4,8 @@
       v-for="button in buttons"
       :key="button.id"
       :button="button"
-      v-on:openAbout="openAbout"
-      v-on:openScores="openScores" />
+      @openAbout="openAbout"
+      @openScores="openScores" />
   </div>
 </template>
 
