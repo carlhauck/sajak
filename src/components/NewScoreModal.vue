@@ -150,12 +150,14 @@ a:hover {
   flex-direction: column;
   border-radius: 12px;
   width: 96vw;
-  max-height: 98vh;
   left: 50%;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
   -moz-transform: translateX(-50%) translateY(-50%);
+  max-height: 96vh;
+  max-height: calc(var(--vh, 1vh) * 96);
+  border-radius: 12px;
 }
 
 .modal-header {
@@ -241,6 +243,7 @@ button.btn-next-mobile:active {
     background: rgba(255, 255, 255, 0.95);
     width: 80vw;
     max-height: 95vh;
+    max-height: calc(var(--vh, 1vh) * 95);
   }
   .modal-body {
     margin: 0 3em;

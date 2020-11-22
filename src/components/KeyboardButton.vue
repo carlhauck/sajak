@@ -75,4 +75,22 @@ export default {
     height: 42px;
   }
 }
+
+@media (min-width: 768px) {
+  .keyboard-key {
+    height: 48px;
+  }
+  .keyboard-key-pressed {
+    height: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .keyboard-key {
+    height: 55px;
+  }
+  .keyboard-key-pressed {
+    height: 55px;
+  }
+}
 </style>

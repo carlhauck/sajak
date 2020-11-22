@@ -67,7 +67,81 @@
   }
 }
 
+@media (min-width: 768px) and (orientation: landscape) {
+  .game {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  .container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+  }
+}
+
 @media (min-width: 992px) {
+  .game {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  .container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+  }
+}
+
+/* iPad */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+  .game {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  .container {
+    position: relative;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    overflow-y: hidden;
+  }
+}
+
+/* iPad Pro */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+  .game {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  .container {
+    position: relative;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    overflow-y: hidden;
+  }
+}
+
+@media (min-width: 1200px) {
   .game {
     align-items: center;
     display: flex;

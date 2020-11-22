@@ -115,7 +115,42 @@ img {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (orientation: landscape) {
+  .img-container {
+    height: 76vh;
+    width: 105.89vh;
+  }
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+/* iPad */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+  .img-container {
+    width: 100%;
+    height: auto;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* iPad Pro */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+  .img-container {
+    width: 100%;
+    height: auto;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
   .img-container {
     height: 76vh;
     width: 105.89vh;
