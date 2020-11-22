@@ -257,6 +257,13 @@ export default {
                   );
                   setTimeout(() => this.getNewWord(), 3000);
                   this.$ga.event("wordnik", "bad-get", "plural form");
+                } else if (response.data[0].text.includes("participle")) {
+                  this.definition = "loading new word";
+                  console.log(
+                    `Definition (${response.data[0].text}) contained the phrase 'participle'. Too easy! Getting new word.`
+                  );
+                  setTimeout(() => this.getNewWord(), 3000);
+                  this.$ga.event("wordnik", "bad-get", "participle");
                 } else {
                   this.definition = this.prepDefinition(response.data[0].text);
                   setTimeout(() => localStorage.removeItem("sajak"), 2000);
