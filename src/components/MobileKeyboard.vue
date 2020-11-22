@@ -150,7 +150,6 @@ export default {
   },
   methods: {
     guessLetterMobile: function (ltr) {
-      console.log(ltr);
       this.$emit("guessLetterMobile", ltr);
     },
   },

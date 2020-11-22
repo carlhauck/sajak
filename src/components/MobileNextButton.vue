@@ -1,14 +1,14 @@
 <template>
   <div>
     <button
-      v-if="currentWord !== '' && blankCount === 0 && wrongCount < 6"
+      v-if="(currentWord !== '' && blankCount === 0 && wrongCount < 6 && brandCount < 3) || (blankCount > 0 && wrongCount === 6 && brandCount < 3)"
       @click="getNewWord"
       class="btn-next-mobile">
       Next Word
     </button>
     <button
-      v-if="blankCount > 0 && wrongCount === 6"
-      @click="clearScore(); setScore(); getNewWord();"
+      v-if="brandCount === 3 && blankCount > 0 && wrongCount === 6"
+      @click="clearBrands(); clearScore(); setScore(); getNewWord();"
       class="btn-new-mobile">
       New Game
     </button>
@@ -17,8 +17,11 @@
 
 <script>
 export default {
-  props: ["blankCount", "wrongCount", "currentWord"],
+  props: ["blankCount", "brandCount", "currentWord", "wrongCount"],
   methods: {
+    clearBrands: function () {
+      this.$emit("clearBrands");
+    },
     clearScore: function () {
       this.$emit("clearScore");
     },

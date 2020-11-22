@@ -1,19 +1,28 @@
 <template>
   <div>
-    <button v-if="currentWord !== '' && blankCount === 0 && wrongCount < 6" v-on:click="getNewWord" class="btn-next">Next Word</button>
-    <button v-if="blankCount > 0 && wrongCount === 6" v-on:click="clearScore(); setScore(); getNewWord();" class="btn-new">New Game</button>
+    <button v-if="(currentWord !== '' && blankCount === 0 && wrongCount < 6 && brandCount < 3) || (blankCount > 0 && wrongCount === 6 && brandCount < 3)" @click="getNewWord" class="btn-next">Next Word</button>
+    <button v-if="brandCount === 3 && blankCount > 0 && wrongCount === 6" @click="clearBrands(); clearScore(); setScore(); getNewWord();" class="btn-new">New Game</button>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["blankCount", "wrongCount", "currentWord", "newScoreVisible"],
+  props: [
+    "blankCount",
+    "brandCount",
+    "currentWord",
+    "newScoreVisible",
+    "wrongCount",
+  ],
   mounted: function () {
     if (!this.isMobile) {
       window.addEventListener("keydown", this.onSpaceKeydown);
     }
   },
   methods: {
+    clearBrands: function () {
+      this.$emit("clearBrands");
+    },
     clearScore: function () {
       this.$emit("clearScore");
     },
@@ -35,7 +44,11 @@ export default {
         event.preventDefault();
         this.$emit("setScore");
         this.$emit("getNewWord");
-        if (this.blankCount > 0 && this.wrongCount === 6) {
+        if (
+          this.blankCount > 0 &&
+          this.wrongCount === 6 &&
+          this.brandCount === 3
+        ) {
           this.$emit("clearScore");
         }
       }
