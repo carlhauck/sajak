@@ -20,7 +20,7 @@
           id="modalDescription"
         >
           <slot name="body">
-            <p>Sajak Horseman is a Hangman-inspired word game that puts Pat Sajak's head onto a horse's body. Why? Because it makes more sense than punishing a stick figure for your linguistic ineptitude, and because Pat Sajak's head on a horse's body—while mildly disturbing—doesn't evoke America's legacy of racial terror.</p>
+            <p>Sajak Horseman is a Hangman-inspired word game that puts <a href="https://youtu.be/P5aX32886pQ" target="_blank">Pat Sajak</a>'s head onto a horse's body. Why? Because it makes more sense than punishing a stick figure for your linguistic ineptitude, and because Pat Sajak's head on a horse's body—while mildly disturbing—doesn't evoke America's legacy of racial terror.</p>
 
             <p>You get 60 seconds per word. Simply type the letters you wish to guess. Correct letters are rewarded with their Scrabble score values (thanks, Hasbro!). After you successfully complete a word, hit the space bar to receive your next word.</p>
 

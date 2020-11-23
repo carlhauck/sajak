@@ -9,6 +9,7 @@
       @closeAbout="toggleAbout" />
     <ScoresModal
       v-show="scoresVisible"
+      :highScores="highScores"
       @closeScores="toggleScores" />
   </div>
 </template>
@@ -24,6 +25,7 @@ export default {
     return {
       aboutVisible: false,
       scoresVisible: false,
+      highScores: [],
     };
   },
   components: {
@@ -34,6 +36,11 @@ export default {
   },
   beforeCreate: function () {
     document.body.className = "menu";
+  },
+  created: function () {
+    axios.get("/api/high_scores").then((response) => {
+      this.highScores = response.data;
+    });
   },
   mounted: function () {
     this.$ga.page("/");

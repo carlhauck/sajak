@@ -48,16 +48,9 @@
 import axios from "axios";
 export default {
   name: "ScoresModal",
-  props: ["scoresVisible"],
+  props: ["scoresVisible", "highScores"],
   data: function () {
-    return {
-      highScores: [],
-    };
-  },
-  created: function () {
-    axios.get("/api/high_scores").then((response) => {
-      this.highScores = response.data;
-    });
+    return {};
   },
   methods: {
     close() {
