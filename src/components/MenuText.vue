@@ -3,13 +3,15 @@
     <h1 class="menu-title">sajak horseman</h1>
     <MenuButtonContainer
       @openAbout="openAbout"
-      @openScores="openScores" />
+      @openScores="openScores"
+      :highScores="highScores" />
   </div>
 </template>
 
 <script>
 import MenuButtonContainer from "./../components/MenuButtonContainer";
 export default {
+  props: ["highScores"],
   components: {
     MenuButtonContainer,
   },

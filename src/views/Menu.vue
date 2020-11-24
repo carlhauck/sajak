@@ -3,10 +3,11 @@
     <MenuBackground />
     <MenuText
       @openAbout="toggleAbout"
-      @openScores="toggleScores(); logScoresClick();" />
+      @openScores="toggleScores"
+      :highScores="highScores" />
     <AboutModal
       v-show="aboutVisible"
-      @closeAbout="toggleAbout(); logAboutClick();" />
+      @closeAbout="toggleAbout" />
     <ScoresModal
       v-show="scoresVisible"
       :highScores="highScores"
@@ -52,12 +53,6 @@ export default {
     });
   },
   methods: {
-    logAboutClick: function () {
-      this.$ga.event("click", "about");
-    },
-    logScoresClick: function () {
-      this.$ga.event("click", "scores", "count", this.highScores.length);
-    },
     toggleAbout: function () {
       this.aboutVisible = !this.aboutVisible;
     },

@@ -3,15 +3,21 @@
     <a v-if="button.name === 'play'" :href="`/${button.route}`">
       <button class="btn-menu">{{ button.name }}</button>
     </a>
-    <button v-if="button.name === 'wut'" @click="openAbout()" class="btn-menu">{{ button.name }}</button>
-    <button v-if="button.name === 'scores'" @click="openScores()" class="btn-menu">{{ button.name }}</button>
+    <button v-if="button.name === 'wut'" @click="openAbout(); logAboutClick();" class="btn-menu">{{ button.name }}</button>
+    <button v-if="button.name === 'scores'" @click="openScores(); logScoresClick();" class="btn-menu">{{ button.name }}</button>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["button"],
+  props: ["button", "highScores"],
   methods: {
+    logAboutClick: function () {
+      this.$ga.event("click", "about");
+    },
+    logScoresClick: function () {
+      this.$ga.event("click", "scores", "count", this.highScores.length);
+    },
     openAbout: function () {
       this.$emit("openAbout");
     },

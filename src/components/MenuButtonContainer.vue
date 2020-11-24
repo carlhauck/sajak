@@ -4,6 +4,7 @@
       v-for="button in buttons"
       :key="button.id"
       :button="button"
+      :highScores="highScores"
       @openAbout="openAbout"
       @openScores="openScores" />
   </div>
@@ -12,6 +13,7 @@
 <script>
 import MenuButton from "./../components/MenuButton";
 export default {
+  props: ["highScores"],
   data: function () {
     return {
       buttons: [
