@@ -219,9 +219,6 @@ export default {
       newScoreVisible: false,
     };
   },
-  beforeCreate: function () {
-    document.body.className = "game";
-  },
   created: function () {
     this.setScore();
     this.getNewWord();

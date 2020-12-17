@@ -35,9 +35,6 @@ export default {
     AboutModal,
     ScoresModal,
   },
-  beforeCreate: function () {
-    document.body.className = "menu";
-  },
   created: function () {
     axios.get("/api/high_scores").then((response) => {
       this.highScores = response.data;
