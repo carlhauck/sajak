@@ -36,10 +36,18 @@ export default {
     ScoresModal,
   },
   created: function () {
-    axios.get("/api/high_scores", { timeout: 4000 }).then((response) => {
-      this.highScores = response.data;
-      console.log(response.data);
-    });
+    axios
+      .get("/api/high_scores", { timeout: 4000 })
+      .then((response) => {
+        this.highScores = response.data;
+        console.log(response.data);
+      })
+      .catch(() => {
+        axios.get("/api/high_scores", { timeout: 4000 }).then((response) => {
+          this.highScores = response.data;
+          console.log(response.data);
+        });
+      });
   },
   mounted: function () {
     this.$ga.page("/");
